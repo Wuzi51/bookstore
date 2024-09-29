@@ -1,0 +1,19 @@
+.topNavItem {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+.topNavItem li {
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+.topNavItem a {
+  text-decoration: none;
+  color: gray;
+}
+
+.topNavItem a:hover {
+  color: blue;
+}
