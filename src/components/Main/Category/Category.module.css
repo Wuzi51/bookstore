@@ -13,6 +13,10 @@
   color: gray;
 }
 
+.container h2 {
+  color: gray;
+}
+
 .container a:hover {
   color: #000;
 }
