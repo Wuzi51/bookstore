@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, NotFound, Detailpage  } from "@/pages";
+import { Home, NotFound, BookInfo, DetailPage  } from "@/pages";
 import Layout from "../components/Layout";
 
 const router = createBrowserRouter([
@@ -13,7 +13,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'book',
-        element: <Detailpage />
+        element: <BookInfo />
+      },
+      {
+        path: 'detial',
+        element: <DetailPage/>
       },
       {
         path: '*',

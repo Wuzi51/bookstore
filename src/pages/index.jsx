@@ -1,5 +1,6 @@
 import Home from "./Home";
 import NotFound from "./NotFound";
-import Detailpage from "./Detailpage";
+import BookInfo from "./BookInfo";
+import DetailPage from "./DetailPage";
 
-export { Home, NotFound, Detailpage }
+export { Home, NotFound, BookInfo, DetailPage }
