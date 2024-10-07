@@ -1,0 +1,18 @@
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.banner {
+  display: block;
+  margin-top: 20px;
+}
+
+.banner img {
+  width: 100%;
+}
+
+.banner :hover {
+  cursor: pointer;
+}
