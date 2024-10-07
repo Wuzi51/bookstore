@@ -5,3 +5,7 @@
 .logo img {
   width: 300px;
 }
+
+.logo :hover {
+  cursor: pointer;
+}

@@ -1,9 +1,9 @@
-import styles from "../Footer/Footer.module.css"
+import "./index.css"
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.container}>
+    <footer className="footer">
+      <div className="container">
         <div>
           <h4>歡迎光臨</h4>
         </div>

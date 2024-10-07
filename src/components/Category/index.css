@@ -1,0 +1,29 @@
+.category {
+  margin: 25px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category h2 {
+  font-size: 1.5rem;
+  color: gray;
+}
+
+.category a {
+  text-decoration: none;
+  
+}
+
+.category button {
+  box-shadow: 1px 2px 2px gray ;
+  border-radius: 30px;
+  background-color: #fff;
+  width: 3.5rem;
+  height: 2rem;
+  color: gray;
+} 
+
+.category button:hover {
+  color: #000;
+}
