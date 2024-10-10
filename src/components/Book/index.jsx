@@ -9,7 +9,7 @@ const handleClick = (event) => {
 
 const Book = ({ book }) => {
   return (
-    <li key={book.id} className="book">
+    <div key={book.id} className="book">
       <img src={book.img} alt={book.title} />
       <h3>{book.title}</h3>
       <h4>{book.author}</h4>
@@ -22,7 +22,7 @@ const Book = ({ book }) => {
           <button><FontAwesomeIcon icon={faCartShopping} /></button>
         </div>
       </div>
-    </li>
+    </div> 
   )
 }
 
