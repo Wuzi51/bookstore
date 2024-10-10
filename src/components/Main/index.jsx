@@ -56,10 +56,10 @@ const Main = () => {
   return (
     <>
       <div className="banner" onClick={() => changePage('/')}>
-        <img src="https://cdn.readmoo.com/store/template/4857/full_banner/image_l.jpg?t=1727428846" alt="banner" />  
+        <img src="https://cdn.readmoo.com/store/template/4876/full_banner/image_l.jpg?t=1728459169" alt="banner" />  
       </div>
       <div>
-        <Category title='本日精選'/>
+        <Category title="Today's_Picks" />
       <div className="book-list">
         {bookList.map(book => (
           <Book book={book} key={book.id}/>

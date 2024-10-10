@@ -1,12 +1,13 @@
+import { useTranslation } from "react-i18next"
 import "./index.css"
 
 
 const SearchForm = () => {
-
+  const { t }= useTranslation()
   return (
     <form className="d-flex">
-    <input className="form-control searchForm" type="search" placeholder="請輸入關鍵字" aria-label="Search" />
-    <button className="btn btn-info" type="submit">搜尋</button>
+    <input className="form-control searchForm" type="search" placeholder={t('Please_enter_a_keyword')} aria-label="Search" />
+    <button className="btn btn-info" type="submit">{t('search')}</button>
   </form>
   )
 }

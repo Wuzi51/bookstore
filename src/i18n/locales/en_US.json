@@ -1,11 +1,13 @@
 {
   "login": "Login",
   "serach": "Search",
+  "Please_enter_a_keyword": "Please enter a keyword",
   "all_categories": "All Categories",
   "ranking": "Ranking",
   "recommended_for_you": "Recommended For You",
   "sitewide_events": "Sitewide Events",
   "welcome": "Welcome",
   "terms_of_service": "Terms of Service",
-  "social_media": "Social Media"
+  "social_media": "Social Media",
+  "Today's_Picks": "Today's Picks"
 }

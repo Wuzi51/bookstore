@@ -23,7 +23,6 @@ const NavItems = () => {
   return (
     <ul className="topNavItem">
     <li> <a href="#">{t('login')}</a> </li>
-    {/* {language === "zh_TW" ? "zh_TW" : "en_US"} */}
     <li> <FontAwesomeIcon onClick={changeLanguage} icon={faGlobe} /> </li>
     <li> <FontAwesomeIcon icon={faMoon} /> </li>
     <li> <FontAwesomeIcon icon={faCartShopping} /> </li>

@@ -1,17 +1,19 @@
 import "./index.css"
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation()
   return (
     <footer className="footer">
       <div className="container">
         <div>
-          <h4>歡迎光臨</h4>
+          <h4>{t('welcome')}</h4>
         </div>
         <div>
-          <h4>服務條款</h4>
+          <h4>{t('terms_of_service')}</h4>
         </div>
         <div>
-          <h4>社交媒體</h4>
+          <h4>{t('social_media')}</h4>
         </div>
       </div>
       <p>Copyright © 2024</p>
