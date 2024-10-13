@@ -7,7 +7,7 @@ const handleClick = (event) => {
   className.includes('heart-btn') ? alert('收藏成功') : alert('已加入購物車')
 }
 
-const Book = ({ book }) => {
+const BookCard = ({ book }) => {
   return (
     <div key={book.id} className="book">
       <img src={book.img} alt={book.title} />
@@ -26,4 +26,4 @@ const Book = ({ book }) => {
   )
 }
 
-export default Book
+export default BookCard

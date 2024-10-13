@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import "./index.css"
 
-const BookInfo = () => {
+const Book = () => {
   const navigate = useNavigate()
   const changePage = (url) => {
     navigate(url)
@@ -44,5 +44,5 @@ const BookInfo = () => {
   )
 }
 
-export default BookInfo
+export default Book
 

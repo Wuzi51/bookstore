@@ -1,6 +1,7 @@
-import Book from "@/components/BookCard"
+import BookCard from '@/components/BookCard';
 import React, { useState } from 'react';
 import "./index.css"
+
 
 const bookList = [
   {
@@ -53,7 +54,7 @@ const bookList = [
   }
 ]
 
-const DetailPage = () => {
+const Books = () => {
   const [sortOrder, setSortOrder] = useState('');
 
   const handleChange = (e) => {
@@ -79,7 +80,7 @@ const DetailPage = () => {
         </div>
         <div className="book-list">
           {sortedBooks.map(book => (
-            <Book book={book} key={book.id} />
+            <BookCard book={book} key={book.id} />
           ))}
         </div>
       </div>
@@ -87,4 +88,4 @@ const DetailPage = () => {
   );
 }
 
-export default DetailPage
+export default Books

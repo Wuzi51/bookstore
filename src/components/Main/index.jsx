@@ -1,5 +1,5 @@
 import Category from "../Category"
-import Book from "../BookCard"
+import BookCard from "../BookCard"
 import "./index.css"
 import { useNavigate } from "react-router-dom"
 
@@ -62,7 +62,7 @@ const Main = () => {
         <Category title="Today's_Picks" />
       <div className="book-list">
         {bookList.map(book => (
-          <Book book={book} key={book.id}/>
+          <BookCard book={book} key={book.id}/>
         ))}
       </div>
       </div>
