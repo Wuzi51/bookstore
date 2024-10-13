@@ -2,61 +2,113 @@
   {
     "id": 1,
     "img": "https://cdn.readmoo.com/cover/im/fniapqm_210x315.jpg?v=1727147830",
-    "name": "魔術師",
+    "title": "魔術師",
     "author": "柯姆・托賓",
+    "language" :"繁體中文",
     "price": "NT$ 296",
-    "publication_date": "2024/09/20",
+    "date": 1726761600,
     "series": "時報出版",
-    "describe": "《魂斷威尼斯》《魔山》諾貝爾文學獎得主托瑪斯‧曼的心靈祕史。《大師》《布魯克林》作者柯姆‧托賓最新長篇力作，囊括三大歐洲文學獎。「寫小說是一件卑鄙的事。」──托瑪斯‧曼。面對公眾人物唯有進入他內心世界的矛盾衝突，才能即使體驗一切錯覺幻象。普立茲獎得主理查‧福特、麥可‧康寧漢、布克獎得主約翰‧班維爾盛讚推薦。"
+    "score" : "4.5",
+    "describe": "《魂斷威尼斯》《魔山》諾貝爾文學獎得主托瑪斯‧曼的心靈祕史。《大師》《布魯克林》作者柯姆‧托賓最新長篇力作，囊括三大歐洲文學獎。「寫小說是一件卑鄙的事。」──托瑪斯‧曼。面對公眾人物唯有進入他內心世界的矛盾衝突，才能即使體驗一切錯覺幻象。普立茲獎得主理查‧福特、麥可‧康寧漢、布克獎得主約翰‧班維爾盛讚推薦。",
+    "comments": [
+      {"id": 1, "content": "一開始有點慢，但後來節奏加快了。", "name": "Mark", "createdAt": 1728854479},
+      {"id": 2, "content": "絕對是傑作！完全停不下來。", "name": "Alice", "createdAt": 1728854479},
+      {"id": 3, "content": "不是我喜歡的類型，但寫作還是很不錯。", "name": "Mark", "createdAt": 1728854479},
+      {"id": 4, "content": "不是我喜歡的類型，但寫作還是很不錯。", "name": "John", "createdAt": 1728854479},
+      {"id": 5, "content": "強烈推薦給喜歡懸疑和推理的讀者。", "name": "Alice", "createdAt": 1728854479}
+    ]
   },
   {
     "id": 2,
     "img": "https://cdn.readmoo.com/cover/79/f9g5h51_210x315.jpg?v=1726108503",
-    "name": "爆彈 ：（附電子書專屬簽名扉頁，2023日本",
+    "title": "爆彈 ：（附電子書專屬簽名扉頁，2023日本",
     "author": "吳勝浩",
+    "language" :"繁體中文",
     "price": "NT$ 296",
-    "publication_date": " 2024/09/11",
+    "date": 1725984000,
     "series": "木馬文化",
-    "describe": "一名神祕男子準確預言了東京的連環爆炸，警方與他展開緊張的鬥智，必須在時間內阻止更多爆炸發生。"
+    "score" : "4.5",
+    "describe": "一名神祕男子準確預言了東京的連環爆炸，警方與他展開緊張的鬥智，必須在時間內阻止更多爆炸發生。",
+    "comments": [
+      {"id": 1, "content": "一開始有點慢，但後來節奏加快了。", "name": "Mark", "createdAt": 1728854479},
+      {"id": 2, "content": "絕對是傑作！完全停不下來。", "name": "Alice", "createdAt": 1728854479},
+      {"id": 3, "content": "不是我喜歡的類型，但寫作還是很不錯。", "name": "Mark", "createdAt": 1728854479},
+      {"id": 4, "content": "不是我喜歡的類型，但寫作還是很不錯。", "name": "John", "createdAt": 1728854479},
+      {"id": 5, "content": "強烈推薦給喜歡懸疑和推理的讀者。", "name": "Alice", "createdAt": 1728854479}
+    ]
   },
   {
     "id": 3,
     "img": "https://cdn.readmoo.com/cover/pr/vlziuzz_210x315.jpg?v=1725432040",
-    "name": "廚房裡的偽魚販師",
+    "title": "廚房裡的偽魚販師",
     "author": "林楷倫",
+    "language" :"繁體中文",
     "price": "NT$ 266",
-    "publication_date": "2024/08/30",
+    "date": 1724947200,
     "series": "時報出版",
-    "describe": "從市場魚販到高檔餐廳食材供應商，林楷倫在第二本職人散文中揭露了廚師與魚販的真實故事，描寫了奢華餐廳背後的辛酸與成敗。作品融合深刻情感與現實場景，展現料理人的挑戰與夢想，讓讀者一窺餐廳廚房的真實面貌。"
+    "score" : "4.5",
+    "describe": "從市場魚販到高檔餐廳食材供應商，林楷倫在第二本職人散文中揭露了廚師與魚販的真實故事，描寫了奢華餐廳背後的辛酸與成敗。作品融合深刻情感與現實場景，展現料理人的挑戰與夢想，讓讀者一窺餐廳廚房的真實面貌。",
+    "comments": [
+      {"id": 1, "content": "一開始有點慢，但後來節奏加快了。", "name": "Mark", "createdAt": 1728854479},
+      {"id": 2, "content": "絕對是傑作！完全停不下來。", "name": "Alice", "createdAt": 1728854479},
+      {"id": 3, "content": "不是我喜歡的類型，但寫作還是很不錯。", "name": "Mark", "createdAt": 1728854479},
+      {"id": 4, "content": "不是我喜歡的類型，但寫作還是很不錯。", "name": "John", "createdAt": 1728854479},
+      {"id": 5, "content": "強烈推薦給喜歡懸疑和推理的讀者。", "name": "Alice", "createdAt": 1728854479}
+    ]
   },
   {
     "id": 4,
     "img": "https://cdn.readmoo.com/cover/8f/ce6alcf_210x315.jpg?v=1725863314",
-    "name": "脆弱系統",
+    "title": "脆弱系統",
     "author": "安德魯‧史都華（Andrew J. Stewart",
+    "language" :"繁體中文",
     "price": "NT$ 460",
-    "date": "2024/09/10",
+    "date": 1725897600,
     "series": "經濟新潮社",
-    "describe": "個資外洩、網路詐騙、駭客勒索猖獗，受害者卻求償無門。一本書，分析資訊安全的歷史，以及網路系統如此脆弱的因"
+    "score" : "4.5",
+    "describe": "個資外洩、網路詐騙、駭客勒索猖獗，受害者卻求償無門。一本書，分析資訊安全的歷史，以及網路系統如此脆弱的因",
+    "comments": [
+      {"id": 1, "content": "一開始有點慢，但後來節奏加快了。", "name": "Mark", "createdAt": 1728854479},
+      {"id": 2, "content": "絕對是傑作！完全停不下來。", "name": "Alice", "createdAt": 1728854479},
+      {"id": 3, "content": "不是我喜歡的類型，但寫作還是很不錯。", "name": "Mark", "createdAt": 1728854479},
+      {"id": 4, "content": "不是我喜歡的類型，但寫作還是很不錯。", "name": "John", "createdAt": 1728854479},
+      {"id": 5, "content": "強烈推薦給喜歡懸疑和推理的讀者。", "name": "Alice", "createdAt": 1728854479}
+    ]
   },
   {
     "id": 5,
     "img": "https://cdn.readmoo.com/cover/in/ndkepie_210x315.jpg?v=1725592844",
-    "name": "連結 ：從石器時代到AI紀元",
+    "title": "連結 ：從石器時代到AI紀元",
     "author": "哈拉瑞",
+    "language" :"繁體中文",
     "price": "NT$ 525",
-    "date": "2024/09/10",
+    "date": 1725897600,
     "series": "天下文化",
-    "describe": "現在與未來，AI將會做什麼？哈拉瑞的新巨作《連結》，以激勵人心的方式，講述了我們如何走到這一刻，以及現在必須做出的、攸關生存與發展的急迫決擇。"
+    "score" : "4.5",
+    "describe": "現在與未來，AI將會做什麼？哈拉瑞的新巨作《連結》，以激勵人心的方式，講述了我們如何走到這一刻，以及現在必須做出的、攸關生存與發展的急迫決擇。",
+    "comments": [
+      {"id": 1, "content": "一開始有點慢，但後來節奏加快了。", "name": "Mark", "createdAt": 1728854479},
+      {"id": 2, "content": "絕對是傑作！完全停不下來。", "name": "Alice", "createdAt": 1728854479},
+      {"id": 3, "content": "不是我喜歡的類型，但寫作還是很不錯。", "name": "Mark", "createdAt": 1728854479},
+      {"id": 4, "content": "不是我喜歡的類型，但寫作還是很不錯。", "name": "John", "createdAt": 1728854479},
+      {"id": 5, "content": "強烈推薦給喜歡懸疑和推理的讀者。", "name": "Alice", "createdAt": 1728854479}
+    ]
   },
   {
     "id": 6,
     "img": "https://cdn.readmoo.com/cover/eb/eafhnlc_210x315.jpg?v=1727660614",
-    "name": "超預期壽命",
+    "title": "超預期壽命",
     "author": "彼得．阿提亞",
     "price": "NT$ 750",
-    "date": "2024/10/02",
+    "date": 1727798400,
     "series": "天下雜誌出版",
-    "describe": "遠離疾病、避免衰老，延長健康壽命的新生活指南把複雜難懂的醫學知識，轉化為每天可以做的健康行動。"
+    "describe": "遠離疾病、避免衰老，延長健康壽命的新生活指南把複雜難懂的醫學知識，轉化為每天可以做的健康行動。",
+    "comments": [
+      {"id": 1, "content": "一開始有點慢，但後來節奏加快了。", "name": "Mark", "createdAt": 1728854479},
+      {"id": 2, "content": "絕對是傑作！完全停不下來。", "name": "Alice", "createdAt": 1728854479},
+      {"id": 3, "content": "不是我喜歡的類型，但寫作還是很不錯。", "name": "Mark", "createdAt": 1728854479},
+      {"id": 4, "content": "不是我喜歡的類型，但寫作還是很不錯。", "name": "John", "createdAt": 1728854479},
+      {"id": 5, "content": "強烈推薦給喜歡懸疑和推理的讀者。", "name": "Alice", "createdAt": 1728854479}
+    ]
   }
 ]
