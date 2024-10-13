@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import CommentBoard from "@/components/CommentBoard"
 import "./index.css"
 
 const Book = () => {
@@ -8,14 +9,14 @@ const Book = () => {
   }
   return (
     <div className="flex mt-3">
-      <div className="col-sm-3 col-12 mx-3 ">
-        <img src="https://cdn.readmoo.com/cover/64/2384g0a_460x580.jpg?v=1611886148" alt="cover" />
+      <div className="mx-3">
+        <img src="https://cdn.readmoo.com/cover/64/2384g0a_460x580.jpg?v=1611886148" alt="book"/>
         <div className="flex mt-2">
           <p className="mr-5" onClick={() => changePage('/')}>5677 則劃線</p>
           <p onClick={() => changePage('/')}>50篇評論</p>
         </div>
       </div>
-      <div className="col-sm-6 col-12 book-info">
+      <div className="book-info">
         <div>
           <h2 className="text-xl mb-4">山茶花文具店</h2>
           <h3 className="mb-2">作者：小川糸</h3>
@@ -35,7 +36,7 @@ const Book = () => {
           </ul>
         </div>
       </div>
-      <div className="col-sm-3 col-12 action-btn ">
+      <div className="action-btn ">
         <button className="buy-btn" onClick={() => changePage('/')}><i></i>購買</button>
         <button className="add-to-cart-btn" onClick={() => changePage('/')}>新增至購物車</button>
         <button className="favorite-btn" onClick={() => changePage('/')}>加入收藏</button>
