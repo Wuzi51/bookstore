@@ -64,7 +64,7 @@ const Books = () => {
   const sortedBooks = [...bookList]
     .sort((a, b) => {
       if (sortOrder === 'date') {
-        return new Date(a.publication_date) - new Date(b.publication_date); 
+        return new Date(a.date) - new Date(b.date); 
       }
       return a.title.localeCompare(b.title) 
     });
