@@ -1,4 +1,4 @@
-import Book from "@/components/Book"
+import Book from "@/components/BookCard"
 import React, { useState } from 'react';
 import "./index.css"
 

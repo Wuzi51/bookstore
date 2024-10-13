@@ -1,5 +1,5 @@
 import Category from "../Category"
-import Book from "../Book"
+import Book from "../BookCard"
 import "./index.css"
 import { useNavigate } from "react-router-dom"
 
