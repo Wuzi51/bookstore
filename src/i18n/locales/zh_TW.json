@@ -1,5 +1,9 @@
 {
   "login": "登入",
+  "login_out": "登出",
+  "success": "登入成功",
+  "error": "請輸入正確的帳號或密碼",
+  "warning": "請輸入有效的帳號或密碼",
   "search": "搜尋",
   "Please_enter_a_keyword": "請輸入關鍵字",
   "all_categories": "全站分類",
@@ -9,5 +13,8 @@
   "welcome": "歡迎光臨",
   "terms_of_service": "服務條款",
   "social_media": "社交媒體",
-  "Today's_Picks": "本日精選"
+  "Today's_Picks": "本日精選",
+  "cancel": "取消",
+  "account": "使用者帳號",
+  "password": "密碼"
 }
