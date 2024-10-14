@@ -12,22 +12,22 @@ const Menu = () => {
     <nav>
       <ul className="nav mt-2 menu">
         <li className="nav-item">
-          <button className="nav-link" onClick={() => changePage('/')}>
+          <button className="nav-link" onClick={() => changePage('/books')}>
             {t('all_categories')}
           </button>
         </li>
         <li className="nav-item">
-          <button className="nav-link" onClick={() => changePage('/')}>
+          <button className="nav-link" onClick={() => changePage('/books')}>
             {t('ranking')}
           </button>
         </li>
         <li className="nav-item">
-          <button className="nav-link" onClick={() => changePage('/')}>
+          <button className="nav-link" onClick={() => changePage('/books')}>
             {t('recommended_for_you')}
           </button>
         </li>
         <li className="nav-item">
-          <button className="nav-link" onClick={() => changePage('/')}>
+          <button className="nav-link" onClick={() => changePage('/books')}>
             {t('sitewide_events')}
           </button>
         </li>
