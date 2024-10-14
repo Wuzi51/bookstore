@@ -7,13 +7,15 @@ const handleClick = (event) => {
   className.includes('heart-btn') ? alert('收藏成功') : alert('已加入購物車')
 }
 
-const BookCard = ({ book }) => {
+const BookCard = ({ book, onClick }) => {
   return (
     <div key={book.id} className="book">
-      <img src={book.img} alt={book.title} />
-      <h3>{book.title}</h3>
-      <h4>{book.author}</h4>
-      <p>{book.price}</p>
+      <div className='book-card' onClick={onClick}>
+        <img src={book.img} alt={book.title}/>
+        <h3>{book.title}</h3>
+        <h4>{book.author}</h4>
+        <p>{book.price}</p>
+      </div>
       <div className='btn-area flex justify-evenly mt-3'>
         <div className='heart-btn' onClick={handleClick}>
           <button><FontAwesomeIcon icon={faHeart} /></button>
