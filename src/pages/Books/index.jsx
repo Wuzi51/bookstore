@@ -8,7 +8,7 @@ const Books = () => {
   const [books, setBooks] = useState([])
   const [sortOrder, setSortOrder] = useState('');
 
-   const getBooks = async() => {
+  const getBooks = async() => {
     const { data } = await bookApi.getBooks()
     setBooks(data)
     console.log(data)
@@ -26,13 +26,13 @@ const Books = () => {
       return a.title.localeCompare(b.title) 
     });
 
-     const navigate = useNavigate()
+    const navigate = useNavigate()
 
-     const changePage = (url) => {
+    const changePage = (url) => {
     navigate(url)
   }
 
-     useEffect(() => {
+    useEffect(() => {
     getBooks()
   }, [])
 
