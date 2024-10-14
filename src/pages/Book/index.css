@@ -1,3 +1,7 @@
+.book-info li {
+  line-height: 2rem;
+}
+
 .action-btn {
   display: flex;
   flex-direction: column;
@@ -13,7 +17,7 @@
   cursor: pointer;
   border-radius: 40px;
   width: 160px;
-  margin-right: 1rem;
+  margin: 0.5rem;
 }
 
 .buy-btn {
