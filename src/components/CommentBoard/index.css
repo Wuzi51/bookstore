@@ -1,0 +1,24 @@
+.comment-board {
+  width: 100%;
+  max-width: 800px;
+}
+
+.comment-board textarea {
+  resize: vertical;
+}
+
+.comment-board button {
+  transition: background-color 0.3s;
+}
+
+.comment-board button:hover {
+  background-color: #3b82f6;
+}
+
+.comments .comment {
+  transition: background-color 0.3s;
+}
+
+.comments .comment:hover {
+  background-color: #e5e7eb;
+}
