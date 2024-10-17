@@ -7,7 +7,7 @@ const SearchForm = () => {
   return (
     <form className="d-flex">
     <input className="form-control searchForm" type="search" placeholder={t('Please_enter_a_keyword')} aria-label="Search" />
-    <button className="btn btn-info" type="submit">{t('search')}</button>
+    <button className="btn bg-blue-500" type="submit">{t('search')}</button>
   </form>
   )
 }
