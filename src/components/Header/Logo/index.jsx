@@ -9,7 +9,7 @@ const Logo = () => {
   return (
     <div onClick={() => changePage("/")} className="logo">
       <img 
-      src="https://cdn.readmoo.com/images/store/logo_header.svg" 
+      src="/src/images/bookstore-high-resolution-logo-transparent.png" 
       alt="logo" 
     />
     </div>
