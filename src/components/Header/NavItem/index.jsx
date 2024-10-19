@@ -7,11 +7,13 @@ import { useUserStore } from "@/store/user"
 import { Modal, message } from 'antd';
 import { useState } from 'react';
 import { userApi } from '@/api/user';
+import Cart from '@/components/Cart';
 
 
 
 const NavItems = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isCartOpen, setIsCartOpen] = useState(false)
 	const { t } = useTranslation()
   const { language, setLanguage, token, setToken } = useUserStore()
   const [username, setUsername] = useState('')
@@ -23,6 +25,10 @@ const NavItems = () => {
 
   const handleModalOpen = (bool) => {
     setIsModalOpen(bool)
+  }
+
+  const handleCartOpen = (bool) => {
+    setIsCartOpen(bool)
   }
 
   // 登出事件
@@ -72,7 +78,10 @@ const NavItems = () => {
         </li>
         <li> <FontAwesomeIcon onClick={changeLanguage} icon={faGlobe} /> </li>
         <li> <FontAwesomeIcon icon={faMoon} /> </li>
-        <li> <FontAwesomeIcon icon={faCartShopping} /> </li>
+        <li> <FontAwesomeIcon icon={faCartShopping} onClick={() => handleCartOpen(true)} /> </li>
+
+        <Cart open={isCartOpen} onCancel={setIsCartOpen} />
+
         <Modal okText={t("login")} cancelText={t("cancel")} open={isModalOpen} onOk={login} onCancel={handleCancel}>
           <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-16 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
