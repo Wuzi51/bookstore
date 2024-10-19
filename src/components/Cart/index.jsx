@@ -2,6 +2,8 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { bookApi } from '@/api/book'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import BookItem from '../BookItem'
 
 const Cart = ({ open, onCancel }) => {
   const [books, setBooks] = useState([])
@@ -15,6 +17,12 @@ const Cart = ({ open, onCancel }) => {
     getBooks()
   }, [])
 
+  const navigate = useNavigate()
+  
+  const changePage = (url) => {
+    navigate(url)
+    onCancel(false)
+    }
   return (
     <Dialog open={open} onClose={() => onCancel(false)} className="relative z-10">
       <DialogBackdrop
@@ -37,79 +45,36 @@ const Cart = ({ open, onCancel }) => {
                       <button
                         type="button"
                         onClick={() => onCancel(false)}
-                        className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
-                      >
+                        className="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
                         <span className="absolute -inset-0.5" />
                         <span className="sr-only">Close panel</span>
                         <XMarkIcon aria-hidden="true" className="h-6 w-6" />
                       </button>
                     </div>
                   </div>
-
-                  <div className="mt-8">
-                    <div className="flow-root">
-                      <ul role="list" className="-my-6 divide-y divide-gray-200">
-                        {books.map((book) => (
-                          <li key={book.id} className="flex py-6">
-                            <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                              <img
-                                alt={book.title}
-                                src={book.img}
-                                className="h-full w-full object-center"
-                              />
-                            </div>
-
-                            <div className="ml-4 flex flex-1 flex-col">
-                              <div>
-                                <div className="flex justify-between text-base text-gray-900">
-                                  <h3>
-                                    <a href={book.title}>{book.title}</a>
-                                  </h3>
-                                    <p className="ml-4 text-right text-sm whitespace-nowrap">{book.price}</p>
-                                </div>
-                                <p className="mt-1 text-sm text-gray-500">{book.author}</p>
-                              </div>
-                              <div className="flex flex-1 items-end justify-between text-sm">
-                                <p className="text-gray-500">{book.series}</p>
-
-                                <div className="flex">
-                                  <button type="button" className="font-medium text-blue-600 hover:text-blue-500">
-                                    移除
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+                  <BookItem books={books}/>
                 </div>
-
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>總金額</p>
                     <p>$262</p>
                   </div>
-                  <div className="mt-6">
-                    <a
-                      href="#"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-blue-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-400"
+                  <div className="mt-6 flex justify-center">
+                    <button
+                      className="w-full rounded-md border border-transparent bg-blue-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-400"
+                      onClick={() => changePage('/checkout')}
                     >
                       結帳
-                    </a>
+                    </button>
                   </div>
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-                    <p>
-                      <button
-                        type="button"
-                        onClick={() => setOpen(false)}
-                        className="font-medium text-blue-600 hover:text-blue-500"
+                    <button
+                      type="button"
+                      onClick={() => setOpen(false)}
+                      className="font-medium text-blue-600 hover:text-blue-500"
                       >
-                        繼續逛逛
-                        <span aria-hidden="true"> &rarr;</span>
-                      </button>
-                    </p>
+                      繼續逛逛
+                    </button>
                   </div>
                 </div>
               </div>
