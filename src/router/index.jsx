@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, NotFound, Book, Books, Checkout } from "@/pages";
+import { Home, NotFound, Book, Books, Checkout, Favorite } from "@/pages";
 import Layout from "../components/Layout";
 
 const router = createBrowserRouter([
@@ -22,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: '/checkout',
         element: <Checkout/>
+      },
+      {
+        path: '/favorite',
+        element: <Favorite/>
       },
       {
         path: '*',
