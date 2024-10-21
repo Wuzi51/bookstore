@@ -25,7 +25,6 @@ body {
   background-color: #000;
 }
 
-.darkMode .wrap ,p{
+.darkMode .wrap{
   background-color: #000 !important;
-  color: #fff;
 }
