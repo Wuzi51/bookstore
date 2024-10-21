@@ -2,7 +2,6 @@ import BookCard from '@/components/BookCard';
 import { bookApi } from "@/api/book";
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom"
-import "./index.css"
 
 const Books = () => {
   const [books, setBooks] = useState([])
