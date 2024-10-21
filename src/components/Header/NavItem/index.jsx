@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping, faGlobe, faMoon } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping, faGlobe, faMoon, faHeart } from '@fortawesome/free-solid-svg-icons'
 import './index.css'
 import i18n from '@/i18n'
 import { useTranslation } from "react-i18next";
@@ -7,11 +7,14 @@ import { useUserStore } from "@/store/user"
 import { Modal, message } from 'antd';
 import { useState } from 'react';
 import { userApi } from '@/api/user';
+import { useNavigate } from 'react-router-dom';
 import Cart from '@/components/Cart';
 
 
 
 const NavItems = () => {
+  const { darkMode, setDarkMode } = useUserStore()
+
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isCartOpen, setIsCartOpen] = useState(false)
 	const { t } = useTranslation()
@@ -21,6 +24,12 @@ const NavItems = () => {
   const languageList = {
     zh: "zh_TW",
     en: "en_US",
+  }
+
+  const handleDarkMode = () => {
+    setDarkMode(!darkMode)
+    const text = !darkMode ? '暗黑模式' : '明亮模式'
+    message.success(text)
   }
 
   const handleModalOpen = (bool) => {
@@ -68,6 +77,12 @@ const NavItems = () => {
     i18n.changeLanguage(newLanguage) //i18n
     setLanguage(newLanguage) //狀態持久化
   }
+
+ const navigate = useNavigate()
+
+ const changePage = (url) => {
+  navigate(url)
+ }
   
   return (
     <>
@@ -77,8 +92,9 @@ const NavItems = () => {
           {token ? <p onClick={handleClick}>{t("login_out")}</p> : <p onClick={() => handleModalOpen(true)}>{t("login")}</p>} 
         </li>
         <li> <FontAwesomeIcon onClick={changeLanguage} icon={faGlobe} /> </li>
-        <li> <FontAwesomeIcon icon={faMoon} /> </li>
-        <li> <FontAwesomeIcon icon={faCartShopping} onClick={() => handleCartOpen(true)} /> </li>
+        <li> <FontAwesomeIcon onClick={handleDarkMode} icon={faMoon} /> </li>
+        <li> <FontAwesomeIcon onClick={() => handleCartOpen(true)} icon={faCartShopping} /> </li>
+        <li> <FontAwesomeIcon onClick={() => changePage('/favorite')} icon={faHeart}/> </li>
 
         <Cart open={isCartOpen} onCancel={setIsCartOpen} />
 
