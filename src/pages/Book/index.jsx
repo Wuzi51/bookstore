@@ -7,19 +7,23 @@ import "./index.css"
 import CommentBoard from "@/components/CommentBoard"
 
 const Book = () => {
+  const [books, setBooks] = useState([])
+
   const getBooks = async() => {
     const { data } = await bookApi.getBooks()
     setBooks(data)
     console.log(data)
   }
-  const [books, setBooks] = useState([])
+
   const navigate = useNavigate()
+  
   const changePage = (url) => {
     navigate(url)
   }
     useEffect(() => {
     getBooks()
   }, [])
+
   return (
     <div className="flex mt-3">
       <div className="mx-3">
@@ -30,7 +34,7 @@ const Book = () => {
           <p>50篇評論</p>
         </div>
       </div>
-      <div className="book-info">
+      <div className="leading-8">
         <div>
           <h2 className="text-xl mb-4">山茶花文具店</h2>
           <h3 className="mb-2">作者：小川糸</h3>
