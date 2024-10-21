@@ -2,6 +2,7 @@ import { bookApi } from "@/api/book";
 import { useState, useEffect } from "react";
 import BookItem from "@/components/BookItem";
 import { message } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [books, setBooks] = useState([]);
@@ -14,6 +15,13 @@ const Checkout = () => {
   useEffect(() => {
     getBooks();
   }, []);
+
+  const navigate = useNavigate()
+  const changePage = (url) => {
+    navigate(url)
+    message.success('付款成功')
+  }
+
 
   return (
     <div className="max-w-7xl mx-auto py-12 px-6 lg:px-8">
@@ -100,7 +108,7 @@ const Checkout = () => {
             </div>
             <button
               type="button"
-              className="w-full bg-blue-500 text-white py-3 px-4 rounded-md hover:bg-blue-400 transition duration-300" onClick={() => message.success('付款成功')}
+              className="w-full bg-blue-500 text-white py-3 px-4 rounded-md hover:bg-blue-400 transition duration-300" onClick={() => changePage('/')}
             >
               確定付款
             </button>
@@ -110,6 +118,11 @@ const Checkout = () => {
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h3 className="text-2xl font-semibold mb-6 text-gray-800">購買明細</h3>
           <BookItem books={books} />
+          <p className="my-4 border border-solid border-stone-500"></p>
+          <div className="flex justify-between text-base font-medium text-gray-900">
+            <p>總金額</p>
+            <p>$262</p>
+          </div>
         </div>
       </div>
     </div>
