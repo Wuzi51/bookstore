@@ -22,6 +22,31 @@ const Checkout = () => {
     message.success('付款成功')
   }
 
+  const monthDropdown = () => {
+    const months = [];
+    for (let i = 1; i <= 12; i++) {
+      const month = i < 10 ? `0${i}` : `${i}`
+      months.push(
+        <option key={month} value={month}>
+          {month}
+        </option>
+      )
+    }
+    return months
+  }
+
+  const yearDropdown = () => {
+    const years = [];
+    for ( let i = 2024; i <= 2034; i++ ) {
+      years.push(
+        <option key={i} value={i}>
+          {i}
+        </option>
+      )
+    }
+    return years
+  }
+
 
   return (
     <div className="max-w-7xl mx-auto py-12 px-6 lg:px-8">
@@ -57,18 +82,7 @@ const Checkout = () => {
                   <option value="" disabled selected>
                     MM
                   </option>
-                  <option value="01">01</option>
-                  <option value="02">02</option>
-                  <option value="02">03</option>
-                  <option value="02">04</option>
-                  <option value="02">05</option>
-                  <option value="02">06</option>
-                  <option value="02">07</option>
-                  <option value="02">08</option>
-                  <option value="02">09</option>
-                  <option value="02">10</option>
-                  <option value="02">11</option>
-                  <option value="02">12</option>
+                  {monthDropdown()}
                 </select>
                 <p className="flex items-center">/</p>
                 <select
@@ -77,17 +91,7 @@ const Checkout = () => {
                   <option value="" disabled selected>
                     YYYY
                   </option>
-                  <option value="2024">2024</option>
-                  <option value="2025">2025</option>
-                  <option value="2025">2026</option>
-                  <option value="2025">2027</option>
-                  <option value="2025">2028</option>
-                  <option value="2025">2029</option>
-                  <option value="2025">2030</option>
-                  <option value="2025">2031</option>
-                  <option value="2025">2032</option>
-                  <option value="2025">2033</option>
-                  <option value="2025">2034</option>
+                  {yearDropdown()}
                 </select>
               </div>
             </div>
