@@ -6,7 +6,7 @@ const Category = ({ title }) => {
   return (
     <div className="category">
       <h2>{t(title)}</h2>
-      <button>More</button>
+      <button className="more-btn">More</button>
     </div>
    
   )

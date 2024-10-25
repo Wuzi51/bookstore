@@ -21,10 +21,28 @@ body {
   background-color: rgb(250, 250, 250);
 }
 
+/* darkMode */
 .darkMode {
   background-color: #000;
 }
 
-.darkMode .wrap{
-  background-color: #000 !important;
+.darkMode .wrap {
+  background-color: #000;
+}
+
+.darkMode .more-btn {
+  background-color: gray;
+}
+
+.darkMode footer {
+  background-color: #000;
+}
+
+.darkMode,
+.darkMode p,
+.darkMode a,
+.darkMode li,
+.darkMode h2, 
+.darkMode button {
+  color: #fff;
 }
