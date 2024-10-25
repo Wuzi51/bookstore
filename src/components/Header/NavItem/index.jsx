@@ -28,8 +28,7 @@ const NavItems = () => {
 
   const handleDarkMode = () => {
     setDarkMode(!darkMode)
-    const text = !darkMode ? '暗黑模式' : '明亮模式'
-    message.success(text)
+    message.success(`${!darkMode ? '暗黑' : '明亮'}模式`)
   }
 
   const handleModalOpen = (bool) => {
@@ -48,7 +47,7 @@ const NavItems = () => {
 
 
   // 存取token後存存在前端頁面
-   const login = async() => {
+  const login = async() => {
     // 防呆
     if (!username || !password) {
       message.warning(t("warning"))
@@ -66,9 +65,9 @@ const NavItems = () => {
       // 成功或失敗都會執行
       handleModalOpen(false);
     }
-   } 
+  } 
 
-   const handleCancel = () => {
+  const handleCancel = () => {
     handleModalOpen(false);
   }
 
@@ -78,11 +77,11 @@ const NavItems = () => {
     setLanguage(newLanguage) //狀態持久化
   }
 
- const navigate = useNavigate()
+  const navigate = useNavigate()
 
- const changePage = (url) => {
+  const changePage = (url) => {
   navigate(url)
- }
+}
   
   return (
     <>
