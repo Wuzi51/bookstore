@@ -16,15 +16,7 @@ const Home = () => {
   }
 
   const handleFavoriteClick = (id) => {
-    const isFavorite = books.some((item) => item.id === id)
-    const book = books.find((item) => item.id === id)
-    if (isFavorite) {
-      //移除收藏
-      setFavoriteBooks(id)
-    } else {
-      //加入收藏
-      setFavoriteBooks([...favoriteBooks, book])
-    }
+    setFavoriteBooks(id)
   }
 
   const handleCartClick = (id) => {
@@ -37,7 +29,7 @@ const Home = () => {
     navigate(url)
   }
 
-  useEffect(() => {
+useEffect(() => {
     getBooks()
   }, [])
 
