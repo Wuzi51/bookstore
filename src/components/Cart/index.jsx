@@ -70,7 +70,7 @@ const Cart = ({ open, onCancel }) => {
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                     <button
                       type="button"
-                      onClick={() => setOpen(false)}
+                      onClick={() => onCancel(false)}
                       className="font-medium text-blue-600 hover:text-blue-500"
                       >
                       繼續逛逛
