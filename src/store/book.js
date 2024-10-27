@@ -5,7 +5,18 @@ import { message } from "antd";
 export const useBookStore = create(
   persist(
     (set) => ({
+      cart: [],
+      setCart: (id, qty) => set((state) => {
+        const book = state.books.find((item) => item.id === id)
+        const newCart = [...state.cart, { ...book, qty }]
+        return { cart: newCart }
+      }),
       favoriteBooks: [],
+      removeCart: (idx) => set((state) => {
+        const newCart = [...state.cart]
+        newCart.splice(idx, 1)
+        return { cart: newCart } 
+      }),
       setFavoriteBooks: (id) => {set((state) => {
         const isFavorite = state.favoriteBooks.some((item) => item.id === id)
         const book = state.books.find((item) => item.id === id)
@@ -28,8 +39,8 @@ export const useBookStore = create(
     },
       books: [],
       setBooks: (books) => set({ books }),
-      carts: [],
-      setCarts: (books) => set({ cart: books }),
+      // carts: [],
+      // setCarts: (books) => set({ cart: books }),
     }),
     {
       name: 'book',

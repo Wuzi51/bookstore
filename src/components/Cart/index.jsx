@@ -1,28 +1,23 @@
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { bookApi } from '@/api/book'
-import { useState, useEffect } from 'react'
+import { useBookStore } from "@/store/book"
 import { useNavigate } from 'react-router-dom'
 import BookItem from '../BookItem'
 
-const Cart = ({ open, onCancel }) => {
-  const [books, setBooks] = useState([])
-
-  const getBooks = async() => {
-    const { data } = await bookApi.getBooks()
-    setBooks(data)
-  }
-
-  useEffect(() => {
-    getBooks()
-  }, [])
-
+const Cart = ({ items, open, onCancel }) => {
+  const { removeCart } = useBookStore()
+  console.log(removeCart)
   const navigate = useNavigate()
   
   const changePage = (url) => {
     navigate(url)
     onCancel(false)
     }
+
+  const handleRemoveClick = (idx) => {
+    removeCart(idx)
+  }
+
   return (
     <Dialog open={open} onClose={() => onCancel(false)} className="relative z-10">
       <DialogBackdrop
@@ -52,7 +47,11 @@ const Cart = ({ open, onCancel }) => {
                       </button>
                     </div>
                   </div>
-                  <BookItem books={books}/>
+                  {items.length ? (<BookItem books={items} onRemoveClick={handleRemoveClick} />) : 
+                  (<div className='flex justify-center'>
+                    <span className='mt-[50%] text-xl text-gray-400'>您的購物車是空的</span>
+                  </div>)}
+                  
                 </div>
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
