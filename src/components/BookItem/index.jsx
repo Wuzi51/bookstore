@@ -21,6 +21,7 @@ const BookItem = ({ books, onRemoveClick }) => {
                   <p className="ml-4 text-right text-sm whitespace-nowrap">{`NT$ ${book.price}`}</p>
                   <p className="ml-4 text-right text-sm whitespace-nowrap">X{book.qty}</p>
               </div>
+              <p className="text-gray-500 text-[14px]">{book.author}</p>
             </div>
             <div className="flex flex-1 items-end justify-between text-sm">
               <p className="text-gray-500">{book.series}</p>
