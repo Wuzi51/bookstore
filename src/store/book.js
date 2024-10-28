@@ -4,13 +4,15 @@ import { message } from "antd";
 
 export const useBookStore = create(
   persist(
-    (set) => ({
+    (set, get) => ({
       cart: [],
       setCart: (id, qty) => set((state) => {
         const book = state.books.find((item) => item.id === id)
         const newCart = [...state.cart, { ...book, qty }]
+        message.success('已加入購物車')
         return { cart: newCart }
       }),
+      totalPrice: () => get().cart.reduce((preVal, item) => preVal + item.price * item.qty, 0),
       favoriteBooks: [],
       removeCart: (idx) => set((state) => {
         const newCart = [...state.cart]
@@ -39,8 +41,6 @@ export const useBookStore = create(
     },
       books: [],
       setBooks: (books) => set({ books }),
-      // carts: [],
-      // setCarts: (books) => set({ cart: books }),
     }),
     {
       name: 'book',

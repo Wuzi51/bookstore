@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import BookItem from '../BookItem'
 
 const Cart = ({ items, open, onCancel }) => {
-  const { removeCart } = useBookStore()
+  const { removeCart, totalPrice  } = useBookStore()
   console.log(removeCart)
   const navigate = useNavigate()
   
@@ -17,6 +17,7 @@ const Cart = ({ items, open, onCancel }) => {
   const handleRemoveClick = (idx) => {
     removeCart(idx)
   }
+  
 
   return (
     <Dialog open={open} onClose={() => onCancel(false)} className="relative z-10">
@@ -56,7 +57,7 @@ const Cart = ({ items, open, onCancel }) => {
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>總金額</p>
-                    <p>$262</p>
+                    <p>NT${totalPrice()}</p>
                   </div>
                   <div className="mt-6 flex justify-center">
                     <button

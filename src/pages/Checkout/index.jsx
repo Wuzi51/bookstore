@@ -1,20 +1,10 @@
-import { bookApi } from "@/api/book";
-import { useState, useEffect } from "react";
 import BookItem from "@/components/BookItem";
 import { message } from "antd";
 import { useNavigate } from "react-router-dom";
-
+import { useBookStore } from "@/store/book";
 const Checkout = () => {
-  const [books, setBooks] = useState([]);
-
-  const getBooks = async () => {
-    const { data } = await bookApi.getBooks();
-    setBooks(data);
-  };
-
-  useEffect(() => {
-    getBooks();
-  }, []);
+  //使用全局狀態獲取加入購物車的資料
+  const { cart, totalPrice } = useBookStore()
 
   const navigate = useNavigate()
   const changePage = (url) => {
@@ -121,11 +111,11 @@ const Checkout = () => {
 
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h3 className="text-2xl font-semibold mb-6 text-gray-800">購買明細</h3>
-          <BookItem books={books} />
+          <BookItem books={cart} />
           <p className="my-4 border border-solid border-stone-500"></p>
           <div className="flex justify-between text-base font-medium text-gray-900">
             <p>總金額</p>
-            <p>$262</p>
+            <p>NT${totalPrice()}</p>
           </div>
         </div>
       </div>

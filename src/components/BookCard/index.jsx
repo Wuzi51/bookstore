@@ -10,16 +10,20 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick, showButtons = t
         <img src={book.img} alt={book.title}/>
         <h3>{book.title}</h3>
         <h4>{book.author}</h4>
-        <p>{book.price}</p>
+        <p>{`NT$ ${book.price}`}</p>
       </div>
       
       {showButtons && ( 
         <div className='btn-area flex justify-evenly mt-3'>
-          <div className='heart-btn'>
-            <button><FontAwesomeIcon icon={faHeart} onClick={() => onFavoriteClick(book.id)}/></button>
+          <div className='heart-btn' onClick={() => onFavoriteClick(book.id)}>
+            <button>
+              <FontAwesomeIcon icon={faHeart}/>
+            </button>
           </div>
-          <div className='cart-btn'>
-            <button><FontAwesomeIcon icon={faCartShopping} onClick={() => onCartClick(book.id)}/></button>
+          <div className='cart-btn' onClick={() => onCartClick(book.id)}>
+            <button>
+              <FontAwesomeIcon icon={faCartShopping}/>
+            </button>
           </div>
         </div>
       )}
