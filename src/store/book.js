@@ -12,7 +12,8 @@ export const useBookStore = create(
         message.success('已加入購物車')
         return { cart: newCart }
       }),
-      totalPrice: () => get().cart.reduce((preVal, item) => preVal + item.price * item.qty, 0),
+      //定義動態狀態時使用get
+      getTotalPrice: () => get().cart.reduce((preVal, item) => preVal + item.price * item.qty, 0),
       favoriteBooks: [],
       removeCart: (idx) => set((state) => {
         const newCart = [...state.cart]
