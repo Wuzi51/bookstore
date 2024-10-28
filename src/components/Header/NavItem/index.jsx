@@ -8,12 +8,15 @@ import { Modal, message } from 'antd';
 import { useState } from 'react';
 import { userApi } from '@/api/user';
 import { useNavigate } from 'react-router-dom';
+import { Badge } from 'antd';
 import Cart from '@/components/Cart';
+import { useBookStore } from '@/store/book';
 
 
 
 const NavItems = () => {
   const { darkMode, setDarkMode } = useUserStore()
+  const { cart } = useBookStore()
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isCartOpen, setIsCartOpen] = useState(false)
@@ -92,10 +95,14 @@ const NavItems = () => {
         </li>
         <li> <FontAwesomeIcon onClick={changeLanguage} icon={faGlobe} /> </li>
         <li> <FontAwesomeIcon onClick={handleDarkMode} icon={faMoon} /> </li>
-        <li> <FontAwesomeIcon onClick={() => handleCartOpen(true)} icon={faCartShopping} /> </li>
+        <li>
+          <Badge count={cart.length} size='small'>
+            <FontAwesomeIcon className='text-[18px]' onClick={() => handleCartOpen(true)} icon={faCartShopping} /> 
+          </Badge> 
+        </li>
         <li> <FontAwesomeIcon onClick={() => changePage('/favorite')} icon={faHeart}/> </li>
 
-        <Cart open={isCartOpen} onCancel={setIsCartOpen} />
+        <Cart open={isCartOpen} onCancel={setIsCartOpen} items={cart}/>
 
         <Modal okText={t("login")} cancelText={t("cancel")} open={isModalOpen} onOk={login} onCancel={handleCancel}>
           <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-16 lg:px-8">
