@@ -5,6 +5,8 @@ import { message } from "antd";
 export const useBookStore = create(
   persist(
     (set, get) => ({
+      orderList: [],
+      setOrderList: (orderList) => set({ orderList }),
       cart: [],
       setCart: (id, qty) => set((state) => {
         const book = state.books.find((item) => item.id === id)
@@ -19,6 +21,9 @@ export const useBookStore = create(
         const newCart = [...state.cart]
         newCart.splice(idx, 1)
         return { cart: newCart } 
+      }),
+      clearCart: () => set(() => {
+        return { cart: [] } 
       }),
       setFavoriteBooks: (id) => {set((state) => {
         const isFavorite = state.favoriteBooks.some((item) => item.id === id)

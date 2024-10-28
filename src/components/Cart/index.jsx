@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import BookItem from '../BookItem'
 
 const Cart = ({ items, open, onCancel }) => {
-  const { removeCart, getTotalPrice  } = useBookStore()
+  const { removeCart, clearCart, getTotalPrice  } = useBookStore()
   console.log(removeCart)
   const navigate = useNavigate()
   
@@ -16,6 +16,10 @@ const Cart = ({ items, open, onCancel }) => {
 
   const handleRemoveClick = (idx) => {
     removeCart(idx)
+  }
+
+  const handleRemoveAllClick = () => {
+    clearCart()
   }
   
 
@@ -48,11 +52,17 @@ const Cart = ({ items, open, onCancel }) => {
                       </button>
                     </div>
                   </div>
-                  {items.length ? (<BookItem books={items} onRemoveClick={handleRemoveClick} />) : 
+                  {items.length ? (
+                    <div className='flex flex-col'>
+                      <button className='ml-auto w-32 mt-3 rounded-md border border-transparent bg-gray-400 text-base font-medium text-white shadow-sm hover:bg-gray-300'
+                      onClick={handleRemoveAllClick}
+                      >清空購物車</button>
+                      <BookItem books={items} onRemoveClick={handleRemoveClick} />
+                    </div>
+                  ) : 
                   (<div className='flex justify-center'>
                     <span className='mt-[50%] text-xl text-gray-400'>您的購物車是空的</span>
                   </div>)}
-                  
                 </div>
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
