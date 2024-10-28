@@ -8,7 +8,7 @@ import { useBookStore } from "@/store/book"
 
 
 const Home = () => {
-  const { books, setBooks, favoriteBooks, setFavoriteBooks } = useBookStore()
+  const { books, setBooks, setFavoriteBooks, setCart } = useBookStore()
 
   const getBooks = async() => {
     const { data } = await bookApi.getBooks()
@@ -19,8 +19,8 @@ const Home = () => {
     setFavoriteBooks(id)
   }
 
-  const handleCartClick = (id) => {
-    console.log(id)
+  const handleCartClick = (id, qty = 1) => {
+    setCart(id, qty)
   }
 
   const navigate = useNavigate()
