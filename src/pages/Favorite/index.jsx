@@ -1,24 +1,26 @@
 import BookCard from "@/components/BookCard"
-import { useState, useEffect } from "react"
-import { bookApi } from "@/api/book"
+// import { useState, useEffect } from "react"
+// import { bookApi } from "@/api/book"
+import { useBookStore } from "@/store/book"
 
 const Favorite = () => {
-  const [books, setBooks] = useState([])
+  const { favoriteBooks } = useBookStore()
+  // const [books, setBooks] = useState([])
   
-  const getBooks = async() => {
-    const {data} = await bookApi.getBooks()
-    setBooks(data)
-  }
+  // const getBooks = async() => {
+  //   const {data} = await bookApi.getBooks()
+  //   setBooks(data)
+  // }
 
-    useEffect(() => {
-    getBooks()
-  }, [])
+  // useEffect(() => {
+  // getBooks()
+  // }, [])
   
   return (
     <div className="mt-3">
       <h2 className="text-2xl ml-3 font-bold mb-2">我的願望清單</h2>
       <div className="flex">
-        {books.map(book => (
+        {favoriteBooks.map(book => (
           <BookCard book={book} key={book.id} showButtons={false}/>
         ))}
       </div>

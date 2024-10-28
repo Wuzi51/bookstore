@@ -32,9 +32,7 @@ export const useBookStore = create(
           //移除收藏
           message.success('移除收藏')
           return {
-            favoriteBooks: state.favoriteBooks.filter((item) => {
-              item.id !== id
-            })
+            favoriteBooks: state.favoriteBooks.filter((item) => item.id !== id)
           }
         } else {
           //加入收藏
