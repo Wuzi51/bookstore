@@ -6,7 +6,6 @@ import BookItem from '../BookItem'
 
 const Cart = ({ items, open, onCancel }) => {
   const { removeCart, clearCart, getTotalPrice  } = useBookStore()
-  console.log(removeCart)
   const navigate = useNavigate()
   
   const changePage = (url) => {

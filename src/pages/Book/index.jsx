@@ -9,7 +9,6 @@ const Book = () => {
   const { books, setBooks, favoriteBooks, setFavoriteBooks } = useBookStore()
   const { id } = useParams()
   const book = books.find((item) => item.id === Number(id))
-  console.log(book)
 
   const navigate = useNavigate()
   
