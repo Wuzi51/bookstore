@@ -107,7 +107,7 @@ const Checkout = () => {
                   onChange={(e) => setExpirationMonth(e.target.value)}
                   className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 >
-                  <option value="" disabled selected>
+                  <option value="" disabled >
                     MM
                   </option>
                   {monthDropdown()}
@@ -118,7 +118,7 @@ const Checkout = () => {
                   onChange={(e) => setExpirationYear(e.target.value)}
                   className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 >
-                  <option value="" disabled selected>
+                  <option value="" disabled>
                     YYYY
                   </option>
                   {yearDropdown()}
