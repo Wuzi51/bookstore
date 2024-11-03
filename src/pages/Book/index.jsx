@@ -31,7 +31,7 @@ const Book = () => {
           <p>{book.comments.length}篇評論</p>
         </div>
       </div>
-      <div className="leading-8">
+      <div className="leading-8 flex-1">
         <div>
           <h2 className="text-xl mb-4">{book.title}</h2>
           <h3 className="mb-2">{book.author}</h3>
