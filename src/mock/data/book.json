@@ -9,6 +9,7 @@
     "date": 1726761600,
     "series": "時報出版",
     "score" : "4.5",
+    "category": "all_categories",
     "describe": "《魂斷威尼斯》《魔山》諾貝爾文學獎得主托瑪斯‧曼的心靈祕史。《大師》《布魯克林》作者柯姆‧托賓最新長篇力作，囊括三大歐洲文學獎。「寫小說是一件卑鄙的事。」──托瑪斯‧曼。面對公眾人物唯有進入他內心世界的矛盾衝突，才能即使體驗一切錯覺幻象。普立茲獎得主理查‧福特、麥可‧康寧漢、布克獎得主約翰‧班維爾盛讚推薦。",
     "comments": [
       {"id": 1, "content": "一開始有點慢，但後來節奏加快了。", "name": "Mark", "createdAt": 1728854479},
@@ -28,6 +29,7 @@
     "date": 1725984000,
     "series": "木馬文化",
     "score" : "4.5",
+    "category": "ranking",
     "describe": "一名神祕男子準確預言了東京的連環爆炸，警方與他展開緊張的鬥智，必須在時間內阻止更多爆炸發生。",
     "comments": [
       {"id": 1, "content": "一開始有點慢，但後來節奏加快了。", "name": "Mark", "createdAt": 1728854479},
@@ -47,6 +49,7 @@
     "date": 1724947200,
     "series": "時報出版",
     "score" : "4.5",
+    "category": "sitewide",
     "describe": "從市場魚販到高檔餐廳食材供應商，林楷倫在第二本職人散文中揭露了廚師與魚販的真實故事，描寫了奢華餐廳背後的辛酸與成敗。作品融合深刻情感與現實場景，展現料理人的挑戰與夢想，讓讀者一窺餐廳廚房的真實面貌。",
     "comments": [
       {"id": 1, "content": "一開始有點慢，但後來節奏加快了。", "name": "Mark", "createdAt": 1728854479},
@@ -66,6 +69,7 @@
     "date": 1725897600,
     "series": "經濟新潮社",
     "score" : "4.5",
+    "category": "recommended",
     "describe": "個資外洩、網路詐騙、駭客勒索猖獗，受害者卻求償無門。一本書，分析資訊安全的歷史，以及網路系統如此脆弱的因",
     "comments": [
       {"id": 1, "content": "一開始有點慢，但後來節奏加快了。", "name": "Mark", "createdAt": 1728854479},
@@ -110,6 +114,216 @@
       {"id": 3, "content": "不是我喜歡的類型，但寫作還是很不錯。", "name": "Mark", "createdAt": 1728854479},
       {"id": 4, "content": "不是我喜歡的類型，但寫作還是很不錯。", "name": "John", "createdAt": 1728854479},
       {"id": 5, "content": "強烈推薦給喜歡懸疑和推理的讀者。", "name": "Alice", "createdAt": 1728854479}
+    ]
+  },
+  {
+    "id": 7,
+    "img": "https://cdn.readmoo.com/cover/lf/cdfeqei_460x580.jpg?v=1644827960",
+    "title": "北極星灑落之夜",
+    "author": "李琴峰",
+    "language": "繁體中文",
+    "price": 270,
+    "date": 1728854479,
+    "series": "尖端出版",
+    "score": "4.7",
+    "category": "ranking",
+    "describe": "本書為旅日芥川獎作家李琴峰的第三本小說，日文版出版後便獲各方好評，更於二〇二一年獲頒第七十一屆藝術選獎文部科學大臣新人獎榮譽。",
+    "comments": [
+      {"id": 1, "content": "細膩的描寫帶我進入北極星的夢幻世界，文字充滿畫面感，非常值得一讀。", "name": "Sophia", "createdAt": 1728854479},
+      {"id": 2, "content": "作者的文筆優雅動人，故事情感豐富且深刻，讓人流連於其中。", "name": "Ethan", "createdAt": 1728854479}
+    ]
+  },
+  {
+    "id": 8,
+    "img": "https://cdn.readmoo.com/cover/le/lkkoq9b_460x580.jpg?v=1606699205",
+    "title": "北光",
+    "author": "橫山秀夫",
+    "language": "繁體中文",
+    "price": 308,
+    "date": 1606774463,
+    "series": "圓神出版",
+    "score": "4.7",
+    "category": "sitewide",
+    "describe": "日本讀者譽為年度神作：「《北光》完全超脫了推理小說的定義！」「它在我心中已經得到本屋大賞冠軍。」書為旅日芥川獎作家李琴峰的第三本小說，日文版出版後便獲各方好評，更於二〇二一年獲頒第七十一屆藝術選獎文部科學大臣新人獎榮譽。",
+    "comments": [
+      {"id": 1, "content": "細膩的描寫帶我進入北極星的夢幻世界，文字充滿畫面感，非常值得一讀。", "name": "Sophia", "createdAt": 1728854479},
+      {"id": 2, "content": "作者的文筆優雅動人，故事情感豐富且深刻，讓人流連於其中。", "name": "Ethan", "createdAt": 1728854479},
+      {"id": 3, "content": "橫山秀夫的筆觸深入人心，故事結構複雜卻不失流暢，結尾更是餘韻悠長。", "name": "Lily", "createdAt": 1728854479}
+    ]
+  },
+  {
+    "id": 9,
+    "img": "https://cdn.readmoo.com/cover/oe/mddjtgd_210x315.jpg?v=1620280764",
+    "title": "人魚沉睡的家",
+    "author": "東野圭吾",
+    "language": "繁體中文",
+    "price": 315,
+    "date": 1728854479,
+    "series": "皇冠文化有限公司",
+    "score": "4.6",
+    "category": "recommended",
+    "describe": "東野圭吾出道30年紀念作！",
+    "comments": [
+      {"id": 1, "content": "這本書融合了懸疑與深刻的情感，讓我感受到東野圭吾的獨特魅力！", "name": "Chris", "createdAt": 1728854479},
+      {"id": 2, "content": "情節緊湊且發人深省，值得一讀再讀！", "name": "Nina", "createdAt": 1728854479},
+      {"id": 3, "content": "從開頭到結尾都讓人無法放下，東野圭吾的文筆真是太吸引人了！", "name": "Eric", "createdAt": 1728854479}
+    ]
+  },
+  {
+    "id": 10,
+    "img": "https://cdn.readmoo.com/cover/92/2gffl5c_460x580.jpg?v=1718151991",
+    "title": "工頭堅的京都時光",
+    "author": "工頭堅",
+    "language": "繁體中文",
+    "price": 400,
+    "date": 1728854479,
+    "series": "木馬文化",
+    "score": "4.5",
+    "category": "ranking",
+    "describe": "最會說故事的旅行長，一趟穿越時空的京都之旅就此出發！",
+    "comments": [
+      {"id": 1, "content": "這本書讓我重新思考了溝通的方式，每一個故事都讓我感受到京都的獨特魅力！", "name": "Alex", "createdAt": 1728854479},
+      {"id": 2, "content": "充滿情感與細節的描繪，讓人彷彿親自踏上那段旅程。", "name": "Lisa", "createdAt": 1728854479},
+      {"id": 3, "content": "工頭堅的故事引人入勝，對於喜愛旅行的人來說，這本書絕對值得一讀！", "name": "Tom", "createdAt": 1728854479}
+    ]
+  },
+  {
+    "id": 11,
+    "img": "https://cdn.readmoo.com/cover/qi/pqltvzj_460x580.jpg?v=1727828112",
+    "title": "100種京都",
+    "author": "陳彧馨 Jas Chen",
+    "language": "繁體中文",
+    "price": 266,
+    "date": 1728854479,
+    "series": "二十張出版",
+    "score": "4.4",
+    "category": "sitewide",
+    "describe": "旅人陳彧馨的最新自由旅行書寫，詳述長期試探拘謹古都之樂與怒，從京都的「慢」裡，揀選其「快」：季節替換時萬物線條之異動、偶然與巧合裡情緒的瞬變、旅人的各種偏執與在地人的真脾性。卸下旅遊規劃的壓力，慢遊京都知其快，讓讀者重新定義下一趟京都的理由。",
+    "comments": [
+      {"id": 1, "content": "本書帶來京都不一樣的視角，讀來彷彿親臨其境。", "name": "Daniel", "createdAt": 1728854479},
+      {"id": 2, "content": "對於喜愛京都的人來說，這本書是必讀之選。", "name": "Yuki", "createdAt": 1728854479},
+      {"id": 3, "content": "讓我重新思考旅行的意義，書中對京都的描述極具深度。", "name": "Ken", "createdAt": 1728854479}
+    ]
+  },
+  {
+    "id": 12,
+    "img": "https://cdn.readmoo.com/cover/pm/rnniuvi_460x580.jpg?v=1726826310",
+    "title": "交通警察之夜",
+    "author": "東野圭吾",
+    "language": "繁體中文",
+    "price": 230,
+    "date": 1727570672,
+    "series": "春天出版",
+    "score": "4.4",
+    "category": "sitewide",
+    "describe": "旅人陳彧馨的最新自由旅行書寫，詳述長期試探拘謹古都之樂與怒，從京都的「慢」裡，揀選其「快」：季節替換時萬物線條之異動、偶然與巧合裡情緒的瞬變、旅人的各種偏執與在地人的真脾性。卸下旅遊規劃的壓力，慢遊京都知其快，讓讀者重新定義下一趟京都的理由。",
+    "comments": [
+      {"id": 1, "content": "東野圭吾的故事總能讓人不禁反思，這本書也不例外。", "name": "Daniel", "createdAt": 1728854479},
+      {"id": 2, "content": "對喜歡推理小說的讀者來說，這本書節奏緊湊，無法放下。", "name": "Yuki", "createdAt": 1728854479},
+      {"id": 3, "content": "故事充滿懸疑和驚喜，東野圭吾的敘事功力再度展現無遺。", "name": "Ken", "createdAt": 1728854479}
+    ]
+  },
+  {
+    "id": 13,
+    "img": "https://cdn.readmoo.com/cover/62/5901ge4_460x580.jpg?v=1727828095",
+    "title": "不為他人抓狂",
+    "author": "麥克．貝勒",
+    "language": "繁體中文",
+    "price": 294,
+    "date": 1728854479,
+    "series": "一起來",
+    "score": "4.9",
+    "category": "recommended",
+    "describe": "你的情緒價值不斐，不該被荒唐的人浪費！",
+    "comments": [
+      {"id": 1, "content": "實用且易於理解的書籍！", "name": "Daniel", "createdAt": 1728854479},
+      {"id": 2, "content": "讓我在處理人際關係時更有自信。", "name": "Olivia", "createdAt": 1728854479},
+      {"id": 3, "content": "內容引人入勝，提供了許多有效的情緒管理技巧。", "name": "Chris", "createdAt": 1728854479}
+    ]
+  },
+  {
+    "id": 14,
+    "img": "https://cdn.readmoo.com/cover/8d/g53blcd_460x580.jpg?v=1730185209",
+    "title": "山茶花情書",
+    "author": "小川糸",
+    "language": "繁體中文",
+    "price": 262,
+    "date": 1730421872,
+    "series": "圓神出版",
+    "score": "4.7",
+    "category": "ranking",
+    "describe": "日本銷售破70萬冊，系列接力入圍本屋大賞！",
+    "comments": [
+      {"id": 1, "content": "小川糸的故事總是充滿暖意，讓人感動不已。", "name": "Sophia", "createdAt": 1728854479},
+      {"id": 2, "content": "溫柔細膩的文筆，讓讀者彷彿置身在故事情境中。", "name": "Ethan", "createdAt": 1728854479}
+    ]
+  },
+  {
+    "id": 15,
+    "img": "https://cdn.readmoo.com/cover/fk/bakdmij_460x580.jpg?v=1730089162",
+    "title": "AI底層真相",
+    "author": "穆吉亞",
+    "language": "繁體中文",
+    "price": 287,
+    "date": 1728854479,
+    "series": "天下文化",
+    "score": "4.7",
+    "category": "ranking",
+    "describe": "想成為AI的主人，先了解AI底層的真相",
+    "comments": [
+      {"id": 1, "content": "深入淺出的解說，讓我更明白AI的基礎架構與運作原理。", "name": "Sophia", "createdAt": 1728854479},
+      {"id": 2, "content": "很適合AI領域的初學者，作者講解得相當清晰易懂。", "name": "Ethan", "createdAt": 1728854479}
+    ]
+  },
+  {
+    "id": 16,
+    "img": "https://cdn.readmoo.com/cover/bc/abb6k6l_460x580.jpg?v=1730446984",
+    "title": "多謝款待",
+    "author": "張曼娟",
+    "language": "繁體中文",
+    "price": 242,
+    "date": 1730681072,
+    "series": "皇冠文化有限公司",
+    "score": "4.7",
+    "category": "all_categories",
+    "describe": "當那些微小的哀傷和快樂，都成為記憶的滋味。",
+    "comments": [
+      {"id": 1, "content": "文字溫暖感人，讓人回味自己生活中的點滴美好。", "name": "Sophia", "createdAt": 1728854479},
+      {"id": 2, "content": "張曼娟的筆觸細膩柔和，讀來彷彿身臨其境，充滿溫度。", "name": "Ethan", "createdAt": 1728854479}
+    ]
+  },
+  {
+    "id": 17,
+    "img": "https://cdn.readmoo.com/cover/qi/pqmzveg_460x580.jpg?v=1727828021",
+    "title": "年輕人為什麼安靜離職？",
+    "author": "金間大介",
+    "language": "繁體中文",
+    "price": 294,
+    "date": 1727829872,
+    "series": "方舟文化",
+    "score": "4.7",
+    "category": "all_categories",
+    "describe": "近年激增‧「毫無徵兆辭職」和「像離職一樣工作」的人的實用處方箋！",
+    "comments": [
+      {"id": 1, "content": "對職場文化有深入見解，幫助我理解年輕人安靜離職的原因。", "name": "Sophia", "createdAt": 1728854479},
+      {"id": 2, "content": "書中分析了現代職場的許多矛盾，給予實際建議，很有啟發性。", "name": "Ethan", "createdAt": 1728854479}
+    ]
+  },
+  {
+    "id": 18,
+    "img": "https://cdn.readmoo.com/cover/fg/8einmi9_460x580.jpg?v=1635911435",
+    "title": "原子習慣",
+    "author": "詹姆斯．克利爾",
+    "language": "繁體中文",
+    "price": 231,
+    "date": 1559349872,
+    "series": "方智出版",
+    "score": "4.7",
+    "category": "all_categories",
+    "describe": "你的一點小改變、一個好習慣，將會產生複利效應，如滾雪球般，為你帶來豐碩的人生成果！",
+    "comments": [
+      {"id": 1, "content": "書中的實用方法讓我更輕鬆地建立新習慣，受益良多！", "name": "Sophia", "createdAt": 1728854479},
+      {"id": 2, "content": "作者的建議簡單易行，卻非常有效，非常推薦！", "name": "Ethan", "createdAt": 1728854479}
     ]
   }
 ]
