@@ -8,7 +8,6 @@ const Category = ({ title }) => {
       <h2>{t(title)}</h2>
       <button className="more-btn">More</button>
     </div>
-   
   )
 }
 
