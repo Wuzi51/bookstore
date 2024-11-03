@@ -24,7 +24,7 @@ const Book = () => {
   return (
     <div className="flex justify-around m-3">
       <div className="mx-3">
-        <img src={book.img} alt="book" className="max-w-xl mr-2"/>
+        <img src={book.img} alt="book" className="max-w-[15rem] mr-2"/>
         <div className="flex mt-2">
           <p>{book.score}</p>
           <FontAwesomeIcon icon={faStar} className="mr-2"/>
