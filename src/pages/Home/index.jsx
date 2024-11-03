@@ -34,13 +34,13 @@ useEffect(() => {
   }, [])
 
   return (
-    <div className="wrap">
+    <div className="wrap flex flex-col items-center justify-between">
       <div className="banner" onClick={() => changePage('/')}>
         <img src="https://cdn.readmoo.com/store/template/4876/full_banner/image_l.jpg?t=1728459169" alt="banner" />  
       </div>
       <div>
         <Category title="Today's_Picks" />
-        <div className="book-list">
+        <div className="flex flex-wrap justify-center">
           {books.map(book => (
             <BookCard book={book} key={book.id} onClick={() => changePage(`/book/${book.id}`)}
               onFavoriteClick={handleFavoriteClick}  onCartClick={handleCartClick}/>
