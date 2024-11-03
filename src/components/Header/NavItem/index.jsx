@@ -12,8 +12,6 @@ import { Badge } from 'antd';
 import Cart from '@/components/Cart';
 import { useBookStore } from '@/store/book';
 
-
-
 const NavItems = () => {
   const { darkMode, setDarkMode } = useUserStore()
   const { cart } = useBookStore()
