@@ -35,8 +35,8 @@ useEffect(() => {
 
   return (
     <div className="wrap flex flex-col items-center justify-between">
-      <div className="banner" onClick={() => changePage('/')}>
-        <img src="https://cdn.readmoo.com/store/template/4876/full_banner/image_l.jpg?t=1728459169" alt="banner" />  
+      <div className="banner" onClick={() => changePage('/book/15')}>
+        <img src="https://cdn.readmoo.com/store/template/4912/full_banner/image_l.jpg?t=1730453480" alt="banner" />  
       </div>
       <div>
         <Category title="Today's_Picks" />
