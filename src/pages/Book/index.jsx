@@ -33,7 +33,7 @@ const Book = () => {
       </div>
       <div className="leading-8 flex-1">
         <div>
-          <h2 className="text-xl mb-4">{book.title}</h2>
+          <h2 className="text-2xl mb-4 font-bold">{book.title}</h2>
           <h3 className="mb-2">{book.author}</h3>
           <ul className="flex flex-col mb-3">
             <li>出版日期： {formatDate(book.date)}</li>
@@ -46,7 +46,7 @@ const Book = () => {
             <li>{book.describe}</li>
           </ul>
         </div>
-        <CommentBoard/>
+        <CommentBoard book={book}/>
       </div>
       <div className="action-btn ">
         <button className="buy-btn" onClick={() => changePage('/')}><i></i>購買</button>
