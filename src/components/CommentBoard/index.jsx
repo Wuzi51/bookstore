@@ -1,5 +1,3 @@
-import "./index.css"
-
 const CommentBoard = ({ book }) => {
   return (
     <div className="mt-5">
