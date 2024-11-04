@@ -6,20 +6,26 @@ import "./index.css"
 import CommentBoard from "@/components/CommentBoard"
 
 const Book = () => {
-  const { books, setBooks, favoriteBooks, setFavoriteBooks } = useBookStore()
+  const { books, setFavoriteBooks, setCart  } = useBookStore()
   const { id } = useParams()
   const book = books.find((item) => item.id === Number(id))
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   
   const changePage = (url) => {
     navigate(url)
-  }
+  };
 
   const formatDate = (timestamp) => {
     const date = new Date(timestamp * 1000);
     return date.toLocaleDateString();
   };
+
+  const handleCheckOut = () => {
+    changePage('/checkout');
+    setCart(book.id, 1)
+  }
+
 
   return (
     <div className="flex justify-around m-3">
@@ -49,9 +55,9 @@ const Book = () => {
         <CommentBoard book={book}/>
       </div>
       <div className="action-btn ">
-        <button className="buy-btn" onClick={() => changePage('/')}><i></i>購買</button>
-        <button className="add-to-cart-btn" onClick={() => changePage('/')}>新增至購物車</button>
-        <button className="favorite-btn" onClick={() => changePage('/')}>加入收藏</button>
+        <button className="buy-btn" onClick={handleCheckOut}>購買</button>
+        <button className="add-to-cart-btn" onClick={() => setCart(book.id)}>新增至購物車</button>
+        <button className="favorite-btn" onClick={() => setFavoriteBooks(book.id)}>加入收藏</button>
       </div>
     </div>
   )
