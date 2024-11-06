@@ -1,7 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping, faGlobe, faMoon, faHeart } from '@fortawesome/free-solid-svg-icons'
-import './index.css'
-import i18n from '@/i18n'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping, faGlobe, faMoon, faHeart } from '@fortawesome/free-solid-svg-icons';
+import './index.css';
+import i18n from '@/i18n';
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/store/user"
 import { Modal, message } from 'antd';
@@ -13,8 +13,8 @@ import Cart from '@/components/Cart';
 import { useBookStore } from '@/store/book';
 
 const NavItems = () => {
-  const { darkMode, setDarkMode } = useUserStore()
-  const { cart } = useBookStore()
+  const { darkMode, setDarkMode } = useUserStore();
+  const { cart } = useBookStore();
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isCartOpen, setIsCartOpen] = useState(false)
@@ -95,7 +95,7 @@ const NavItems = () => {
         <li> <FontAwesomeIcon onClick={handleDarkMode} icon={faMoon} /> </li>
         <li>
           <Badge count={cart.length} size='small'>
-            <FontAwesomeIcon className='text-[18px]' onClick={() => handleCartOpen(true)} icon={faCartShopping} /> 
+            <FontAwesomeIcon className='text-[18px] cart' onClick={() => handleCartOpen(true)} icon={faCartShopping} /> 
           </Badge> 
         </li>
         <li> <FontAwesomeIcon onClick={() => changePage('/favorite')} icon={faHeart}/> </li>

@@ -38,6 +38,10 @@ body {
   background-color: #000;
 }
 
+.darkMode .cart {
+  color: #fff;
+}
+
 .darkMode,
 .darkMode p,
 .darkMode a,
