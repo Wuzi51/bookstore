@@ -158,9 +158,9 @@ const Checkout = () => {
 
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h3 className="text-2xl font-semibold mb-6 text-gray-800">購買明細</h3>
-          <BookItem books={cart} onRemoveClick={handleRemoveClick}/>
+          <BookItem  books={cart} onRemoveClick={handleRemoveClick}/>
           <p className="my-4 border border-solid border-stone-500"></p>
-          <div className="flex justify-between text-base font-medium text-gray-900">
+          <div className="total-price flex justify-between text-base font-medium text-gray-900">
             <p>總金額</p>
             <p>NT${getTotalPrice()}</p>
           </div>
