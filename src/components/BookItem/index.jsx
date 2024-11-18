@@ -12,7 +12,7 @@ const BookItem = ({ books, onRemoveClick }) => {
               className="h-full w-full object-center"
               />
           </div>
-          <div className="ml-4 flex flex-1 flex-col">
+          <div className="book-item ml-4 flex flex-1 flex-col">
             <div>
               <div className="flex justify-between text-base text-gray-900">
                 <h3>
