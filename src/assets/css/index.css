@@ -50,3 +50,9 @@ body {
 .darkMode button {
   color: #fff;
 }
+
+.darkMode .book-item p,
+.darkMode .total-price p,
+.darkMode .book-item button {
+  color: #000;
+}
