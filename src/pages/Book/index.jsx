@@ -1,14 +1,14 @@
-import { useNavigate, useParams } from "react-router-dom"
-import { useBookStore } from "@/store/book"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
-import "./index.css"
-import CommentBoard from "@/components/CommentBoard"
+import { useNavigate, useParams } from "react-router-dom";
+import { useBookStore } from "@/store/book";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import "./index.css";
+import CommentBoard from "@/components/CommentBoard";
 
 const Book = () => {
-  const { books, setFavoriteBooks, setCart  } = useBookStore()
-  const { id } = useParams()
-  const book = books.find((item) => item.id === Number(id))
+  const { books, setFavoriteBooks, setCart  } = useBookStore();
+  const { id } = useParams();
+  const book = books.find((item) => item.id === Number(id));
 
   const navigate = useNavigate();
   
@@ -56,7 +56,7 @@ const Book = () => {
       </div>
       <div className="action-btn ">
         <button className="buy-btn" onClick={handleCheckOut}>購買</button>
-        <button className="add-to-cart-btn" onClick={() => setCart(book.id)}>新增至購物車</button>
+        <button className="add-to-cart-btn" onClick={() => setCart(book.id, 1)}>新增至購物車</button>
         <button className="favorite-btn" onClick={() => setFavoriteBooks(book.id)}>加入收藏</button>
       </div>
     </div>
