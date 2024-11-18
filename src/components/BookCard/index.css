@@ -39,17 +39,20 @@
 }
 
 .book-card,
-.btn-area {
+.btn-area,
+.book-btn {
   cursor: pointer;
 }
 
 .heart-btn,
-.cart-btn {
+.cart-btn,
+.book-btn {
   width: 50%;
   line-height: 3rem;
 }
 
 .heart-btn:hover,
-.cart-btn:hover {
+.cart-btn:hover,
+.book-btn:hover {
   background-color: lightgray;
 }
