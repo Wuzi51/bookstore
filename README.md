@@ -67,8 +67,8 @@ npm install
 npm run dev
 ```
 伺服器運行於：
-- **前端**：`http://localhost:3000`
-- **後端**：`http://localhost:5000`
+- **前端**：`http://localhost:5173`
+- **後端**：`http://localhost:3000`
 
 ---
 
