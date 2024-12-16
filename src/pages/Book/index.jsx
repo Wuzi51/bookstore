@@ -6,7 +6,7 @@ import "./index.css";
 import CommentBoard from "@/components/CommentBoard";
 
 const Book = () => {
-  const { books, setFavoriteBooks, setCart  } = useBookStore();
+  const { books, setFavoriteBooks, setCart } = useBookStore();
   const { id } = useParams();
   const book = books.find((item) => item.id === Number(id));
 
