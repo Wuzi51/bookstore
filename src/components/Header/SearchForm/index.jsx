@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next"
-import "./index.css"
 import { useNavigate } from "react-router-dom"
 
 
@@ -16,15 +15,21 @@ const SearchForm = () => {
     if (event.key === 'Enter') {
       changePage(`/search?keyword=${event.target.value}`)
     }
-  }
+  };
   
 
   return (
-    <form className="d-flex">
-    <input className="form-control searchForm" type="search" placeholder={t('Please_enter_a_keyword')} aria-label="Search" />
-    <button className="btn bg-blue-500" type="submit" onClick={handleSearch}>{t('search')}</button>
-  </form>
+    <form className="flex">
+      <input className="w-full md:w-96 lg:w-128 p-1 border-solid border-2 border-gray-300 rounded"
+        type="search"
+        placeholder={t('Please_enter_a_keyword')}
+        aria-label="Search" />
+      <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold mx-8 py-2 px-5 rounded"  
+        type="submit" 
+        onClick={handleSearch}>{t('search')}
+      </button>
+    </form>
   )
-}
+};
 
-export default SearchForm
+export default SearchForm;
