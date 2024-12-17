@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
-import "./index.css"
 
 const Menu = () => {
   const navigate = useNavigate()
@@ -10,24 +9,24 @@ const Menu = () => {
   const { t } = useTranslation()
   return (
     <nav>
-      <ul className="nav mt-2 menu">
+      <ul className="flex justify-around w-[30rem] mt-8">
         <li className="nav-item">
-          <button className="nav-link" onClick={() => changePage('all_categories')}>
+          <button className="text-gray-500 hover:text-gray-400" onClick={() => changePage('all_categories')}>
             {t('all_categories')}
           </button>
         </li>
         <li className="nav-item">
-          <button className="nav-link" onClick={() => changePage('ranking')}>
+          <button className="text-gray-500 hover:text-gray-400" onClick={() => changePage('ranking')}>
             {t('ranking')}
           </button>
         </li>
         <li className="nav-item">
-          <button className="nav-link" onClick={() => changePage('recommended')}>
+          <button className="text-gray-500 hover:text-gray-400" onClick={() => changePage('recommended')}>
             {t('recommended_for_you')}
           </button>
         </li>
         <li className="nav-item">
-          <button className="nav-link" onClick={() => changePage('sitewide')}>
+          <button className="text-gray-500 hover:text-gray-400" onClick={() => changePage('sitewide')}>
             {t('sitewide_events')}
           </button>
         </li>
