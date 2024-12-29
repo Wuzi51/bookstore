@@ -1,6 +1,6 @@
 import BookCard from '@/components/BookCard';
 import { bookApi } from "@/api/book";
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { useBookStore } from '@/store/book';
 
@@ -58,7 +58,7 @@ const Books = () => {
           <option value="date">依出版日期排序</option>
         </select>
       </div>
-      <div className="flex flex-wrap ml-4">
+      <div className="flex flex-wrap m-4">
         {sortedBooks.map(book => (
         <BookCard book={book} key={book.id} 
         onClick={() => changePage(`/book/${book.id}`)} 

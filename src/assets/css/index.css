@@ -11,18 +11,11 @@
 html,
 body {
   height: 100%;
-}
-
-.wrap {
-  background-color: rgb(250, 250, 250);
+  font-family: "Helvetica", "Arial", "LiHei Pro", "黑體-繁", "微軟正黑體", sans-serif;
 }
 
 /* darkMode */
 .darkMode {
-  background-color: #000;
-}
-
-.darkMode .wrap {
   background-color: #000;
 }
 

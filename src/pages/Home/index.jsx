@@ -2,7 +2,6 @@ import Category from "@/components/Category"
 import BookCard from "@/components/BookCard"
 import { useNavigate } from "react-router-dom"
 import { bookApi } from "@/api/book"
-import "./index.css"
 import { useEffect } from "react"
 import { useBookStore } from "@/store/book"
 
@@ -34,13 +33,16 @@ useEffect(() => {
   }, [])
 
   return (
-    <div className="wrap flex flex-col items-center justify-between">
-      <div className="banner" onClick={() => changePage('/book/15')}>
-        <img src="https://cdn.readmoo.com/store/template/4912/full_banner/image_l.jpg?t=1730453480" alt="banner" />  
+    <div className="flex flex-col items-center justify-between">
+      <div className=" mt-5 hover:cursor-pointer " onClick={() => changePage('/book/15')}>
+        <img
+          className="max-w-full object-cover rounded-lg "
+          src="https://cdn.readmoo.com/store/template/4912/full_banner/image_l.jpg?t=1730453480"
+          alt="banner" />  
       </div>
       <div>
         <Category title="Today's_Picks" />
-        <div className="flex flex-wrap justify-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
           {books.map(book => (
             <BookCard book={book} key={book.id} onClick={() => changePage(`/book/${book.id}`)}
               onFavoriteClick={handleFavoriteClick}  onCartClick={handleCartClick}/>

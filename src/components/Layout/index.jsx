@@ -18,14 +18,14 @@ const Layout = () => {
   }, [location]);
 
   return (
-    <div className={clsx({ darkMode }, "flex flex-col min-h-screen")}>
+    <div className={clsx({ darkMode }, "bg-white text-gray-800")}>
       <Header/>
-        <div className="flex-1">
+        <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Outlet/>
-        </div>
+        </main>
       <Footer/>
     </div>
   )
 }
 
-export default Layout
+export default Layout;
