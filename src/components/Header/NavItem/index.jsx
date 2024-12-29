@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faGlobe, faMoon, faHeart } from '@fortawesome/free-solid-svg-icons';
-import './index.css';
 import i18n from '@/i18n';
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/store/user"
@@ -86,7 +85,7 @@ const NavItems = () => {
   
   return (
     <>
-      <ul className="topNavItem">
+      <ul className="flex items-center text-xl gap-10">
         <li> {token ? <p className='username'>{username}</p> : <p></p>} </li>
         <li>
           {token ? <p onClick={handleClick}>{t("login_out")}</p> : <p onClick={() => handleModalOpen(true)}>{t("login")}</p>} 
@@ -155,5 +154,4 @@ const NavItems = () => {
   )
   }
 
-export default NavItems
-
+export default NavItems;

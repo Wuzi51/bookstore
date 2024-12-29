@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faHeart, faBook } from "@fortawesome/free-solid-svg-icons";
-import "./index.css";
 import { Modal } from "antd";
 import { useState } from "react";
 import EBookReader from "../EBookReader";
@@ -10,32 +9,41 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
 
   return (
     <>
-      <div key={book.id} className="book">
-        <div className='book-card' onClick={onClick}>
-          <img src={book.img} alt={book.title}/>
-          <h3>{book.title}</h3>
-          <h4>{book.author}</h4>
-          <p>{`NT$ ${book.price}`}</p>
+      <div key={book.id} className="max-w-full text-center mt-2 flex flex-col justify-between p-4 shadow-lg ">
+        <div className='cursor-pointer' onClick={onClick}>
+          <img
+            className="w-full h-60 object-contain hover:transform hover:scale-105 transition-transform" 
+            src={book.img} 
+            alt={book.title}/>
+          <h3 className="text-sm mt-3 truncate">
+            {book.title}
+          </h3>
+          <h4 className="mt-1 text-sm underline truncate">
+            {book.author}
+          </h4>
+          <p className="mt-2 text-xs font-bold">
+            {`NT$ ${book.price}`}
+          </p>
         </div>
-        
-        <div className='btn-area flex justify-evenly mt-3'>
-          <div className='heart-btn' onClick={() => onFavoriteClick(book.id)}>
+
+        <div className='flex justify-evenly mt-3 cursor-pointer'>
+          <div className='w-1/2 leading-[3rem] hover:bg-gray-200' onClick={() => onFavoriteClick(book.id)}>
             <button>
-              <FontAwesomeIcon icon={faHeart}/>
+            <FontAwesomeIcon icon={faHeart}/>
+          </button>
+          </div>
+          <div className='w-1/2 leading-[3rem] hover:bg-gray-200' onClick={() => setOpen(true)}>
+            <button>
+              <FontAwesomeIcon icon={faBook}/>
             </button>
           </div>
-          <div className='book-btn' onClick={() => setOpen(true)}>
-              <button>
-                <FontAwesomeIcon icon={faBook}/>
-              </button>
-          </div>
-          <div className='cart-btn' onClick={() => onCartClick(book.id)}>
+          <div className='w-1/2 leading-[3rem] hover:bg-gray-200' onClick={() => onCartClick(book.id)}>
             <button>
               <FontAwesomeIcon icon={faCartShopping}/>
             </button>
           </div>
         </div>
-      </div> 
+      </div>
       <Modal
         title={book.title}
         open={open}
@@ -51,3 +59,5 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
 };
 
 export default BookCard;
+
+

@@ -22,8 +22,7 @@ const EBookReader = () => {
       const book = ePub(ePubData);
 
       //電子書渲染到DOM元素上
-      const renditionInstance = book.renderTo
-      (ePubRef.current, {
+      const renditionInstance = book.renderTo(ePubRef.current, {
         width : "100%",
         height : "100%",
       });
@@ -79,7 +78,7 @@ const EBookReader = () => {
     <>
       <div ref={ePubRef} 
         className="relative"
-        style={{ width: "100%", height: "30rem", 
+        style={{ width: "100%", height: "26rem", 
         border: "1px solid #ddd"}}>
           {loading && (
             <Spin
@@ -99,8 +98,8 @@ const EBookReader = () => {
             onChange={handleProgressChange}
             style={{width: "80%"}}
           />
-          <div style={{marginTop: "10px", textAlign: "center"}}>
-            {loading ? "加載中" : `進度${Math.max(Math.floor(progress), 1)}%`}
+          <div style={{marginTop: "1.5rem", textAlign: "center"}}>
+            {loading ? "讀取中" : `進度${Math.max(Math.floor(progress), 1)}%`}
           </div>
           <div className="mt-3">
             <button className="rounded-md border border-transparent bg-blue-500 px-2 py-2 mx-2 text-sm font-medium text-white shadow-sm hover:bg-blue-400"
