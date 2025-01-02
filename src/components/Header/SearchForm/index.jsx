@@ -17,25 +17,25 @@ const SearchForm = () => {
 
   return (
     <form
-      className="w-full flex flex-col justify-center items-center"
-      onSubmit={handleSubmit}
-    >
-      <div className="flex mt-3 md:w-auto">
+    className="flex flex-col justify-center items-center md:w-auto"
+    onSubmit={handleSubmit}
+  >
+      <div className="flex w-full mt-3 justify-between items-center">
         <input
           name="search"
-          className="w-[80%] md:w-96 lg:w-128 p-2 mr-0.5 border-2 border-gray-300 rounded-md"
+          className="flex-grow md:w-96 lg:w-128 px-4 py-[0.4rem] mr-2 border-2 border-gray-300 rounded-md"
           type="search"
           placeholder={t("Please_enter_a_keyword")}
           aria-label="Search"
         />
         <button
-          className="w-36 whitespace-nowrap text-center md:w-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-5 rounded-md"
+            className="w-16 whitespace-nowrap text-center md:w-auto bg-blue-500 hover:bg-blue-600 text-white font-bold px-4 py-2 rounded-md"
           type="submit"
         >
           {t("search")}
         </button>
       </div>
-    </form>
+  </form>
   );
 };
 

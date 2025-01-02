@@ -10,12 +10,12 @@ const Logo = () => {
   return (
     <div
       onClick={() => changePage("/")}
-      className="cursor-pointer w-full focus:outline-none md:mt-4"
+      className="flex items-center cursor-pointer md:mt-4"
     >
       <img
         src={logo}
         alt="logo"
-        className="w-full h-auto max-w-60 min-w-44 object-contain md:max-w-[400px]"
+        className="w-auto h-auto max-w-52 min-w-52 md:max-w-72"
       />
     </div>
   );
