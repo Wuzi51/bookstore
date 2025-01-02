@@ -18,7 +18,7 @@ const Layout = () => {
   }, [location]);
 
   return (
-    <div className={clsx({ darkMode }, "bg-white text-gray-800")}>
+    <div className={clsx({ darkMode }, " bg-white text-gray-800")}>
       <Header/>
         <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Outlet/>

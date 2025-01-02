@@ -21,9 +21,8 @@ const Menu = () => {
         <button
           onClick={() => setIsOpen(true)}
           type="button"
-          className="flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 
-            rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none 
-            focus:ring-2 focus:ring-gray-200 transition-colors duration-200"
+          className="flex items-center  w-10 h-10 justify-center text-sm text-gray-500 
+            rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none"
           aria-controls="navbar-default"
           aria-expanded={isOpen}
         >
@@ -46,8 +45,7 @@ const Menu = () => {
           <ul className="flex space-x-8">
             <li>
               <button
-                className="py-2 px-3 text-gray-500 hover:text-gray-900 
-                          transition-colors duration-200"
+                className="py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
                 onClick={() => changePage("all_categories")}
               >
                 {t("all_categories")}
@@ -55,8 +53,7 @@ const Menu = () => {
             </li>
             <li>
               <button
-                className="py-2 px-3 text-gray-500 hover:text-gray-900 
-                          transition-colors duration-200"
+                className="py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
                 onClick={() => changePage("ranking")}
               >
                 {t("ranking")}
@@ -64,8 +61,7 @@ const Menu = () => {
             </li>
             <li>
               <button
-                className="py-2 px-3 text-gray-500 hover:text-gray-900 
-                          transition-colors duration-200"
+                className="py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
                 onClick={() => changePage("recommended")}
               >
                 {t("recommended_for_you")}
@@ -73,8 +69,7 @@ const Menu = () => {
             </li>
             <li>
               <button
-                className="py-2 px-3 text-gray-500 hover:text-gray-900 
-                          transition-colors duration-200"
+                className="py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
                 onClick={() => changePage("sitewide")}
               >
                 {t("sitewide_events")}
