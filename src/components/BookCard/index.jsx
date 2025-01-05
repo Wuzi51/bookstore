@@ -9,10 +9,10 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
 
   return (
     <>
-      <div key={book.id} className="max-w-full text-center mt-2 flex flex-col justify-between p-4 shadow-lg ">
+      <div key={book.id} className="w-full max-w-60 text-center mt-2 flex flex-col justify-between p-4 shadow-lg ">
         <div className='cursor-pointer' onClick={onClick}>
           <img
-            className="w-full h-60 object-contain hover:transform hover:scale-105 transition-transform" 
+            className="w-full h-52 object-contain hover:transform hover:scale-105 transition-transform" 
             src={book.img} 
             alt={book.title}/>
           <h3 className="text-sm mt-3 truncate">

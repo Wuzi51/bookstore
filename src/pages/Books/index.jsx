@@ -53,12 +53,12 @@ const Books = () => {
   <>
     <div>
       <div className="m-4">
-        <select className="border-2" onChange={handleChange} value={sortOrder}>
+        <select className="border-2 text-black" onChange={handleChange} value={sortOrder}>
           <option value="title">依書名排序</option>
           <option value="date">依出版日期排序</option>
         </select>
       </div>
-      <div className="flex flex-wrap m-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 m-4">
         {sortedBooks.map(book => (
         <BookCard book={book} key={book.id} 
         onClick={() => changePage(`/book/${book.id}`)} 

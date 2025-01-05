@@ -36,13 +36,13 @@ useEffect(() => {
     <div className="flex flex-col items-center justify-between">
       <div className=" mt-5 hover:cursor-pointer " onClick={() => changePage('/book/15')}>
         <img
-          className="max-w-full object-cover rounded-lg "
+          className="w-full object-cover "
           src="https://cdn.readmoo.com/store/template/4912/full_banner/image_l.jpg?t=1730453480"
           alt="banner" />  
       </div>
       <div>
         <Category title="Today's_Picks" />
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           {books.map(book => (
             <BookCard book={book} key={book.id} onClick={() => changePage(`/book/${book.id}`)}
               onFavoriteClick={handleFavoriteClick}  onCartClick={handleCartClick}/>

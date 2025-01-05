@@ -29,7 +29,7 @@ const SearchForm = () => {
           aria-label="Search"
         />
         <button
-            className="w-16 whitespace-nowrap text-center md:w-auto bg-blue-500 hover:bg-blue-600 text-white font-bold px-4 py-2 rounded-md"
+            className="w-20 text-center whitespace-nowrap md:w-auto bg-blue-500 hover:bg-blue-600 text-white font-bold px-4 py-2 rounded-md"
           type="submit"
         >
           {t("search")}
