@@ -27,3 +27,5 @@ app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
 // 跨域(X) ==> 任何人都可以去你的資料庫拿取
+
+export default app;
