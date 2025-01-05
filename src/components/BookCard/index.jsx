@@ -48,8 +48,8 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
         title={book.title}
         open={open}
         centered
-        onOk={() => setOpen(false)}
         onCancel={() => setOpen(false)}
+        footer={null}
         width={600}
       >
         <EBookReader/>
