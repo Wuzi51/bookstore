@@ -1,7 +1,7 @@
 const CommentBoard = ({ book }) => {
   return (
     <div className="mt-5">
-      <h3 className="text-l mb-4">書評</h3>
+      <h3 className="text-lg font-bold mb-4">書評</h3>
       <ul className="space-y-4">
         {book.comments.map((comment) => (
           <li key={comment.id} className="bg-gray-100 p-4 rounded-md shadow-md">

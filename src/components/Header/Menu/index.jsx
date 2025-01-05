@@ -15,14 +15,15 @@ const Menu = () => {
   };
 
   return (
-    <nav className="border-gray-200 mr-8">
+    <nav className="mr-8">
       <div className="flex flex-wrap items-center md:mt-6">
         {/* 漢堡選單按鈕 */}
         <button
           onClick={() => setIsOpen(true)}
           type="button"
-          className="flex items-center  w-10 h-10 justify-center text-sm text-gray-500 
-            rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none"
+          className="flex items-center w-10 h-10 justify-center text-sm text-gray-500 
+            rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 
+          focus:ring-gray-300"
           aria-controls="navbar-default"
           aria-expanded={isOpen}
         >
@@ -83,7 +84,7 @@ const Menu = () => {
           onClose={() => setIsOpen(false)}
           open={isOpen}
           className="lg:hidden"
-          title={<NavItems/>}
+          title={<NavItems setIsOpen={setIsOpen}/>}
         >
           <ul className="flex flex-col space-y-4">
             <li>

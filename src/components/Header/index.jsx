@@ -23,12 +23,7 @@ const DesktopHeader = () => (
 const MobileHeader = () => (
   <div className="flex flex-col mb-3 lg:hidden">
     <div className="flex w-full">
-      <button
-        aria-label="Menu"
-        className=" hover:bg-gray-200 rounded-lg"
-      >
-        <Menu />
-      </button>
+      <Menu />
       <div className="flex-grow flex md:justify-center">
         <Logo />
       </div>

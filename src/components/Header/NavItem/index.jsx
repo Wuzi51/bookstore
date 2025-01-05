@@ -11,7 +11,9 @@ import { Badge } from 'antd';
 import Cart from '@/components/Cart';
 import { useBookStore } from '@/store/book';
 
-const NavItems = () => {
+
+
+const NavItems = ({ setIsOpen }) => {
   const { darkMode, setDarkMode } = useUserStore();
   const { cart } = useBookStore();
 
@@ -37,6 +39,7 @@ const NavItems = () => {
 
   const handleCartOpen = (bool) => {
     setIsCartOpen(bool)
+    setIsOpen(false); // 點擊後關閉漢堡選單
   };
 
   // 登出事件
@@ -80,9 +83,9 @@ const NavItems = () => {
   const navigate = useNavigate()
 
   const changePage = (url) => {
-  navigate(url)
+    navigate(url);
+    setIsOpen(false); // 點擊後關閉漢堡選單
 };
-
 
   return (
     <>
