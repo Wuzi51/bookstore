@@ -101,11 +101,11 @@ const EBookReader = () => {
           <div style={{marginTop: "1.5rem", textAlign: "center"}}>
             {loading ? "讀取中" : `進度${Math.max(Math.floor(progress), 1)}%`}
           </div>
-          <div className="mt-3">
-            <button className="rounded-md border border-transparent bg-blue-500 px-2 py-2 mx-2 text-sm font-medium text-white shadow-sm hover:bg-blue-400"
+          <div className="mt-6">
+            <button className="rounded-md border border-transparent bg-blue-500 px-3 py-2 mx-2 text-sm font-medium text-white shadow-sm hover:bg-blue-400"
           onClick={handlePrevious}
           >上一頁</button>
-            <button className="rounded-md border border-transparent bg-blue-500 px-2 py-2 mx-2 text-sm font-medium text-white shadow-sm hover:bg-blue-400"
+            <button className="rounded-md border border-transparent bg-blue-500 px-3 py-2 mx-2 text-sm font-medium text-white shadow-sm hover:bg-blue-400"
             onClick={handleNext}
             >下一頁</button>
           </div>
