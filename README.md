@@ -1,5 +1,6 @@
 # Bookstore
-
+![image](https://github.com/Wuzi51/bookstore/blob/main/Xnip2025-01-07_00-12-16.jpg)
+![image](https://github.com/Wuzi51/bookstore/blob/main/Xnip2025-01-07_00-11-48.jpg)
 ## 🚀 專案簡介
 
 **Bookstore** 是一個結合電子書購物與閱讀的全端專案，提供使用者從購買到閱讀的一站式服務。專案旨在展示 React 與後端整合、狀態管理、以及跨域請求的實踐。
@@ -20,12 +21,17 @@
 
 2. 使用者登入與驗證：
    - 使用 JWT (JSON Web Token) 實現 Token-based 登入驗證。
+   - 測試帳號密碼 
+     帳號： emilys
+     密碼： emilyspass
 
 3. 國際化支援：
    - 使用 i18n 實現中英文切換。
 
 4. 視覺與使用者體驗：
    - 主題切換功能 (明亮模式與暗黑模式)。
+
+5.站內書籍搜尋功能
 
 ---
 
