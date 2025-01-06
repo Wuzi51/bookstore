@@ -20,12 +20,16 @@
 
 2. 使用者登入與驗證：
    - 使用 JWT (JSON Web Token) 實現 Token-based 登入驗證。
+   - 測試帳號：emilys，密碼：emilyspass。
 
 3. 國際化支援：
    - 使用 i18n 實現中英文切換。
 
 4. 視覺與使用者體驗：
    - 主題切換功能 (明亮模式與暗黑模式)。
+
+5.書籍搜尋：
+   - 站內書籍搜尋功能。
 
 ---
 
@@ -67,8 +71,8 @@ npm install
 npm run dev
 ```
 伺服器運行於：
-- **前端**：`http://localhost:5173`
-- **後端**：`http://localhost:3000`
+- **前端**：`http://localhost:3000`
+- **後端**：`http://localhost:3001`
 
 ---
 
