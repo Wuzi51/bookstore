@@ -21,7 +21,7 @@ app.get('*', (req, res) => {
 })
 
 // 啟動伺服器 express預設域名 localhost:PORT
-const PORT = 3000;
+const PORT = 3001;
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
