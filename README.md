@@ -1,6 +1,5 @@
 # Bookstore
-![image](https://github.com/Wuzi51/bookstore/blob/main/Xnip2025-01-07_00-12-16.jpg){:width="500px"}
-![image](https://github.com/Wuzi51/bookstore/blob/main/Xnip2025-01-07_00-11-48.jpg){:width="500px"}
+
 ## 🚀 專案簡介
 
 **Bookstore** 是一個結合電子書購物與閱讀的全端專案，提供使用者從購買到閱讀的一站式服務。專案旨在展示 React 與後端整合、狀態管理、以及跨域請求的實踐。
