@@ -16,5 +16,6 @@
   "Today's_Picks": "本日精選",
   "cancel": "取消",
   "account": "使用者帳號",
-  "password": "密碼"
+  "password": "密碼",
+  "No_matching_books": "沒有符合的書籍"
 }
