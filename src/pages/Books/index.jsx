@@ -5,31 +5,44 @@ import { useNavigate, useSearchParams } from "react-router-dom"
 import { useBookStore } from '@/store/book';
 
 const Books = () => {
-  const { setFavoriteBooks, setCart} = useBookStore()
-  const [searchParams] = useSearchParams()
-  const [books, setBooks] = useState([])
-  const [sortOrder, setSortOrder] = useState('')
+  const { setFavoriteBooks, setCart} = useBookStore();
+  const [searchParams] = useSearchParams();
+  const [books, setBooks] = useState([]);
+  const [sortOrder, setSortOrder] = useState('');
 
   const getBooks = async() => {
-      const { data } = await bookApi.getBooks()
-      setBooks(data)
+      const { data } = await bookApi.getBooks();
+      setBooks(data);
+    };
+
+  const category = searchParams.get('category');
+
+  const ids = searchParams.get('ids');
+
+  // 當 ids 為undefined或null時，將其轉為空陣列
+  const idsArray = ids ? ids.split(',').map(id => id.trim()) : [];
+
+  const filteredBooks = books.filter((book) => {
+    if (idsArray.length > 0) {
+      return idsArray.includes(String(book.id));
     }
-
-  const category = searchParams.get('category')
-
-  const filteredBooks = books.filter(book => book.category === category)
+    if (category) {
+      return book.category === category;
+    }
+    return true;
+  });
   
   const handleChange = (e) => {
-    setSortOrder(e.target.value)
-  }
+    setSortOrder(e.target.value);
+  };
 
   const handleFavoriteClick = (id) => {
-    setFavoriteBooks(id)
-  }
+    setFavoriteBooks(id);
+  };
 
   const handleCartClick = (id, qty = 1) => {
-    setCart(id, qty)
-  }
+    setCart(id, qty);
+  };
 
 
   const sortedBooks = filteredBooks.sort((a, b) => {
@@ -71,4 +84,4 @@ const Books = () => {
   );
 }
 
-export default Books
+export default Books;
