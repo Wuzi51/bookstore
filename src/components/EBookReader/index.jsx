@@ -5,8 +5,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 const EBookReader = () => {
   const ePubRef = useRef(null);
-  const url = 'book.epub';
-  const bookURL = `http://localhost:3000/${url}`;
+  const bookURL = `/book.epub`;
   const [rendition, setRendition] = useState();
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState();
