@@ -1,14 +1,12 @@
-import { useTranslation } from "react-i18next"
-import "./index.css"
+import { useTranslation } from "react-i18next";
 
 const Category = ({ title }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
-    <div className="category">
-      <h2>{t(title)}</h2>
-      <button className="more-btn">More</button>
+    <div className="m-5 flex justify-between items-center">
+      <h2 className="text-xl mt-4 text-gray-500">{t(title)}</h2>
     </div>
-  )
+  );
 }
 
-export default Category
+export default Category;
