@@ -24,21 +24,29 @@ const Checkout = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+
+    // 簡單驗證：檢查是否有填寫付款資訊
+    if (payment === 'visa' && (!cardNumber || !expirationMonth || !expirationYear || !cvv)) {
+      message.warning('請填寫完整的信用卡資訊');
+      return;
+    }
+
     const orderDate = {
       payment,
       cardNumber,
       expirationMonth,
       expirationYear,
       cvv,
-      createdAt: Math.round(new Date().getTime / 1000),
+      createdAt: Math.round(new Date().getTime() / 1000), // 修正 `getTime` 誤用
       products: cart,
       totalPrice: getTotalPrice(),
-    }
-    setOrderList([...orderList, orderDate])
-    console.log(orderList)
-    changePage('/')
-  }
+    };
+
+    setOrderList([...orderList, orderDate]);
+    console.log(orderList);
+    changePage('/');
+};
 
   const monthDropdown = () => {
     const months = [];
