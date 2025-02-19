@@ -12,32 +12,32 @@ const Home = () => {
   const getBooks = async() => {
     const { data } = await bookApi.getBooks()
     setBooks(data)//存進store
-  }
+  };
 
   const handleFavoriteClick = (id) => {
     setFavoriteBooks(id)
-  }
+  };
 
   const handleCartClick = (id, qty = 1) => {
     setCart(id, qty)
-  }
+  };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const changePage = (url) => {
     navigate(url)
-  }
+  };
 
 useEffect(() => {
     getBooks()
-  }, [])
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-between">
       <div className=" mt-5 hover:cursor-pointer " onClick={() => changePage('/book/15')}>
         <img
-          className="w-full object-cover "
-          src="https://cdn.readmoo.com/store/template/4912/full_banner/image_l.jpg?t=1730453480"
+          className="w-screen object-cover rounded-lg hover:shadow-2xl"
+          src="https://i.imgur.com/DA62ONp.png"
           alt="banner" />  
       </div>
       <div>
@@ -51,6 +51,6 @@ useEffect(() => {
       </div>
     </div>
   )
-}
+};
 
-export default Home
+export default Home;
