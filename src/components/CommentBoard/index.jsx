@@ -1,6 +1,6 @@
 const CommentBoard = ({ book }) => {
   return (
-    <div className="mt-5">
+    <div className="mt-5 commentDarkMode">
       <h3 className="text-lg font-bold mb-4">書評</h3>
       <ul className="space-y-4">
         {book.comments.map((comment) => (
@@ -16,7 +16,7 @@ const CommentBoard = ({ book }) => {
             </div>
             <div className="mb-2">
               <div className="font-semibold"></div>
-              <div className="whitespace-pre-wrap">{comment.content}</div>
+              <div className="whitespace-pre-wrap commentDarkMode">{comment.content}</div>
             </div>
           </li>
         ))}
