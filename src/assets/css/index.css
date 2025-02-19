@@ -42,6 +42,8 @@ body {
 
 .darkMode .book-item p,
 .darkMode .total-price p,
-.darkMode .book-item button {
+.darkMode .book-item button,
+.commentDarkMode,
+.commentDarkMode p{
   color: #000;
 }
