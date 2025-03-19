@@ -38,7 +38,7 @@ const Checkout = () => {
       expirationMonth,
       expirationYear,
       cvv,
-      createdAt: Math.round(new Date().getTime() / 1000), // 修正 `getTime` 誤用
+      createdAt: Math.round(new Date().getTime() / 1000), 
       products: cart,
       totalPrice: getTotalPrice(),
     };
