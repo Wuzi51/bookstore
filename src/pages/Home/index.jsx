@@ -34,11 +34,15 @@ useEffect(() => {
 
   return (
     <div className="flex flex-col items-center justify-between">
-      <div className=" mt-5 hover:cursor-pointer " onClick={() => changePage('/book/15')}>
+      <div className=" mt-9 hover:cursor-pointer " onClick={() => changePage('/book/15')}>
+        <img 
+          className="hidden sm:block w-[149vh] object-cover hover:scale-105 transition-transform duration-300 ease-in-out" 
+          src="/src/images/Banner-desktop.png" 
+          alt="desktop banner" />
         <img
-          className="w-screen object-cover rounded-lg hover:shadow-2xl"
-          src="https://i.imgur.com/DA62ONp.png"
-          alt="banner" />  
+          className="w-full object-cover md:hidden sm:block rounded-l "
+          src="/src/images/Banner-mobile.png"     
+          alt="mobile banner" />
       </div>
       <div>
         <Category title="Today's_Picks" />
