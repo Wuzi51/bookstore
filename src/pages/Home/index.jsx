@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import { bookApi } from "@/api/book"
 import { useEffect } from "react"
 import { useBookStore } from "@/store/book"
+import BannerDesktop from "@/images/Banner-desktop.png"
+import BannerMobile from "@/images/Banner-mobile.png"
 
 
 const Home = () => {
@@ -37,11 +39,11 @@ useEffect(() => {
       <div className=" mt-9 hover:cursor-pointer " onClick={() => changePage('/book/15')}>
         <img 
           className="hidden sm:block w-[149vh] object-cover hover:scale-105 transition-transform duration-300 ease-in-out" 
-          src="/src/images/Banner-desktop.png" 
+          src={BannerDesktop}
           alt="desktop banner" />
         <img
           className="w-full object-cover md:hidden sm:block rounded-l "
-          src="/src/images/Banner-mobile.png"     
+          src={BannerMobile}    
           alt="mobile banner" />
       </div>
       <div>
