@@ -11,10 +11,14 @@ import BannerMobile from "@/images/Banner-mobile.png"
 const Home = () => {
   const { books, setBooks, setFavoriteBooks, setCart } = useBookStore()
 
-  const getBooks = async() => {
-    const { data } = await bookApi.getBooks()
-    setBooks(data)//存進store
-  };
+  const getBooks = async () => {
+    try {
+      const { data } = await bookApi.getBooks();
+      setBooks(data); // 存進 store
+    } catch (error) {
+      console.error("Failed to fetch books:", error);
+    }
+};
 
   const handleFavoriteClick = (id) => {
     setFavoriteBooks(id)
