@@ -49,7 +49,7 @@ const NavItems = ({ setIsOpen }) => {
   };
 
 
-  // 存取token後存存在前端頁面
+  // 存取token後存在前端頁面
   const login = async() => {
     // 防呆
     if (!username || !password) {
