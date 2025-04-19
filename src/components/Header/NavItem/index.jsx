@@ -6,12 +6,10 @@ import { useUserStore } from "@/store/user"
 import { Modal, message } from 'antd';
 import { useState } from 'react';
 import { userApi } from '@/api/user';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Badge } from 'antd';
 import Cart from '@/components/Cart';
 import { useBookStore } from '@/store/book';
-
-
 
 const NavItems = ({ setIsOpen }) => {
   const { darkMode, setDarkMode } = useUserStore();
@@ -80,13 +78,6 @@ const NavItems = ({ setIsOpen }) => {
     setLanguage(newLanguage) //狀態持久化
   };
 
-  const navigate = useNavigate()
-
-  const changePage = (url) => {
-    navigate(url);
-    setIsOpen(false); // 點擊後關閉漢堡選單
-};
-
   return (
     <>
       <ul className="flex items-center text-xl gap-8">
@@ -96,18 +87,21 @@ const NavItems = ({ setIsOpen }) => {
           <p onClick={() => handleModalOpen(true)}>{t("login")}</p>} 
         </li>
         <li className="cursor-pointer transition-transform hover:scale-110">
-          <FontAwesomeIcon onClick={changeLanguage} icon={faGlobe} /> 
+          <FontAwesomeIcon onClick={changeLanguage} icon={faGlobe} />
         </li>
         <li className="cursor-pointer transition-transform hover:scale-110">
           <FontAwesomeIcon onClick={handleDarkMode} icon={faMoon} /> 
         </li>
         <li className="cursor-pointer transition-transform hover:scale-110">
           <Badge count={cart.length} size='small'>
-            <FontAwesomeIcon className='text-[18px] cart' onClick={() => handleCartOpen(true)} icon={faCartShopping} /> 
+            <FontAwesomeIcon className='text-[18px] cart' onClick={() => handleCartOpen(true)} 
+              icon={faCartShopping} /> 
           </Badge>
         </li>
         <li className="cursor-pointer transition-transform hover:scale-110">
-          <FontAwesomeIcon onClick={() => changePage('/favorite')} icon={faHeart}/>
+          <Link to="/favorite">
+            <FontAwesomeIcon icon={faHeart} />
+          </Link>
         </li>
         <Cart open={isCartOpen} onCancel={setIsCartOpen} items={cart}/>
         <Modal okText={t("login")} cancelText={t("cancel")} open={isModalOpen} onOk={login} 
