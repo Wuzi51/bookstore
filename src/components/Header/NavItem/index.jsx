@@ -14,7 +14,6 @@ import { useBookStore } from '@/store/book';
 const NavItems = ({ setIsOpen }) => {
   const { darkMode, setDarkMode } = useUserStore();
   const { cart } = useBookStore();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 	const { t } = useTranslation()
@@ -39,11 +38,6 @@ const NavItems = ({ setIsOpen }) => {
     setIsCartOpen(bool)
     setIsOpen(false); // 點擊後關閉漢堡選單
   };
-
-  const handleFavoriteClick = () => {
-    setIsOpen(false);
-  };
-
   // 登出事件
   const handleClick = () => {
     localStorage.removeItem("accessToken")
