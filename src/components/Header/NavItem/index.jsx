@@ -38,6 +38,7 @@ const NavItems = ({ setIsOpen }) => {
     setIsCartOpen(bool)
     setIsOpen(false); // 點擊後關閉漢堡選單
   };
+
   // 登出事件
   const handleClick = () => {
     localStorage.removeItem("accessToken")
@@ -97,9 +98,7 @@ const NavItems = ({ setIsOpen }) => {
           </Badge>
         </li>
         <li className="cursor-pointer transition-transform hover:scale-110">
-          <Link to="/favorite"
-            onClick={() => setIsOpen(false)}
-          >
+          <Link to="/favorite">
             <FontAwesomeIcon icon={faHeart} />
           </Link>
         </li>
