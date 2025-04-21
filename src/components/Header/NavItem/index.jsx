@@ -40,6 +40,10 @@ const NavItems = ({ setIsOpen }) => {
     setIsOpen(false); // 點擊後關閉漢堡選單
   };
 
+  const handleFavoriteClick = () => {
+    setIsOpen(false);
+  };
+
   // 登出事件
   const handleClick = () => {
     localStorage.removeItem("accessToken")
@@ -99,7 +103,9 @@ const NavItems = ({ setIsOpen }) => {
           </Badge>
         </li>
         <li className="cursor-pointer transition-transform hover:scale-110">
-          <Link to="/favorite">
+          <Link to="/favorite"
+            onClick={() => setIsOpen(false)}
+          >
             <FontAwesomeIcon icon={faHeart} />
           </Link>
         </li>
