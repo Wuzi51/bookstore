@@ -1,7 +1,7 @@
 import BookCard from '@/components/BookCard';
 import { bookApi } from "@/api/book";
 import { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import { useBookStore } from '@/store/book';
 
 const Books = () => {
@@ -10,10 +10,14 @@ const Books = () => {
   const [books, setBooks] = useState([]);
   const [sortOrder, setSortOrder] = useState('');
 
-  const getBooks = async() => {
+  const getBooks = async () => {
+    try {
       const { data } = await bookApi.getBooks();
-      setBooks(data);
-    };
+      setBooks(data); // 存進 store
+    } catch (error) {
+      console.error("Failed to fetch books:", error);
+    }
+  };
 
   const category = searchParams.get('category');
 
@@ -44,19 +48,12 @@ const Books = () => {
     setCart(id, qty);
   };
 
-
   const sortedBooks = filteredBooks.sort((a, b) => {
       if (sortOrder === 'date') {
         return new Date(a.date) - new Date(b.date); 
       }
       return a.title.localeCompare(b.title)
     });
-
-  const navigate = useNavigate()
-
-  const changePage = (url) => {
-    navigate(url)
-  }
 
   useEffect(() => {
     getBooks()
@@ -73,15 +70,18 @@ const Books = () => {
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 m-4">
         {sortedBooks.map(book => (
-        <BookCard book={book} key={book.id} 
-        onClick={() => changePage(`/book/${book.id}`)} 
-        onFavoriteClick={handleFavoriteClick}  
-        onCartClick={handleCartClick}/>
+        <div key={book.id}>
+          <Link to={`/book/${book.id}`}>
+            <BookCard book={book} 
+            onFavoriteClick={handleFavoriteClick}  
+            onCartClick={handleCartClick}/>
+          </Link>
+        </div>
       ))}
       </div>
     </div>
   </>
   );
-}
+};
 
 export default Books;

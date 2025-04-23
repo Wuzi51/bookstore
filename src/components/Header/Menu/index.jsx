@@ -1,18 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { Drawer } from "antd";
+import { Link } from "react-router-dom";
 import NavItems from "../NavItem";
 
 const Menu = () => {
-  const navigate = useNavigate();
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-
-  const changePage = (category) => {
-    navigate(`/books?category=${category}`);
-    setIsOpen(false);
-  };
 
   return (
     <nav className="mr-8">
@@ -45,36 +39,36 @@ const Menu = () => {
         <div className="hidden lg:block">
           <ul className="flex space-x-8">
             <li>
-              <button
-                className="py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
-                onClick={() => changePage("all_categories")}
+              <Link
+                to="/books?category=all_categories"
+                className="inline-flex items-center appearance-none py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
               >
                 {t("all_categories")}
-              </button>
+              </Link>
             </li>
             <li>
-              <button
-                className="py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
-                onClick={() => changePage("ranking")}
+              <Link
+                to="/books?category=ranking"
+                className="inline-flex items-center appearance-none py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
               >
                 {t("ranking")}
-              </button>
+              </Link>
             </li>
             <li>
-              <button
-                className="py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
-                onClick={() => changePage("recommended")}
+              <Link
+                to="/books?category=recommended"
+                className="inline-flex items-center appearance-none py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
               >
                 {t("recommended_for_you")}
-              </button>
+              </Link>
             </li>
             <li>
-              <button
-                className="py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
-                onClick={() => changePage("sitewide")}
+               <Link
+                to="/books?category=sitewide"
+                className="inline-flex items-center appearance-none py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
               >
                 {t("sitewide_events")}
-              </button>
+              </Link>
             </li>
           </ul>
         </div>
@@ -88,44 +82,52 @@ const Menu = () => {
         >
           <ul className="flex flex-col space-y-4">
             <li>
-              <button
-                className="w-full text-left py-2 px-3 text-gray-500 
+              <Link
+                to="/books?category=all_categories"
+                className="inline-flex items-center appearance-none
+                          w-full text-left py-2 px-3 text-gray-500 
                           hover:text-gray-900 hover:bg-gray-50
                           rounded-lg transition-colors duration-200"
-                onClick={() => changePage("all_categories")}
+                onClick={() => setIsOpen(false)}
               >
                 {t("all_categories")}
-              </button>
+              </Link>
             </li>
             <li>
-              <button
-                className="w-full text-left py-2 px-3 text-gray-500 
+              <Link
+                to="/books?category=ranking"
+                className="inline-flex items-center appearance-none
+                            w-full text-left py-2 px-3 text-gray-500 
                           hover:text-gray-900 hover:bg-gray-50
                           rounded-lg transition-colors duration-200"
-                onClick={() => changePage("ranking")}
+                onClick={() => setIsOpen(false)}
               >
                 {t("ranking")}
-              </button>
+              </Link>
             </li>
             <li>
-              <button
-                className="w-full text-left py-2 px-3 text-gray-500 
+              <Link
+                to="/books?category=recommended"
+                className="inline-flex items-center appearance-none
+                            w-full text-left py-2 px-3 text-gray-500 
                           hover:text-gray-900 hover:bg-gray-50
                           rounded-lg transition-colors duration-200"
-                onClick={() => changePage("recommended")}
+                onClick={() => setIsOpen(false)}
               >
                 {t("recommended_for_you")}
-              </button>
+              </Link>
             </li>
             <li>
-              <button
-                className="w-full text-left py-2 px-3 text-gray-500 
+              <Link
+                to="/books?category=sitewide"
+                className="inline-flex items-center appearance-none
+                            w-full text-left py-2 px-3 text-gray-500 
                           hover:text-gray-900 hover:bg-gray-50
                           rounded-lg transition-colors duration-200"
-                onClick={() => changePage("sitewide")}
+                onClick={() => setIsOpen(false)}
               >
                 {t("sitewide_events")}
-              </button>
+              </Link>
             </li>
           </ul>
         </Drawer>
