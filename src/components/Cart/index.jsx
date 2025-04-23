@@ -1,26 +1,19 @@
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
-import { useBookStore } from "@/store/book"
-import { useNavigate } from 'react-router-dom'
-import BookItem from '../BookItem'
+import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { useBookStore } from "@/store/book";
+import { Link } from 'react-router-dom';
+import BookItem from '../BookItem';
 
 const Cart = ({ items, open, onCancel }) => {
-  const { removeCart, clearCart, getTotalPrice  } = useBookStore()
-  const navigate = useNavigate()
-  
-  const changePage = (url) => {
-    navigate(url)
-    onCancel(false)
-    }
+  const { removeCart, clearCart, getTotalPrice } = useBookStore();
 
   const handleRemoveClick = (idx) => {
-    removeCart(idx)
-  }
+    removeCart(idx);
+  };
 
   const handleRemoveAllClick = () => {
-    clearCart()
-  }
-  
+    clearCart();
+  };
 
   return (
     <Dialog open={open} onClose={() => onCancel(false)} className="relative z-10">
@@ -54,14 +47,14 @@ const Cart = ({ items, open, onCancel }) => {
                   {items.length ? (
                     <div className='flex flex-col'>
                       <button className='ml-auto w-32 mt-3 rounded-md border border-transparent bg-gray-400 text-base font-medium text-white shadow-sm hover:bg-gray-300'
-                      onClick={handleRemoveAllClick}
+                        onClick={handleRemoveAllClick}
                       >清空購物車</button>
                       <BookItem books={items} onRemoveClick={handleRemoveClick} />
                     </div>
-                  ) : 
-                  (<div className='flex justify-center'>
-                    <span className='mt-[50%] text-xl text-gray-400'>您的購物車是空的</span>
-                  </div>)}
+                  ) :
+                    (<div className='flex justify-center'>
+                      <span className='mt-[50%] text-xl text-gray-400'>您的購物車是空的</span>
+                    </div>)}
                 </div>
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
@@ -69,19 +62,20 @@ const Cart = ({ items, open, onCancel }) => {
                     <p>NT${getTotalPrice()}</p>
                   </div>
                   <div className="mt-6 flex justify-center">
-                    <button
-                      className="w-full rounded-md border border-transparent bg-blue-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-400"
-                      onClick={() => changePage('/checkout')}
+                    <Link
+                      to="/checkout"
+                      onClick={() => onCancel(false)}
+                      className="block w-full rounded-md border border-transparent bg-blue-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-400 text-center"
                     >
                       結帳
-                    </button>
+                    </Link>
                   </div>
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                     <button
                       type="button"
                       onClick={() => onCancel(false)}
                       className="font-medium text-blue-600 hover:text-blue-500"
-                      >
+                    >
                       繼續逛逛
                     </button>
                   </div>
@@ -92,7 +86,7 @@ const Cart = ({ items, open, onCancel }) => {
         </div>
       </div>
     </Dialog>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;
