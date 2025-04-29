@@ -2,17 +2,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faHeart, faBook } from "@fortawesome/free-solid-svg-icons";
 import { Modal } from "antd";
 import { useState } from "react";
+import { useBookStore } from "@/store/book";
 import EBookReader from "../EBookReader";
 
 const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
   const [open, setOpen] = useState(false);
+  const { favoriteBooks } = useBookStore();
+  const isFavorited = favoriteBooks.some((item) => item.id === book.id);
 
   return (
     <>
       <div key={book.id} className="w-full max-w-60 text-center mt-2 flex flex-col justify-between p-4 shadow-lg ">
-        <div className='cursor-pointer' onClick={onClick}>
+        <div className='cursor-pointer overflow-hidden' onClick={onClick}>
           <img
-            className="w-full h-52 object-contain hover:transform hover:scale-105 transition-transform" 
+            className="w-full h-52 object-cover duration-300 ease-in-out hover:scale-105" 
             src={book.img} 
             alt={book.title}/>
           <h3 className="text-sm mt-3 truncate">
@@ -29,7 +32,10 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
         <div className='flex justify-evenly mt-3 cursor-pointer'>
           <div className='w-1/2 leading-[3rem] hover:bg-gray-200' onClick={() => onFavoriteClick(book.id)}>
             <button>
-            <FontAwesomeIcon icon={faHeart}/>
+            <FontAwesomeIcon 
+            icon={faHeart}
+            style={{ color: isFavorited ? "Tomato" : "black" }}
+            />
           </button>
           </div>
           <div className='w-1/2 leading-[3rem] hover:bg-gray-200' onClick={() => setOpen(true)}>
