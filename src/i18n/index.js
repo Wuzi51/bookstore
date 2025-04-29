@@ -1,11 +1,11 @@
-import { initReactI18next } from "react-i18next"
-import i18n from "i18next"
+import { initReactI18next } from "react-i18next";
+import i18n from "i18next";
 
 // 翻譯檔
-import en_US from "./locales/en_US.json"
-import zh_TW from "./locales/zh_TW.json"
+import en_US from "./locales/en_US.json";
+import zh_TW from "./locales/zh_TW.json";
 
-const language = localStorage.getItem('user')
+const language = localStorage.getItem('user');
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -21,7 +21,6 @@ i18n.use(initReactI18next).init({
   interpolation: {
     escapeValue: false,
   }
-})
+});
 
-export default i18n
-
+export default i18n;

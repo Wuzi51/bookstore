@@ -63,7 +63,7 @@ const Menu = () => {
               </Link>
             </li>
             <li>
-               <Link
+              <Link
                 to="/books?category=sitewide"
                 className="inline-flex items-center appearance-none py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
               >
