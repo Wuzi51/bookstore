@@ -5,4 +5,4 @@ import Books from "./Books";
 import Checkout from "./Checkout";
 import Favorite from "./Favorite";
 
-export { Home, NotFound, Book, Books, Checkout, Favorite }
+export { Home, NotFound, Book, Books, Checkout, Favorite };

@@ -5,6 +5,6 @@ export const userApi = {
       username,
       password,
     })
-    return data
+    return data;
   }
-}
+};
