@@ -9,7 +9,7 @@ const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="mr-8">
+    <nav>
       <div className="flex flex-wrap items-center md:mt-6">
         {/* 漢堡選單按鈕 */}
         <button

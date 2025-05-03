@@ -7,7 +7,7 @@ const Logo = () => {
       <img
         src={logo}
         alt="logo"
-        className="w-auto h-auto max-w-52 min-w-52 md:max-w-72"
+        className="w-auto h-auto max-w-52 md:max-w-72"
       />
     </Link>
   );
