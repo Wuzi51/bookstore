@@ -9,7 +9,7 @@ const BookItem = ({ books, onRemoveClick }) => {
             <img
               alt={book.title}
               src={book.img}
-              className="h-full w-full object-center"
+              className="h-full w-full object-contain"
               />
           </div>
           <div className="ml-4 flex flex-1 flex-col">

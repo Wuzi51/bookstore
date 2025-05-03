@@ -23,7 +23,7 @@ const Book = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row lg:justify-around m-3 lg:mt-10">
+    <div className="flex flex-col mt-10 lg:flex-row lg:justify-around m-3 lg:mt-10">
       {/* 左側圖片與評分區塊 */}
       <div className="mx-auto lg:mx-3">
         <img 
