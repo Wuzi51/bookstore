@@ -17,7 +17,7 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
         <div className='cursor-pointer overflow-hidden' onClick={onClick}>
           <Link to={`/book/${book.id}`}>
             <img
-              className="w-full h-52 object-cover duration-300 ease-in-out hover:scale-105" 
+              className="w-full h-52 object-contain duration-300 ease-in-out hover:scale-105" 
               src={book.img} 
               alt={book.title}/>
             <h3 className="text-sm mt-3 truncate">
