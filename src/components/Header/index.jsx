@@ -22,9 +22,11 @@ const DesktopHeader = () => (
 // 行動裝置
 const MobileHeader = () => (
   <div className="flex flex-col mb-3 lg:hidden">
-    <div className="flex w-full">
-      <Menu />
-      <div className="flex-grow flex md:justify-center">
+    <div className="flex w-full items-center">
+      <div className="flex-shrink-0 mx-auto">
+        <Menu />
+      </div>
+      <div className="flex-grow flex justify-center items-center">
         <Logo />
       </div>
     </div>
