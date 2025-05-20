@@ -77,8 +77,8 @@ const Checkout = () => {
   return (
     <div className="max-w-7xl mx-auto py-12 px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-white shadow-lg rounded-lg p-6">
-          <h3 className="text-2xl font-semibold mb-6 text-gray-800">付款</h3>
+        <div className="bg-white shadow-lg rounded-lg p-6 dark:bg-surface">
+          <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-primary">付款</h3>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <input type="radio" 
@@ -88,12 +88,12 @@ const Checkout = () => {
               checked={payment === 'visa'}
               onChange={() => setPayment('visa')}
               />
-              <label htmlFor="credit-card" className="text-lg font-medium text-gray-700">
+              <label htmlFor="credit-card" className="text-lg font-medium text-gray-700 dark:text-secondary">
                 信用卡/Visa 金融卡
               </label>
             </div>
             <div className="mb-4">
-              <label htmlFor="card-number" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="card-number" className="block text-sm font-medium text-gray-700 dark:text-secondary">
                 卡片號碼
               </label>
               <input
@@ -101,19 +101,19 @@ const Checkout = () => {
                 value={cardNumber}
                 onChange={(e) => setCardNumber(e.target.value)}
                 id="card-number"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-primary"
                 placeholder="1234 5678 9012 3456"
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="expiry-date" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="expiry-date" className="block text-sm font-medium text-gray-700 dark:text-secondary">
                 到期日
               </label>
               <div className="flex space-x-2">
                 <select
                   value={expirationMonth}
                   onChange={(e) => setExpirationMonth(e.target.value)}
-                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-secondary"
                 >
                   <option value="" disabled >
                     MM
@@ -124,7 +124,7 @@ const Checkout = () => {
                 <select
                   value={expirationYear}
                   onChange={(e) => setExpirationYear(e.target.value)}
-                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-secondary"
                 >
                   <option value="" disabled>
                     YYYY
@@ -140,7 +140,7 @@ const Checkout = () => {
                 id="cvv"
                 value={cvv}
                 onChange={(e) => setCvv(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-primary"
                 placeholder="123"
               />
             </div>
@@ -152,7 +152,7 @@ const Checkout = () => {
               checked={payment === 'applepay'}
               onChange={() => setPayment('applepay')}
               />
-              <label htmlFor="apple-pay" className="text-lg font-medium text-gray-700">
+              <label htmlFor="apple-pay" className="text-lg font-medium text-gray-700 dark:text-secondary">
                 Apple Pay
               </label>
             </div>
@@ -164,11 +164,11 @@ const Checkout = () => {
           </form>
         </div>
 
-        <div className="bg-white shadow-lg rounded-lg p-6">
-          <h3 className="text-2xl font-semibold mb-6 text-gray-800">購買明細</h3>
+        <div className="bg-white shadow-lg rounded-lg p-6 dark:bg-surface">
+          <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-primary">購買明細</h3>
           <BookItem  books={cart} onRemoveClick={handleRemoveClick}/>
           <p className="my-4 border border-solid border-stone-500"></p>
-          <div className="total-price flex justify-between text-base font-medium text-gray-900">
+          <div className="total-price flex justify-between text-base font-medium text-gray-900 dark:text-primary">
             <p>總金額</p>
             <p>NT${getTotalPrice()}</p>
           </div>

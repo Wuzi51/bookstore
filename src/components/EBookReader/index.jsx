@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import ePub from "epubjs";
 import { Spin } from 'antd'; 
 import { LoadingOutlined } from "@ant-design/icons";
+import { useUserStore } from "@/store/user";
 
 const EBookReader = () => {
   const ePubRef = useRef(null);
@@ -9,6 +10,7 @@ const EBookReader = () => {
   const [rendition, setRendition] = useState();
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState();
+  const darkMode = useUserStore((state) => state.darkMode);
 
   const init = async() => {
     setLoading(true)
@@ -26,6 +28,21 @@ const EBookReader = () => {
         height : "100%",
       });
       setRendition(renditionInstance);
+
+      renditionInstance.themes.register("light", {
+        body: {
+          background: "#fff",
+        }
+      });
+
+      renditionInstance.themes.register("dark", {
+        body: {
+          background: "#333",
+          color: "#fff"
+        }
+      });
+
+      renditionInstance.themes.select(darkMode ? "dark" : "light");
 
     // 電子書加載完畢
       await book.ready;
@@ -75,10 +92,10 @@ const EBookReader = () => {
 
   return (
     <>
-      <div ref={ePubRef} 
-        className="relative"
-        style={{ width: "100%", height: "26rem", 
-        border: "1px solid #ddd"}}>
+      <div 
+        ref={ePubRef} 
+        className="relative w-full h-[26rem] border border-gray-300"
+      >
           {loading && (
             <Spin
               className="absolute top-1/2 left-1/2 -translate-x-1/2 
@@ -88,22 +105,22 @@ const EBookReader = () => {
             />
           )}
       </div>
-        <div style={{marginTop: "10px", textAlign: "center"}} className="mt-3">
+        <div className="mt-3 text-center">
           <input 
             type="range"
             min="0"
             max="100"
             value={progress}
             onChange={handleProgressChange}
-            style={{width: "80%"}}
+            className="w-4/5"
           />
-          <div style={{marginTop: "1.5rem", textAlign: "center"}}>
+          <div className="mt-3 text-center">
             {loading ? "讀取中" : `進度${Math.max(Math.floor(progress), 1)}%`}
           </div>
           <div className="mt-6">
             <button className="rounded-md border border-transparent bg-blue-500 px-3 py-2 mx-2 text-sm font-medium text-white shadow-sm hover:bg-blue-400"
-          onClick={handlePrevious}
-          >上一頁</button>
+            onClick={handlePrevious}
+            >上一頁</button>
             <button className="rounded-md border border-transparent bg-blue-500 px-3 py-2 mx-2 text-sm font-medium text-white shadow-sm hover:bg-blue-400"
             onClick={handleNext}
             >下一頁</button>
