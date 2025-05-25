@@ -11,13 +11,7 @@ const Layout = () => {
   const isDark = useUserStore((state) => state.darkMode);
 
   useEffect(() => {
-    const root = document.documentElement;
-    
-    if (isDark) {
-      root.setAttribute('data-mode', 'dark');
-    } else {
-      root.removeAttribute('data-mode');
-    }
+    document.documentElement.setAttribute('data-mode', isDark ? 'dark' : 'light')
   }, [isDark]);
   
   useEffect(() => {
