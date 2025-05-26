@@ -14,8 +14,8 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
   return (
     <>
       <div key={book.id} className="w-full max-w-60 text-center mt-2 flex flex-col  justify-between p-4 shadow-lg ">
-        <div className='cursor-pointer overflow-hidden' onClick={onClick}>
-          <Link to={`/book/${book.id}`}>
+        <div className='overflow-hidden'>
+          <Link to={`/book/${book.id}`} className="cursor-pointer">
             <img
               className="w-full h-52 object-contain duration-300 ease-in-out hover:scale-105" 
               src={book.img} 
@@ -23,13 +23,13 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
             <h3 className="text-sm mt-3 truncate">
               {book.title}
             </h3>
-            <h4 className="mt-1 text-sm underline truncate">
-              {book.author}
-            </h4>
-            <p className="mt-2 text-xs font-bold">
-              {`NT$ ${book.price}`}
-            </p>
           </Link>
+          <h4 className="mt-1 text-sm underline truncate">
+            {book.author}
+          </h4>
+          <p className="mt-2 text-xs font-bold">
+            {`NT$ ${book.price}`}
+          </p>
         </div>
 
         <div className='flex justify-evenly mt-3 cursor-pointer'>
