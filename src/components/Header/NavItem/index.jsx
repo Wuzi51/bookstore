@@ -11,7 +11,7 @@ import { Badge } from 'antd';
 import Cart from '@/components/Cart';
 import { useBookStore } from '@/store/book';
 
-const NavItems = ({ setIsOpen }) => {
+const NavItems = ({ setIsOpen = () => {} }) => {
   const { darkMode, setDarkMode } = useUserStore();
   const { cart } = useBookStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -104,7 +104,7 @@ const NavItems = ({ setIsOpen }) => {
             <FontAwesomeIcon icon={faHeart} />
           </Link>
         </li>
-        <Cart open={isCartOpen} onCancel={setIsCartOpen} items={cart}/>
+        <Cart open={isCartOpen} onCancel={() => setIsCartOpen(false)} items={cart}/>
         <Modal okText={t("login")} cancelText={t("cancel")} open={isModalOpen} onOk={login} 
           onCancel={handleCancel}>
           <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-16 lg:px-8">
