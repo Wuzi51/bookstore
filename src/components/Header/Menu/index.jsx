@@ -40,10 +40,10 @@ const Menu = () => {
           <ul className="flex space-x-8">
             <li>
               <Link
-                to="/books?category=all_categories"
+                to="/books?category=popular_books"
                 className="inline-flex items-center appearance-none py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
               >
-                {t("all_categories")}
+                {t("popular_books")}
               </Link>
             </li>
             <li>
@@ -64,10 +64,10 @@ const Menu = () => {
             </li>
             <li>
               <Link
-                to="/books?category=sitewide"
+                to="/books?category=must_reads"
                 className="inline-flex items-center appearance-none py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300"
               >
-                {t("sitewide_events")}
+                {t("must_reads")}
               </Link>
             </li>
           </ul>
@@ -83,14 +83,14 @@ const Menu = () => {
           <ul className="flex flex-col space-y-4">
             <li>
               <Link
-                to="/books?category=all_categories"
+                to="/books?category=popular_books"
                 className="inline-flex items-center appearance-none
                           w-full text-left py-2 px-3 text-gray-500 
                           hover:text-gray-900 hover:bg-gray-50
                           rounded-lg transition-colors duration-200"
                 onClick={() => setIsOpen(false)}
               >
-                {t("all_categories")}
+                {t("popular_books")}
               </Link>
             </li>
             <li>
@@ -119,14 +119,14 @@ const Menu = () => {
             </li>
             <li>
               <Link
-                to="/books?category=sitewide"
+                to="/books?category=must_reads"
                 className="inline-flex items-center appearance-none
                             w-full text-left py-2 px-3 text-gray-500 
                           hover:text-gray-900 hover:bg-gray-50
                           rounded-lg transition-colors duration-200"
                 onClick={() => setIsOpen(false)}
               >
-                {t("sitewide_events")}
+                {t("must_reads")}
               </Link>
             </li>
           </ul>
