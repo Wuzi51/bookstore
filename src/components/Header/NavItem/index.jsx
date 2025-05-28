@@ -3,7 +3,7 @@ import { faCartShopping, faGlobe, faMoon, faHeart } from '@fortawesome/free-soli
 import i18n from '@/i18n';
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/store/user"
-import { Modal, message } from 'antd';
+import { Modal, message, ConfigProvider, theme } from 'antd';
 import { useState } from 'react';
 import { userApi } from '@/api/user';
 import { Link } from 'react-router-dom';
@@ -24,10 +24,10 @@ const NavItems = ({ setIsOpen }) => {
     zh: "zh_TW",
     en: "en_US",
   };
+  const { darkAlgorithm, defaultAlgorithm } = theme;
 
   const handleDarkMode = () => {
     setDarkMode(!darkMode)
-    message.success(`${!darkMode ? '暗黑' : '明亮'}模式`)
   };
 
   const handleModalOpen = (bool) => {
@@ -93,7 +93,7 @@ const NavItems = ({ setIsOpen }) => {
         </li>
         <li className="cursor-pointer transition-transform hover:scale-110">
           <Badge count={cart.length} size='small'>
-            <FontAwesomeIcon className='text-[18px] cart' onClick={() => handleCartOpen(true)} 
+            <FontAwesomeIcon className="text-lg dark:text-primary" onClick={() => handleCartOpen(true)} 
               icon={faCartShopping} /> 
           </Badge>
         </li>
@@ -105,54 +105,64 @@ const NavItems = ({ setIsOpen }) => {
           </Link>
         </li>
         <Cart open={isCartOpen} onCancel={setIsCartOpen} items={cart}/>
-        <Modal okText={t("login")} cancelText={t("cancel")} open={isModalOpen} onOk={login} 
-          onCancel={handleCancel}>
-          <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-16 lg:px-8">
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-              <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                {t("login")}
-              </h2>
+        
+        <ConfigProvider theme={{
+        algorithm: darkMode ? darkAlgorithm : defaultAlgorithm,
+        }}>
+          <Modal 
+          okText={t("login")}
+          cancelText={t("cancel")}
+          open={isModalOpen} 
+          onOk={login} 
+          onCancel={handleCancel}
+          >
+            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-16 lg:px-8">
+              <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-primary">
+                  {t("login")}
+                </h2>
+              </div>
+              <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <form action="#" method="POST" className="space-y-6">
+                  <div>
+                    <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900 dark:text-secondary">
+                      {t("account")}
+                    </label>
+                    <div className="mt-2">
+                    <input
+                      id="username"
+                      type="text"
+                        value={username}
+                        autoComplete="username"
+                        required
+                        className="block w-full rounded-md border-2 p-2 text-gray-900 ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6"
+                        onChange={(e) => setUsername(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900 dark:text-secondary">
+                        {t("password")}
+                    </label>
+                    </div>
+                    <div className="mt-2">
+                    <input
+                      id="password"
+                      type="password"
+                        value={password}
+                        required
+                        autoComplete="current-password"
+                        className="block w-full rounded-md border-2 p-2 text-gray-900 ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-              <form action="#" method="POST" className="space-y-6">
-                <div>
-                  <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
-                    {t("account")}
-                  </label>
-                  <div className="mt-2">
-                  <input
-                    id="username"
-                    type="text"
-                      value={username}
-                      autoComplete="username"
-                      required
-                      className="block w-full rounded-md border-2 p-2 text-gray-900 ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6"
-                      onChange={(e) => setUsername(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className="flex items-center justify-between">
-                    <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                      {t("password")}
-                  </label>
-                  </div>
-                  <div className="mt-2">
-                  <input
-                    id="password"
-                    type="password"
-                      value={password}
-                      required
-                      autoComplete="current-password"
-                      className="block w-full rounded-md border-2 p-2 text-gray-900 ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </Modal>
+          </Modal>
+        </ConfigProvider>
       </ul>
     </>
   );
