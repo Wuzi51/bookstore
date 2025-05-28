@@ -11,37 +11,3 @@ body {
   height: 100%;
   font-family: "Helvetica", "Arial", "LiHei Pro", "黑體-繁", "微軟正黑體", sans-serif;
 }
-
-/* darkMode */
-.darkMode {
-  background-color: #000;
-}
-
-.darkMode .more-btn {
-  background-color: gray;
-}
-
-.darkMode footer {
-  background-color: #000;
-}
-
-.darkMode .cart {
-  color: #fff;
-}
-
-.darkMode,
-.darkMode p,
-.darkMode a,
-.darkMode li,
-.darkMode h2, 
-.darkMode button {
-  color: #fff;
-}
-
-.darkMode .book-item p,
-.darkMode .total-price p,
-.darkMode .book-item button,
-.commentDarkMode,
-.commentDarkMode p{
-  color: #000;
-}
