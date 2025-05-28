@@ -3,7 +3,7 @@ import { faCartShopping, faGlobe, faMoon, faHeart } from '@fortawesome/free-soli
 import i18n from '@/i18n';
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/store/user"
-import { Modal, message, ConfigProvider, theme } from 'antd';
+import { Modal, message } from 'antd';
 import { useState } from 'react';
 import { userApi } from '@/api/user';
 import { Link } from 'react-router-dom';
@@ -24,7 +24,6 @@ const NavItems = ({ setIsOpen = () => {} }) => {
     zh: "zh_TW",
     en: "en_US",
   };
-  const { darkAlgorithm, defaultAlgorithm } = theme;
 
   const handleDarkMode = () => {
     setDarkMode(!darkMode)
