@@ -27,7 +27,6 @@ const NavItems = ({ setIsOpen = () => {} }) => {
 
   const handleDarkMode = () => {
     setDarkMode(!darkMode)
-    message.success(`${!darkMode ? '暗黑' : '明亮'}模式`)
   };
 
   const handleModalOpen = (bool) => {
@@ -93,7 +92,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
         </li>
         <li className="cursor-pointer transition-transform hover:scale-110">
           <Badge count={cart.length} size='small'>
-            <FontAwesomeIcon className='text-[18px] cart' onClick={() => handleCartOpen(true)} 
+            <FontAwesomeIcon className="text-lg dark:text-primary" onClick={() => handleCartOpen(true)} 
               icon={faCartShopping} /> 
           </Badge>
         </li>
