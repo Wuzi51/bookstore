@@ -1,21 +1,25 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "../Header";
 import Footer from "../Footer";
-import { clsx } from "clsx";
-import { useUserStore } from "@/store/user";
 import { useEffect } from "react";
+import { useUserStore } from "@/store/user";
 
 
 const Layout = () => {
   const location = useLocation();
-  const { darkMode } = useUserStore();
+  
+  const isDark = useUserStore((state) => state.darkMode);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-mode', isDark ? 'dark' : 'light')
+  }, [isDark]);
   
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
 
   return (
-    <div className={clsx({ darkMode }, " bg-white text-gray-800")}>
+    <div className=" bg-white text-gray-800 dark:bg-canvas dark:text-primary">
       <Header/>
         <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Outlet/>
