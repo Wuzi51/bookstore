@@ -29,10 +29,10 @@ const Cart = ({ items, open, onCancel }) => {
               transition
               className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700"
             >
-              <div className="flex w-full h-full flex-col overflow-y-scroll bg-white shadow-xl">
+              <div className="flex w-full h-full flex-col overflow-y-scroll bg-white shadow-xl dark:bg-surface">
                 <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                   <div className="flex items-start justify-between">
-                    <DialogTitle className="text-lg font-medium text-gray-900">加入購物車的商品</DialogTitle>
+                    <DialogTitle className="text-lg font-medium text-gray-900 dark:text-primary">加入購物車的商品</DialogTitle>
                     <div className="ml-3 flex h-7 items-center">
                       <button
                         type="button"
@@ -46,7 +46,7 @@ const Cart = ({ items, open, onCancel }) => {
                   </div>
                   {items.length ? (
                     <div className='flex flex-col'>
-                      <button className='ml-auto w-32 mt-3 rounded-md border border-transparent bg-gray-400 text-base font-medium text-white shadow-sm hover:bg-gray-300'
+                      <button className='ml-auto w-32 mt-3 rounded-md border border-transparent bg-gray-400 text-base font-medium text-white shadow-sm hover:bg-gray-300 dark:bg-gray-600 dark:hover:bg-gray-500'
                         onClick={handleRemoveAllClick}
                       >清空購物車</button>
                       <BookItem books={items} onRemoveClick={handleRemoveClick} />
@@ -57,7 +57,7 @@ const Cart = ({ items, open, onCancel }) => {
                     </div>)}
                 </div>
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                  <div className="flex justify-between text-base font-medium text-gray-900">
+                  <div className="flex justify-between text-base font-medium text-gray-900 dark:text-primary">
                     <p>總金額</p>
                     <p>NT${getTotalPrice()}</p>
                   </div>
@@ -74,7 +74,7 @@ const Cart = ({ items, open, onCancel }) => {
                     <button
                       type="button"
                       onClick={() => onCancel(false)}
-                      className="font-medium text-blue-600 hover:text-blue-500"
+                      className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
                     >
                       繼續逛逛
                     </button>
