@@ -11,7 +11,7 @@ import { Badge } from 'antd';
 import Cart from '@/components/Cart';
 import { useBookStore } from '@/store/book';
 
-const NavItems = ({ setIsOpen }) => {
+const NavItems = ({ setIsOpen = () => {} }) => {
   const { darkMode, setDarkMode } = useUserStore();
   const { cart } = useBookStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -104,65 +104,55 @@ const NavItems = ({ setIsOpen }) => {
             <FontAwesomeIcon icon={faHeart} />
           </Link>
         </li>
-        <Cart open={isCartOpen} onCancel={setIsCartOpen} items={cart}/>
-        
-        <ConfigProvider theme={{
-        algorithm: darkMode ? darkAlgorithm : defaultAlgorithm,
-        }}>
-          <Modal 
-          okText={t("login")}
-          cancelText={t("cancel")}
-          open={isModalOpen} 
-          onOk={login} 
-          onCancel={handleCancel}
-          >
-            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-16 lg:px-8">
-              <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-primary">
-                  {t("login")}
-                </h2>
-              </div>
-              <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form action="#" method="POST" className="space-y-6">
-                  <div>
-                    <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900 dark:text-secondary">
-                      {t("account")}
-                    </label>
-                    <div className="mt-2">
-                    <input
-                      id="username"
-                      type="text"
-                        value={username}
-                        autoComplete="username"
-                        required
-                        className="block w-full rounded-md border-2 p-2 text-gray-900 ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6"
-                        onChange={(e) => setUsername(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900 dark:text-secondary">
-                        {t("password")}
-                    </label>
-                    </div>
-                    <div className="mt-2">
-                    <input
-                      id="password"
-                      type="password"
-                        value={password}
-                        required
-                        autoComplete="current-password"
-                        className="block w-full rounded-md border-2 p-2 text-gray-900 ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                </form>
-              </div>
+        <Cart open={isCartOpen} onCancel={() => setIsCartOpen(false)} items={cart}/>
+        <Modal okText={t("login")} cancelText={t("cancel")} open={isModalOpen} onOk={login} 
+          onCancel={handleCancel}>
+          <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-16 lg:px-8">
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+              <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                {t("login")}
+              </h2>
             </div>
-          </Modal>
-        </ConfigProvider>
+            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+              <form action="#" method="POST" className="space-y-6">
+                <div>
+                  <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
+                    {t("account")}
+                  </label>
+                  <div className="mt-2">
+                  <input
+                    id="username"
+                    type="text"
+                      value={username}
+                      autoComplete="username"
+                      required
+                      className="block w-full rounded-md border-2 p-2 text-gray-900 ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6"
+                      onChange={(e) => setUsername(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                      {t("password")}
+                  </label>
+                  </div>
+                  <div className="mt-2">
+                  <input
+                    id="password"
+                    type="password"
+                      value={password}
+                      required
+                      autoComplete="current-password"
+                      className="block w-full rounded-md border-2 p-2 text-gray-900 ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </Modal>
       </ul>
     </>
   );
