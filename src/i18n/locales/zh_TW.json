@@ -17,5 +17,6 @@
   "cancel": "取消",
   "account": "使用者帳號",
   "password": "密碼",
-  "No_matching_books": "沒有符合的書籍"
+  "No_matching_books": "沒有符合的書籍",
+  "Dark_Mode": "深色模式"
 }

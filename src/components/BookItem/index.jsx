@@ -14,17 +14,15 @@ const BookItem = ({ books, onRemoveClick }) => {
           </div>
           <div className="ml-4 flex flex-1 flex-col">
             <div>
-              <div className="flex justify-between text-base text-gray-900">
-                <h3>
-                  <p>{book.title}</p>
-                </h3>
+              <div className="flex justify-between text-base text-gray-900 dark:text-primary">
+                <h3>{book.title}</h3>
                   <p className="ml-4 text-right text-sm whitespace-nowrap">{`NT$ ${book.price}`}</p>
                   <p className="ml-4 text-right text-sm whitespace-nowrap">X{book.qty}</p>
               </div>
-              <p className="text-gray-500 text-[14px]">{book.author}</p>
+              <p className="text-gray-500 text-[14px] dark:text-primary">{book.author}</p>
             </div>
             <div className="flex flex-1 items-end justify-between text-sm">
-              <p className="text-gray-500">{book.series}</p>
+              <p className="text-gray-500 dark:text-primary">{book.series}</p>
               <div className="flex">
                 <button type="button" 
                 className="font-medium text-blue-600 hover:text-blue-500"
