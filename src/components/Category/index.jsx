@@ -4,7 +4,7 @@ const Category = ({ title }) => {
   const { t } = useTranslation();
   return (
     <div className="m-5 flex justify-between items-center">
-      <h2 className="text-xl mt-4 text-gray-500">{t(title)}</h2>
+      <h2 className="text-xl mt-4 text-gray-500 dark:text-primary">{t(title)}</h2>
     </div>
   );
 }

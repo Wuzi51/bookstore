@@ -3,7 +3,7 @@ import { faCartShopping, faGlobe, faMoon, faHeart } from '@fortawesome/free-soli
 import i18n from '@/i18n';
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/store/user"
-import { Modal, message } from 'antd';
+import { Modal, message, ConfigProvider, theme } from 'antd';
 import { useState } from 'react';
 import { userApi } from '@/api/user';
 import { Link } from 'react-router-dom';
@@ -24,10 +24,10 @@ const NavItems = ({ setIsOpen = () => {} }) => {
     zh: "zh_TW",
     en: "en_US",
   };
+  const { darkAlgorithm, defaultAlgorithm } = theme;
 
   const handleDarkMode = () => {
     setDarkMode(!darkMode)
-    message.success(`${!darkMode ? '暗黑' : '明亮'}模式`)
   };
 
   const handleModalOpen = (bool) => {
@@ -93,7 +93,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
         </li>
         <li className="cursor-pointer transition-transform hover:scale-110">
           <Badge count={cart.length} size='small'>
-            <FontAwesomeIcon className='text-[18px] cart' onClick={() => handleCartOpen(true)} 
+            <FontAwesomeIcon className="text-lg dark:text-primary" onClick={() => handleCartOpen(true)} 
               icon={faCartShopping} /> 
           </Badge>
         </li>
