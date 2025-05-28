@@ -9,7 +9,7 @@
     "date": 1726761600,
     "series": "時時出版",
     "score" : "4.5",
-    "category": "all_categories",
+    "category": "popular_books",
     "describe": "《魂斷威尼斯》《魔山》諾貝爾文學獎得主托瑪斯‧曼的心靈祕史。《大師》《布魯克林》作者柯姆‧托賓最新長篇力作，囊括三大歐洲文學獎。「寫小說是一件卑鄙的事。」──托瑪斯‧曼。面對公眾人物唯有進入他內心世界的矛盾衝突，才能即使體驗一切錯覺幻象。普立茲獎得主理查‧福特、麥可‧康寧漢、布克獎得主約翰‧班維爾盛讚推薦。",
     "comments": [
       {"id": 1, "content": "一開始有點慢，但後來節奏加快了。", "name": "Mark", "createdAt": 1728854479},
@@ -49,7 +49,7 @@
     "date": 1724947200,
     "series": "時時出版",
     "score" : "4.5",
-    "category": "sitewide",
+    "category": "must_reads",
     "describe": "從市場魚販到高檔餐廳食材供應商，林楷倫在第二本職人散文中揭露了廚師與魚販的真實故事，描寫了奢華餐廳背後的辛酸與成敗。作品融合深刻情感與現實場景，展現料理人的挑戰與夢想，讓讀者一窺餐廳廚房的真實面貌。",
     "comments": [
       {"id": 1, "content": "一開始有點慢，但後來節奏加快了。", "name": "Mark", "createdAt": 1728854479},
@@ -144,7 +144,7 @@
     "date": 1606774463,
     "series": "圓時出版",
     "score": "4.7",
-    "category": "sitewide",
+    "category": "must_reads",
     "describe": "日本讀者譽為年度神作：「《南光》完全超脫了推理小說的定義！」「它在我心中已經得到大賞冠軍。」",
     "comments": [
       {"id": 1, "content": "細膩的描寫帶我進入北極星的夢幻世界，文字充滿畫面感，非常值得一讀。", "name": "Sophia", "createdAt": 1728854479},
@@ -198,7 +198,7 @@
     "date": 1728854479,
     "series": "三十張出版",
     "score": "4.4",
-    "category": "sitewide",
+    "category": "must_reads",
     "describe": "詳述長期試探拘謹古都之樂與怒，從京都的「慢」裡，揀選其「快」：季節替換時萬物線條之異動、偶然與巧合裡情緒的瞬變、旅人的各種偏執與在地人的真脾性。卸下旅遊規劃的壓力，慢遊京都知其快，讓讀者重新定義下一趟京都的理由。",
     "comments": [
       {"id": 1, "content": "本書帶來京都不一樣的視角，讀來彷彿親臨其境。", "name": "Daniel", "createdAt": 1728854479},
@@ -216,7 +216,7 @@
     "date": 1727570672,
     "series": "夏天出版",
     "score": "4.4",
-    "category": "sitewide",
+    "category": "must_reads",
     "describe": "詳述長期試探拘謹古都之樂與怒，從京都的「慢」裡，揀選其「快」：季節替換時萬物線條之異動、偶然與巧合裡情緒的瞬變、旅人的各種偏執與在地人的真脾性。卸下旅遊規劃的壓力，慢遊京都知其快，讓讀者重新定義下一趟京都的理由。",
     "comments": [
       {"id": 1, "content": "東野的故事總能讓人不禁反思，這本書也不例外。", "name": "Daniel", "createdAt": 1728854479},
@@ -286,7 +286,7 @@
     "date": 1730681072,
     "series": "王冠文化有限公司",
     "score": "4.7",
-    "category": "all_categories",
+    "category": "popular_books",
     "describe": "當那些微小的哀傷和快樂，都成為記憶的滋味。",
     "comments": [
       {"id": 1, "content": "文字溫暖感人，讓人回味自己生活中的點滴美好。", "name": "Sophia", "createdAt": 1728854479},
@@ -303,7 +303,7 @@
     "date": 1727829872,
     "series": "諾雅文化",
     "score": "4.7",
-    "category": "all_categories",
+    "category": "popular_books",
     "describe": "近年激增‧「毫無徵兆辭職」和「像離職一樣工作」的人的實用處方箋！",
     "comments": [
       {"id": 1, "content": "對職場文化有深入見解，幫助我理解年輕人安靜離職的原因。", "name": "Sophia", "createdAt": 1728854479},
@@ -320,7 +320,7 @@
     "date": 1559349872,
     "series": "方丈出版",
     "score": "4.7",
-    "category": "all_categories",
+    "category": "popular_books",
     "describe": "你的一點小改變、一個好習慣，將會產生複利效應，如滾雪球般，為你帶來豐碩的人生成果！",
     "comments": [
       {"id": 1, "content": "書中的實用方法讓我更輕鬆地建立新習慣，受益良多！", "name": "Sophia", "createdAt": 1728854479},
