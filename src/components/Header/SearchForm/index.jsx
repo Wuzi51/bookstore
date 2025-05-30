@@ -47,7 +47,7 @@ const handleSubmit = (event) => {
       <div className="flex w-full mt-3 justify-between items-center">
         <input
           name="search"
-          className="flex-grow md:w-96 lg:w-128 px-4 py-[0.4rem] mr-2 border-2 border-gray-300 rounded-md"
+          className="flex-grow md:w-96 lg:w-128 px-4 py-[0.4rem] mr-2 border-2 border-gray-300 rounded-md dark: text-black"
           type="search"
           placeholder={t("Please_enter_a_keyword")}
           aria-label="Search"
