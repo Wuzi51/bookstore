@@ -1,15 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { Drawer, ConfigProvider, theme } from "antd";
+import { Drawer } from "antd";
 import { Link } from "react-router-dom";
 import NavItems from "../NavItem";
-import { useUserStore } from "@/store/user";
 
 const Menu = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const { darkMode } = useUserStore();
-  const { darkAlgorithm, defaultAlgorithm } = theme;
 
   return (
     <nav>
@@ -76,72 +73,68 @@ const Menu = () => {
           </ul>
         </div>
 
-        <ConfigProvider theme={{
-        algorithm: darkMode ? darkAlgorithm : defaultAlgorithm,
-      }}>
-          <Drawer
-            placement="top"
-            onClose={() => setIsOpen(false)}
-            open={isOpen}
-            className="lg:hidden"
-            title={<NavItems setIsOpen={setIsOpen}/>}
-          >
-            <ul className="flex flex-col space-y-4">
-              <li>
-                <Link
-                  to="/books?category=popular_books"
-                  className="inline-flex items-center appearance-none
+        <Drawer
+          placement="top"
+          onClose={() => setIsOpen(false)}
+          open={isOpen}
+          className="lg:hidden"
+          title={<NavItems setIsOpen={setIsOpen}/>}
+        >
+          <ul className="flex flex-col space-y-4">
+            <li>
+              <Link
+                to="/books?category=popular_books"
+                className="inline-flex items-center appearance-none
+                          w-full text-left py-2 px-3 text-gray-500 
+                          hover:text-gray-900 hover:bg-gray-50
+                          rounded-lg transition-colors duration-200
+                          dark:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                {t("popular_books")}
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/books?category=ranking"
+                className="inline-flex items-center appearance-none
                             w-full text-left py-2 px-3 text-gray-500 
-                            hover:text-gray-900 hover:bg-gray-50
-                            rounded-lg transition-colors duration-200
-                            dark:text-primary"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {t("popular_books")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/books?category=ranking"
-                  className="inline-flex items-center appearance-none
-                              w-full text-left py-2 px-3 text-gray-500 
-                            hover:text-gray-900 hover:bg-gray-50
-                            rounded-lg transition-colors duration-200
-                            dark:text-primary"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {t("ranking")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/books?category=recommended"
-                  className="inline-flex items-center appearance-none
-                              w-full text-left py-2 px-3 text-gray-500 
-                            hover:text-gray-900 hover:bg-gray-50
-                            rounded-lg transition-colors duration-200
-                            dark:text-primary"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {t("recommended_for_you")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/books?category=must_reads"
-                  className="inline-flex items-center appearance-none
-                              w-full text-left py-2 px-3 text-gray-500 
-                            hover:text-gray-900 hover:bg-gray-50
-                            rounded-lg transition-colors duration-200
-                            dark:text-primary"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {t("must_reads")}
-                </Link>
-              </li>
-            </ul>
-          </Drawer>
-        </ConfigProvider>
+                          hover:text-gray-900 hover:bg-gray-50
+                          rounded-lg transition-colors duration-200
+                          dark:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                {t("ranking")}
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/books?category=recommended"
+                className="inline-flex items-center appearance-none
+                            w-full text-left py-2 px-3 text-gray-500 
+                          hover:text-gray-900 hover:bg-gray-50
+                          rounded-lg transition-colors duration-200
+                          dark:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                {t("recommended_for_you")}
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/books?category=must_reads"
+                className="inline-flex items-center appearance-none
+                            w-full text-left py-2 px-3 text-gray-500 
+                          hover:text-gray-900 hover:bg-gray-50
+                          rounded-lg transition-colors duration-200
+                          dark:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                {t("must_reads")}
+              </Link>
+            </li>
+          </ul>
+        </Drawer>
       </div>
     </nav>
   );
