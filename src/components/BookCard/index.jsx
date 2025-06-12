@@ -1,22 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faHeart, faBook } from "@fortawesome/free-solid-svg-icons";
-import { Modal, ConfigProvider, theme } from "antd";
+import { Modal } from "antd";
 import { useState } from "react";
 import { useBookStore } from "@/store/book";
-import { useUserStore } from "@/store/user";
 import EBookReader from "../EBookReader";
 import { Link } from "react-router-dom";
 
 const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
   const [open, setOpen] = useState(false);
   const { favoriteBooks } = useBookStore();
-  const { darkMode } = useUserStore()
-  const { darkAlgorithm, defaultAlgorithm } = theme;
   const isFavorited = favoriteBooks.some((item) => item.id === book.id);
 
   return (
     <>
-  <div key={book.id} className="w-full max-w-60 text-center mt-2 flex flex-col justify-between p-4 shadow-lg dark:bg-surface dark:text-primary">
+      <div key={book.id} className="w-full max-w-60 text-center mt-2 flex flex-col justify-between p-4 shadow-lg dark:bg-surface dark:text-primary">
         <div className='overflow-hidden' onClick={onClick}>
           <Link to={`/book/${book.id}`} className="cursor-pointer">
             <img
@@ -56,20 +53,16 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
           </div>
         </div>
       </div>
-      <ConfigProvider theme={{
-        algorithm: darkMode ? darkAlgorithm : defaultAlgorithm,
-      }}>
-        <Modal
-          title={book.title}
-          open={open}
-          centered
-          onCancel={() => setOpen(false)}
-          footer={null}
-          width={600}
-        >
-          <EBookReader/>
-        </Modal>
-      </ConfigProvider>
+      <Modal
+        title={book.title}
+        open={open}
+        centered
+        onCancel={() => setOpen(false)}
+        footer={null}
+        width={600}
+      >
+        <EBookReader/>
+      </Modal>
     </>
   );
 };
