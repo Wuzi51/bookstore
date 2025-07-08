@@ -6,10 +6,12 @@ import { useEffect } from "react"
 import { useBookStore } from "@/store/book"
 import BannerDesktop from "@/images/Banner-desktop.png"
 import BannerMobile from "@/images/Banner-mobile.png"
+import { message } from "antd"
 
 
 const Home = () => {
   const { books, setBooks, setFavoriteBooks, setCart } = useBookStore()
+  const [messageApi, contextHolder] = message.useMessage();
 
   const getBooks = async () => {
     try {
@@ -21,11 +23,17 @@ const Home = () => {
 };
 
   const handleFavoriteClick = (id) => {
-    setFavoriteBooks(id)
+    const result = setFavoriteBooks(id);
+    if (result === "add") {
+      messageApi.success("已加入收藏");
+    } else {
+      messageApi.success("已取消收藏");
+    }
   };
 
   const handleCartClick = (id, qty = 1) => {
     setCart(id, qty)
+    messageApi.success('已加入購物車')
   };
 
 useEffect(() => {
@@ -34,9 +42,10 @@ useEffect(() => {
 
   return (
     <div className="flex flex-col items-center justify-between">
-      <Link to="/book/15" className=" mt-9 hover:cursor-pointer ">
+      <div className="mt-9 overflow-hidden">
+        <Link to="/book/15" className=" mt-9 hover:cursor-pointer ">
         <img
-          className="hidden md:block w-[149vh] object-cover hover:scale-105 transition-transform duration-300 ease-in-out"
+          className="hidden md:block w-[149vh] object-contain duration-300 ease-in-out hover:scale-105"
           src={BannerDesktop}
           alt="desktop banner"
         />
@@ -46,9 +55,11 @@ useEffect(() => {
           alt="mobile banner"
         />
       </Link>
+      </div>
       <div>
         <Category title="Today's_Picks" />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {contextHolder}
           {books.map(book => (
             <BookCard 
               book={book} 

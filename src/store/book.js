@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { persist } from 'zustand/middleware'
-import { message } from "antd";
 
 export const useBookStore = create(
   persist(
@@ -11,38 +10,40 @@ export const useBookStore = create(
       setCart: (id, qty) => set((state) => {
         const book = state.books.find((item) => item.id === id)
         const newCart = [...state.cart, { ...book, qty }]
-        message.success('已加入購物車')
         return { cart: newCart }
       }),
       //定義動態狀態時使用get
-      getTotalPrice: () => get().cart.reduce((preVal, item) => preVal + item.price * item.qty, 0),
+      getTotalPrice: () => get().cart.reduce((preVal, item) => preVal + item.price, 0),
       favoriteBooks: [],
       removeCart: (idx) => set((state) => {
         const newCart = [...state.cart]
         newCart.splice(idx, 1)
-        return { cart: newCart } 
+        return { cart: newCart }
       }),
       clearCart: () => set(() => {
-        return { cart: [] } 
+        return { cart: [] }
       }),
-      setFavoriteBooks: (id) => {set((state) => {
-        const isFavorite = state.favoriteBooks.some((item) => item.id === id)
-        const book = state.books.find((item) => item.id === id)
+      setFavoriteBooks: (id) => {
+        const state = get();
+
+        const favoriteBooks = Array.isArray(state.favoriteBooks) ? state.favoriteBooks : [];
+        const isFavorite = favoriteBooks.some((item) => item.id === id);
+        const book = state.books.find((item) => item.id === id);
+
+        if (!book) return;
+
         if (isFavorite) {
-          //移除收藏
-          message.success('移除收藏')
-          return {
-            favoriteBooks: state.favoriteBooks.filter((item) => item.id !== id)
-          }
+          set({
+            favoriteBooks: favoriteBooks.filter((item) => item.id !== id),
+          });
+          return "remove";
         } else {
-          //加入收藏
-          message.success('加入收藏')
-          return {
-            favoriteBooks: [...state.favoriteBooks, book],
-          }
+          set({
+            favoriteBooks: [...favoriteBooks, book],
+          });
+          return "add";
         }
-      })
-    },
+      },
       books: [],
       setBooks: (books) => set({ books }),
     }),
