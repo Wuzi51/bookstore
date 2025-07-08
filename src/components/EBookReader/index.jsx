@@ -90,43 +90,50 @@ const EBookReader = () => {
     init()
   },[]);
 
+  useEffect(() => {
+    if (rendition) {
+      rendition.themes.select(darkMode ? "dark" : "light");
+    }
+  }, [darkMode, rendition]);
+
   return (
     <>
       <div 
         ref={ePubRef} 
         className="relative w-full h-[26rem] border border-gray-300"
       >
-          {loading && (
-            <Spin
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 
-              -translate-y-1/2"
-              spinning={loading}
-              indicator={<LoadingOutlined />}
-              size="large"
+        {loading && (
+        <Spin
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          spinning={loading}
+          indicator={<LoadingOutlined />}
+          size="large"
             />
-          )}
+        )}
       </div>
+      <div className="mt-3 text-center">
+        <input 
+          type="range"
+          min="0"
+          max="100"
+          value={progress}
+          onChange={handleProgressChange}
+          className="w-4/5"
+        />
         <div className="mt-3 text-center">
-          <input 
-            type="range"
-            min="0"
-            max="100"
-            value={progress}
-            onChange={handleProgressChange}
-            className="w-4/5"
-          />
-          <div className="mt-3 text-center">
-            {loading ? "讀取中" : `進度${Math.max(Math.floor(progress), 1)}%`}
-          </div>
-          <div className="mt-6">
-            <button className="rounded-md border border-transparent bg-blue-500 px-3 py-2 mx-2 text-sm font-medium text-white shadow-sm hover:bg-blue-400"
-            onClick={handlePrevious}
-            >上一頁</button>
-            <button className="rounded-md border border-transparent bg-blue-500 px-3 py-2 mx-2 text-sm font-medium text-white shadow-sm hover:bg-blue-400"
-            onClick={handleNext}
-            >下一頁</button>
-          </div>
+          {loading ? "讀取中" : `進度${Math.max(Math.floor(progress), 1)}%`}
         </div>
+        <div className="mt-6">
+          <button className="rounded-md border border-transparent bg-blue-500 px-3 py-2 mx-2 text-sm font-medium text-white shadow-sm hover:bg-blue-400"
+          onClick={handlePrevious}>
+            上一頁
+          </button>
+          <button className="rounded-md border border-transparent bg-blue-500 px-3 py-2 mx-2 text-sm font-medium text-white shadow-sm hover:bg-blue-400" 
+          onClick={handleNext}>
+            下一頁
+          </button>
+          </div>
+      </div>
     </>
   );
 };

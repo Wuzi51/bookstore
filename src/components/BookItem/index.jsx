@@ -17,7 +17,6 @@ const BookItem = ({ books, onRemoveClick }) => {
               <div className="flex justify-between text-base text-gray-900 dark:text-primary">
                 <h3>{book.title}</h3>
                   <p className="ml-4 text-right text-sm whitespace-nowrap">{`NT$ ${book.price}`}</p>
-                  <p className="ml-4 text-right text-sm whitespace-nowrap">X{book.qty}</p>
               </div>
               <p className="text-gray-500 text-[14px] dark:text-primary">{book.author}</p>
             </div>
@@ -38,7 +37,7 @@ const BookItem = ({ books, onRemoveClick }) => {
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BookItem
+export default BookItem;
