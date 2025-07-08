@@ -28,7 +28,7 @@ const Book = () => {
 
   const handleAddToCart = () => {
     if (inCart) {
-      messageApi.info("此書已在購物車");
+      messageApi.info("已在購物車中");
       return;
     }
     setCart(book.id, 1);
