@@ -1,15 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { Drawer, ConfigProvider, theme } from "antd";
+import { Drawer } from "antd";
 import { Link } from "react-router-dom";
 import NavItems from "../NavItem";
-import { useUserStore } from "@/store/user";
 
 const Menu = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const { darkMode } = useUserStore();
-  const { darkAlgorithm, defaultAlgorithm } = theme;
 
   return (
     <nav>
@@ -76,15 +73,12 @@ const Menu = () => {
           </ul>
         </div>
 
-        <ConfigProvider theme={{
-        algorithm: darkMode ? darkAlgorithm : defaultAlgorithm,
-      }}>
-          <Drawer
-            placement="top"
-            onClose={() => setIsOpen(false)}
-            open={isOpen}
-            className="lg:hidden"
-            title={<NavItems setIsOpen={setIsOpen}/>}
+        <Drawer
+          placement="top"
+          onClose={() => setIsOpen(false)}
+          open={isOpen}
+          className="lg:hidden"
+          title={<NavItems setIsOpen={setIsOpen}/>}
           >
             <ul className="flex flex-col space-y-4">
               <li>
@@ -141,7 +135,6 @@ const Menu = () => {
               </li>
             </ul>
           </Drawer>
-        </ConfigProvider>
       </div>
     </nav>
   );
