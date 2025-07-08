@@ -10,7 +10,7 @@ import { message } from "antd"
 
 
 const Home = () => {
-  const { books, setBooks, setFavoriteBooks, setCart } = useBookStore()
+  const { books, setBooks, setFavoriteBooks, setCart, cart } = useBookStore()
   const [messageApi, contextHolder] = message.useMessage();
 
   const getBooks = async () => {
@@ -31,9 +31,13 @@ const Home = () => {
     }
   };
 
-  const handleCartClick = (id, qty = 1) => {
-    setCart(id, qty)
-    messageApi.success('已加入購物車')
+  const handleCartClick = (id) => {
+    if (cart.some(item => item.id === id)) {
+      messageApi.info('已在購物車中');
+      return;
+    }
+    setCart(id);
+    messageApi.success('已加入購物車');
   };
 
 useEffect(() => {
@@ -65,7 +69,9 @@ useEffect(() => {
               book={book} 
               key={book.id} 
               onFavoriteClick={handleFavoriteClick}
-              onCartClick={handleCartClick}/>
+              onCartClick={handleCartClick}
+              inCart={cart.some(item => item.id === book.id)}
+            />
           ))}
         </div>
       </div>

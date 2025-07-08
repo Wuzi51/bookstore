@@ -53,7 +53,7 @@ const Books = () => {
 
   const handleCartClick = (id) => {
     if (cart.some(item => item.id === id)) {
-      messageApi.info('此書已在購物車');
+      messageApi.info('已在購物車中');
       return;
     }
     setCart(id);
