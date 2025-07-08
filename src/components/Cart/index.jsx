@@ -1,11 +1,13 @@
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useBookStore } from "@/store/book";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import BookItem from '../BookItem';
 
 const Cart = ({ items, open, onCancel }) => {
   const { removeCart, clearCart, getTotalPrice } = useBookStore();
+  const navigate = useNavigate();
+  const { cart } = useBookStore();
 
   const handleRemoveClick = (idx) => {
     removeCart(idx);
@@ -13,6 +15,13 @@ const Cart = ({ items, open, onCancel }) => {
 
   const handleRemoveAllClick = () => {
     clearCart();
+  };
+
+  const handleCheckOut = () => {
+    if(cart.length > 0) {
+      onCancel(false)
+      navigate("checkout")
+    }
   };
 
   return (
@@ -62,13 +71,16 @@ const Cart = ({ items, open, onCancel }) => {
                     <p>NT${getTotalPrice()}</p>
                   </div>
                   <div className="mt-6 flex justify-center">
-                    <Link
-                      to="/checkout"
-                      onClick={() => onCancel(false)}
-                      className="block w-full rounded-md border border-transparent bg-blue-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-400 text-center"
+                    <button
+                      onClick={handleCheckOut}
+                      className={`block w-full rounded-md px-6 py-3 text-base font-medium text-white shadow-sm text-center border border-transparent ${
+                        cart.length === 0
+                          ? "bg-gray-400 cursor-not-allowed"
+                          : "bg-blue-500 hover:bg-blue-400"
+                      }`}
                     >
                       結帳
-                    </Link>
+                    </button>
                   </div>
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                     <button

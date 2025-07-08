@@ -1,14 +1,16 @@
 import BookCard from '@/components/BookCard';
 import { bookApi } from "@/api/book";
 import { useEffect, useState } from 'react';
-import { Link, useSearchParams } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 import { useBookStore } from '@/store/book';
+import { message } from 'antd';
 
 const Books = () => {
-  const { setFavoriteBooks, setCart} = useBookStore();
+  const { setFavoriteBooks, setCart, cart } = useBookStore();
   const [searchParams] = useSearchParams();
   const [books, setBooks] = useState([]);
   const [sortOrder, setSortOrder] = useState('');
+  const [messageApi, contextHolder] = message.useMessage();
 
   const getBooks = async () => {
     try {
@@ -41,11 +43,21 @@ const Books = () => {
   };
 
   const handleFavoriteClick = (id) => {
-    setFavoriteBooks(id);
+    const result = setFavoriteBooks(id);
+    if (result === 'add') {
+      messageApi.success('已加入收藏')
+    } else {
+      messageApi.success('已取消收藏')
+    }
   };
 
-  const handleCartClick = (id, qty = 1) => {
-    setCart(id, qty);
+  const handleCartClick = (id) => {
+    if (cart.some(item => item.id === id)) {
+      messageApi.info('此書已在購物車');
+      return;
+    }
+    setCart(id);
+    messageApi.success('已加入購物車');
   };
 
   const sortedBooks = filteredBooks.sort((a, b) => {
@@ -62,20 +74,23 @@ const Books = () => {
   return (
     <>
       <div>
-        <div className="m-7">
+        <div className="pt-4">
           <select className="border-2 text-black" onChange={handleChange} value={sortOrder}>
             <option value="title">依書名排序</option>
             <option value="date">依出版日期排序</option>
           </select>
         </div>
+        {contextHolder}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 m-4">
           {sortedBooks.map(book => (
-          <div key={book.id}>
-            <BookCard book={book} 
+            <BookCard 
+              book={book} 
+              key={book.id} 
               onFavoriteClick={handleFavoriteClick}  
-              onCartClick={handleCartClick}/>
-          </div>
-        ))}
+              onCartClick={handleCartClick}
+              inCart={cart.some(item => item.id === book.id)}
+            />
+          ))}
         </div>
       </div>
     </>

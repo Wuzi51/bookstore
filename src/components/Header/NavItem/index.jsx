@@ -3,7 +3,7 @@ import { faCartShopping, faGlobe, faMoon, faHeart } from '@fortawesome/free-soli
 import i18n from '@/i18n';
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/store/user"
-import { Modal, message, ConfigProvider, theme } from 'antd';
+import { Modal, message } from 'antd';
 import { useState } from 'react';
 import { userApi } from '@/api/user';
 import { Link } from 'react-router-dom';
@@ -18,14 +18,12 @@ const NavItems = ({ setIsOpen = () => {} }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 	const { t } = useTranslation()
   const { language, setLanguage, token, setToken } = useUserStore();
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('emilys')
+  const [password, setPassword] = useState('emilyspass')
   const languageList = {
     zh: "zh_TW",
     en: "en_US",
   };
-
-  const { darkAlgorithm, defaultAlgorithm } = theme;
 
   const handleDarkMode = () => {
     setDarkMode(!darkMode)
@@ -46,7 +44,6 @@ const NavItems = ({ setIsOpen = () => {} }) => {
     setToken("")
   };
 
-
   // 存取token後存在前端頁面
   const login = async() => {
     // 防呆
@@ -59,13 +56,11 @@ const NavItems = ({ setIsOpen = () => {} }) => {
       setToken(accessToken)
       setUsername(username)
       message.success(t("success"))
+      handleCancel()
     } catch (err) {
       message.error(t("error"))
       console.error(err)
-    } finally {
-      // 成功或失敗都會執行
-      handleModalOpen(false);
-    }
+    } 
   };
 
   const handleCancel = () => {
@@ -108,10 +103,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
         
         <Cart open={isCartOpen} onCancel={() => setIsCartOpen(false)} items={cart}/>
 
-        <ConfigProvider theme={{
-          algorithm: darkMode ? darkAlgorithm : defaultAlgorithm,
-        }}>
-          <Modal okText={t("login")} cancelText={t("cancel")} open={isModalOpen} onOk={login} 
+        <Modal okText={t("login")} cancelText={t("cancel")} open={isModalOpen} onOk={login} 
             onCancel={handleCancel}>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-16 lg:px-8">
               <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -158,8 +150,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
                 </form>
               </div>
             </div>
-          </Modal>
-        </ConfigProvider>
+        </Modal>
       </ul>
     </>
   );
