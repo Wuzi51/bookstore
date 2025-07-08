@@ -48,17 +48,17 @@ useEffect(() => {
     <div className="flex flex-col items-center justify-between">
       <div className="mt-9 overflow-hidden">
         <Link to="/book/15" className=" mt-9 hover:cursor-pointer ">
-        <img
-          className="hidden md:block w-[149vh] object-contain duration-300 ease-in-out hover:scale-105"
-          src={BannerDesktop}
-          alt="desktop banner"
-        />
-        <img
-          className="block md:hidden w-full object-cover rounded-l"
-          src={BannerMobile}
-          alt="mobile banner"
-        />
-      </Link>
+          <img
+            className="hidden md:block w-[149vh] object-contain duration-300 ease-in-out hover:scale-105"
+            src={BannerDesktop}
+            alt="desktop banner"
+          />
+          <img
+            className="block md:hidden w-full object-cover rounded-l"
+            src={BannerMobile}
+            alt="mobile banner"
+          />
+        </Link>
       </div>
       <div>
         <Category title="Today's_Picks" />
