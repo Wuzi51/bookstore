@@ -6,7 +6,7 @@ import { useUserStore } from "@/store/user";
 
 const EBookReader = () => {
   const ePubRef = useRef(null);
-  const bookURL = `/book.epub`;
+  const bookURL = `/WCAG.epub`;
   const [rendition, setRendition] = useState();
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState();
