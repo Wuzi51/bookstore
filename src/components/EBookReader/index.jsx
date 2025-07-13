@@ -36,10 +36,10 @@ const EBookReader = () => {
       });
 
       renditionInstance.themes.register("dark", {
-        body: {
-          background: "#333",
+        "body, body *": {
+          background: "#333 !important",
           color: "#fff"
-        }
+        },
       });
 
       renditionInstance.themes.select(darkMode ? "dark" : "light");
