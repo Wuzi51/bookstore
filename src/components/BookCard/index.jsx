@@ -29,7 +29,7 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
             </h4>
           </Link>
           <p className="mt-2 text-xs font-bold">
-            {`NT$ ${book.price}`}
+            {`NT$ ${book.price.toLocaleString()}`}
           </p>
         </div>
 
