@@ -1,10 +1,33 @@
-import axios from "axios"
+import supabase from "@/lib/supabaseClient";
+
 export const userApi = {
-  login: async(username, password) => {
-    const { data } = await axios.post('https://dummyjson.com/user/login', {
-      username,
-      password,
-    })
+  async login(email, password) {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) {
+      throw new Error(error.message);
+    }
     return data;
+  },
+  async signup(email, password) {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password
+    });
+
+    if (error) {
+      throw new Error(error.message);
+    }
+    return data;
+  },
+  async logout() {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      throw new Error(error.message);
+    }
   }
 };

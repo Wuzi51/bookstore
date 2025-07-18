@@ -3,7 +3,8 @@ import { faCartShopping, faGlobe, faMoon, faHeart } from '@fortawesome/free-soli
 import i18n from '@/i18n';
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/store/user"
-import { Modal, message } from 'antd';
+import { Modal, message, Avatar, Dropdown } from 'antd';
+import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { userApi } from '@/api/user';
 import { Link } from 'react-router-dom';
@@ -17,9 +18,9 @@ const NavItems = ({ setIsOpen = () => {} }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 	const { t } = useTranslation()
-  const { language, setLanguage, token, setToken } = useUserStore();
-  const [username, setUsername] = useState('emilys')
-  const [password, setPassword] = useState('emilyspass')
+  const { language, setLanguage, session, setSession } = useUserStore();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const languageList = {
     zh: "zh_TW",
     en: "en_US",
@@ -40,21 +41,38 @@ const NavItems = ({ setIsOpen = () => {} }) => {
 
   // 登出事件
   const handleClick = () => {
-    localStorage.removeItem("accessToken")
-    setToken("")
+    setSession(null);
+    userApi.logout()
   };
 
-  // 存取token後存在前端頁面
+  const userMenu = {
+    items: [
+      {
+        key: 'profile',
+        label: session?.user?.email || 'No email',
+        disabled: true
+      },
+      {
+        type: 'divider'
+      },
+      {
+        key: 'logout',
+        label: t("login_out"),
+        icon: <LogoutOutlined />,
+        onClick: handleClick
+      }
+    ]
+  };
+
   const login = async() => {
     // 防呆
-    if (!username || !password) {
+    if (!email || !password) {
       message.warning(t("warning"))
       return
     }
     try {
-      const { accessToken } = await userApi.login(username, password)
-      setToken(accessToken)
-      setUsername(username)
+      const { session } = await userApi.login(email, password)
+      setSession(session)
       message.success(t("success"))
       handleCancel()
     } catch (err) {
@@ -75,12 +93,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
 
   return (
     <>
-      <ul className="flex items-center text-xl gap-8">
-        <li> {token && <p className='username'>{username}</p>} </li>
-        <li className="cursor-pointer transition-transform hover:scale-110">
-          {token ? <p onClick={handleClick}>{t("login_out")}</p> : 
-          <p onClick={() => handleModalOpen(true)}>{t("login")}</p>} 
-        </li>
+      <ul className="flex items-center text-xl gap-8 ml-8">
         <li className="cursor-pointer transition-transform hover:scale-110">
           <FontAwesomeIcon onClick={changeLanguage} icon={faGlobe} />
         </li>
@@ -99,6 +112,13 @@ const NavItems = ({ setIsOpen = () => {} }) => {
           >
             <FontAwesomeIcon icon={faHeart} />
           </Link>
+        </li>
+        <li className="cursor-pointer transition-transform hover:scale-110"> 
+          { session ? (
+          <Dropdown menu={userMenu} trigger={['click']}>
+            <Avatar className="cursor-pointer" size={32} icon={<UserOutlined />} />
+          </Dropdown>
+          ): <p onClick={() => handleModalOpen(true)}>{t("login")}</p>} 
         </li>
         
         <Cart open={isCartOpen} onCancel={() => setIsCartOpen(false)} items={cart}/>
@@ -121,11 +141,11 @@ const NavItems = ({ setIsOpen = () => {} }) => {
                       <input
                         id="username"
                         type="text"
-                          value={username}
+                          value={email}
                           autoComplete="username"
                           required
                           className="block w-full rounded-md border-2 p-2 text-gray-900 ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-                          onChange={(e) => setUsername(e.target.value)}
+                          onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
                   </div>

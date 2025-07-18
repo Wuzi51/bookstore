@@ -4,8 +4,8 @@ import { persist } from 'zustand/middleware'
 export const useUserStore = create(
   persist(
     (set) => ({
-      token: "",
-      setToken: (token) => set({ token }),
+      session: null,
+      setSession: (session) => set({ session }),
       language: "zh_TW",
       setLanguage: (language) => set({ language }),
       darkMode: false,
