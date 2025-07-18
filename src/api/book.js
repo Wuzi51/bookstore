@@ -1,4 +1,4 @@
-import supabase from "@/lib/superbaseClient";
+import supabase from "@/lib/supabaseClient";
 
 export const bookApi = {
   getBooks: async () => {
@@ -8,9 +8,9 @@ export const bookApi = {
       // 按照id順序排序
       .order('id', { ascending: true })
 
-      if (error) {
-        throw error
-      }
-      return { data }
+    if (error) {
+      throw error
+    }
+    return { data }
   },
 };
