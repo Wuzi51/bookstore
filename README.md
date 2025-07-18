@@ -17,7 +17,14 @@
 
 ---
 
-**Key highlights**
+## 🧑‍💻 Demo Test Account
+
+For reviewer/testing login, use the following test credentials:
+
+- **Email:** `lufy5656@test.com`
+- **Password:** `d565656`
+
+---
 
 * Unified browsing, shopping cart, and reader experience.
 * Fast e‑book rendering with **ePub.js**.
