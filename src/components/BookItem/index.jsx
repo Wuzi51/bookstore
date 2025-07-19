@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 const BookItem = ({ books, onRemoveClick }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="mt-8">
       <div>
@@ -27,7 +31,7 @@ const BookItem = ({ books, onRemoveClick }) => {
                 className="font-medium text-blue-600 hover:text-blue-500"
                 onClick={() => onRemoveClick(idx)}
                 >
-                  移除
+                  {t('Remove')}
                 </button>
               </div>
             </div>

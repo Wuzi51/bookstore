@@ -3,6 +3,7 @@ import { message } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useBookStore } from "@/store/book";
+import { useTranslation } from "react-i18next";
 
 const Checkout = () => {
   //使用全局狀態獲取資料
@@ -12,6 +13,7 @@ const Checkout = () => {
   const [expirationMonth, setExpirationMonth] = useState('')
   const [expirationYear, setExpirationYear] = useState('')
   const [cvv, setCvv] = useState('')
+  const { t } = useTranslation();
 
   const handleRemoveClick = (idx) => {
     removeCart(idx)
@@ -20,15 +22,15 @@ const Checkout = () => {
   const navigate = useNavigate()
   const changePage = (url) => {
     navigate(url)
-    message.success('付款成功')
+    message.success(t('Payment_Success'))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // 簡單驗證：檢查是否有填寫付款資訊
+    // 檢查是否有填寫付款資訊
     if (payment === 'visa' && (!cardNumber || !expirationMonth || !expirationYear || !cvv)) {
-      message.warning('請填寫完整的信用卡資訊');
+      message.warning(t('Incomplete_Card_Info'));
       return;
     }
 
@@ -73,12 +75,11 @@ const Checkout = () => {
     return years
   }
 
-
   return (
     <div className="max-w-7xl mx-auto py-12 px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="bg-white shadow-lg rounded-lg p-6 dark:bg-surface">
-          <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-primary">付款</h3>
+          <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-primary">{t('Payment')}</h3>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <input type="radio" 
@@ -89,12 +90,12 @@ const Checkout = () => {
               onChange={() => setPayment('visa')}
               />
               <label htmlFor="credit-card" className="text-lg font-medium text-gray-700 dark:text-secondary">
-                信用卡/Visa 金融卡
+                {t('CreditCard_Label')}
               </label>
             </div>
             <div className="mb-4">
               <label htmlFor="card-number" className="block text-sm font-medium text-gray-700 dark:text-secondary">
-                卡片號碼
+                {t('Card_Number')}
               </label>
               <input
                 type="text"
@@ -107,7 +108,7 @@ const Checkout = () => {
             </div>
             <div className="mb-4">
               <label htmlFor="expiry-date" className="block text-sm font-medium text-gray-700 dark:text-secondary">
-                到期日
+                {t('Expiration_Date')}
               </label>
               <div className="flex space-x-2">
                 <select
@@ -159,17 +160,19 @@ const Checkout = () => {
             <button
               className="w-full bg-blue-500 text-white py-3 px-4 rounded-md hover:bg-blue-400 transition duration-300" onClick={handleSubmit}
             >
-              確定付款
+              {t('Confirm_Payment')}
             </button>
           </form>
         </div>
 
         <div className="bg-white shadow-lg rounded-lg p-6 dark:bg-surface">
-          <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-primary">購買明細</h3>
+          <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-primary">
+            {t('Purchase_Details')}
+          </h3>
           <BookItem  books={cart} onRemoveClick={handleRemoveClick}/>
           <p className="my-4 border border-solid border-stone-500"></p>
           <div className="total-price flex justify-between text-base font-medium text-gray-900 dark:text-primary">
-            <p>總金額</p>
+            <p>{t('Total_Amount')}</p>
             <p>NT${getTotalPrice()}</p>
           </div>
         </div>

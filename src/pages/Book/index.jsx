@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import CommentBoard from "@/components/CommentBoard";
 import { message } from "antd";
+import { useTranslation } from "react-i18next";
 
 
 const Book = () => {
@@ -12,6 +13,7 @@ const Book = () => {
   const book = books.find((item) => item.id === Number(id));
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
+  const { t } = useTranslation();
 
   const inCart = cart && book ? cart.some(item => item.id === book.id) : false;
   const inFavorite = favoriteBooks && book ? favoriteBooks.some(item => item.id === book.id) : false;
@@ -20,28 +22,28 @@ const Book = () => {
 
   const handleCheckOut = () => {
     if (!inCart) {
-      setCart(book.id, 1);
-      messageApi.success("已加入購物車");
+      setCart(book.id);
+      messageApi.success(t('Already_Added_To_Cart'));
     }
     changePage('/checkout');
   };
 
   const handleAddToCart = () => {
     if (inCart) {
-      messageApi.info("已在購物車中");
+      messageApi.info(t('Already_In_Cart'));
       return;
     }
-    setCart(book.id, 1);
-    messageApi.success("已加入購物車");
+    setCart(book.id);
+    messageApi.success(t('Already_Added_To_Cart'));
   };
 
   const handleFavorite = () => {
     if (inFavorite) {
-      messageApi.info("此書已在收藏");
+      messageApi.info(t('Already_In_Favorites'));
       return;
     }
     setFavoriteBooks(book.id);
-    messageApi.success("已加入收藏");
+    messageApi.success(t('Added_To_Favorites'));
   };
 
   return (
@@ -57,7 +59,7 @@ const Book = () => {
         <div className="flex items-center justify-center my-5">
           <p className="mr-2">{book.score}</p>
           <FontAwesomeIcon icon={faStar} className="mr-2 text-yellow-500" />
-          <p>{book.comments.length} 篇評論</p>
+          <p>{book.comments.length} {t('Review_Count')}</p>
         </div>
       </div>
       
@@ -67,12 +69,12 @@ const Book = () => {
           <h2 className="text-2xl mb-4 font-bold text-center lg:text-left">{book.title}</h2>
           <h3 className="mb-2 text-center lg:text-left">{book.author}</h3>
           <ul className="flex flex-col items-center lg:items-start mb-3">
-            <li>出版日期：{book.date}</li>
-            <li>語言：{book.language}</li>
+            <li>{t('Published_Date')}：{book.date}</li>
+            <li>{t('Language')}：{book.language}</li>
           </ul>
         </div>
         <div>
-          <h4 className="text-lg font-bold mb-2">簡介</h4>
+          <h4 className="text-lg font-bold mb-2">{t('Description')}</h4>
           <p>{book.describe}</p>
         </div>
         <CommentBoard book={book} />
@@ -81,23 +83,23 @@ const Book = () => {
       {/* 右側按鈕區塊 */}
       <div className="flex flex-col gap-4 items-center  mt-4 lg:mt-0 lg:items-start lg:mx-3">
         <button 
-          className="buy-btn w-11/12 lg:w-auto px-20 py-3 bg-[#e98192] text-white rounded-3xl hover:bg-[#eba5b1]"
+          className="buy-btn w-52 px-12 py-3 bg-[#e98192] text-white rounded-3xl hover:bg-[#eba5b1]"
           onClick={handleCheckOut}
         >
-          購買
+          {t('Buy')}
         </button>
         <button 
-          className="add-to-cart-btn w-11/12 lg:w-auto px-12 py-3 bg-[#40c8f7] text-white rounded-3xl hover:bg-[#5ed1f7]"
+          className="add-to-cart-btn w-52 px-12 py-3 bg-[#40c8f7] text-white rounded-3xl hover:bg-[#5ed1f7]"
           onClick={handleAddToCart}
         >
-          新增至購物車
+          {t('Add_To_Cart')}
         </button>
         <button 
-          className="favorite-btn w-11/12 lg:w-auto px-16 py-3 bg-gray-400 text-white rounded-3xl
+          className="favorite-btn w-52  max-w-xs px-12 py-3 whitespace-nowrap bg-gray-400 text-white rounded-3xl
           hover:bg-gray-300"
           onClick={handleFavorite}
         >
-          加入收藏
+          {t('Add_To_Favorites')}
         </button>
       </div>
     </div>

@@ -3,6 +3,7 @@ import ePub from "epubjs";
 import { Spin } from 'antd'; 
 import { LoadingOutlined } from "@ant-design/icons";
 import { useUserStore } from "@/store/user";
+import { useTranslation } from "react-i18next";
 
 const EBookReader = () => {
   const ePubRef = useRef(null);
@@ -11,6 +12,7 @@ const EBookReader = () => {
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState();
   const darkMode = useUserStore((state) => state.darkMode);
+  const { t } = useTranslation();
 
   const init = async() => {
     setLoading(true)
@@ -121,16 +123,16 @@ const EBookReader = () => {
           className="w-4/5"
         />
         <div className="mt-3 text-center">
-          {loading ? "讀取中" : `進度${Math.max(Math.floor(progress), 1)}%`}
+          {loading ? t('Loading') : `${t('Progress')} ${Math.max(Math.floor(progress), 1)}%`}
         </div>
         <div className="mt-6">
           <button className="rounded-md border border-transparent bg-blue-500 px-3 py-2 mx-2 text-sm font-medium text-white shadow-sm hover:bg-blue-400"
           onClick={handlePrevious}>
-            上一頁
+            {t('Previous_Page')}
           </button>
           <button className="rounded-md border border-transparent bg-blue-500 px-3 py-2 mx-2 text-sm font-medium text-white shadow-sm hover:bg-blue-400" 
           onClick={handleNext}>
-            下一頁
+            {t('Next_Page')}
           </button>
           </div>
       </div>
