@@ -19,8 +19,8 @@ const NavItems = ({ setIsOpen = () => {} }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 	const { t } = useTranslation()
   const { language, setLanguage, session, setSession } = useUserStore();
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('lufy5656@test.com');
+  const [password, setPassword] = useState('d565656');
   const languageList = {
     zh: "zh_TW",
     en: "en_US",
@@ -135,11 +135,11 @@ const NavItems = ({ setIsOpen = () => {} }) => {
                 <form action="#" method="POST" className="space-y-6">
                   <div>
                     <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900 dark:text-secondary">
-                      {t("account")}
+                      {t("Email")}
                     </label>
                     <div className="mt-2">
                       <input
-                        id="username"
+                        id="email"
                         type="text"
                           value={email}
                           autoComplete="username"

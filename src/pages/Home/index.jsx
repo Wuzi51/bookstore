@@ -7,11 +7,13 @@ import { useBookStore } from "@/store/book"
 import BannerDesktop from "@/images/Banner-desktop.png"
 import BannerMobile from "@/images/Banner-mobile.png"
 import { message } from "antd"
+import { useTranslation } from "react-i18next";
 
 
 const Home = () => {
   const { books, setBooks, setFavoriteBooks, setCart, cart } = useBookStore()
   const [messageApi, contextHolder] = message.useMessage();
+  const { t } = useTranslation();
 
   const getBooks = async () => {
     try {
@@ -25,19 +27,19 @@ const Home = () => {
   const handleFavoriteClick = (id) => {
     const result = setFavoriteBooks(id);
     if (result === "add") {
-      messageApi.success("已加入收藏");
+      messageApi.success(t('Added_To_Favorites'));
     } else {
-      messageApi.success("已取消收藏");
+      messageApi.success(t('Removed_From_Favorites'));
     }
   };
 
   const handleCartClick = (id) => {
     if (cart.some(item => item.id === id)) {
-      messageApi.info('已在購物車中');
+      messageApi.info(t('Already_In_Cart'));
       return;
     }
     setCart(id);
-    messageApi.success('已加入購物車');
+    messageApi.success(t('Already_Added_To_Cart'));
   };
 
 useEffect(() => {

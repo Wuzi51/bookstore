@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from "react-router-dom"
 import { useBookStore } from '@/store/book';
 import { message } from 'antd';
+import { useTranslation } from "react-i18next";
 
 const Books = () => {
   const { setFavoriteBooks, setCart, cart } = useBookStore();
@@ -11,6 +12,7 @@ const Books = () => {
   const [books, setBooks] = useState([]);
   const [sortOrder, setSortOrder] = useState('');
   const [messageApi, contextHolder] = message.useMessage();
+  const { t } = useTranslation();
 
   const getBooks = async () => {
     try {
@@ -45,19 +47,19 @@ const Books = () => {
   const handleFavoriteClick = (id) => {
     const result = setFavoriteBooks(id);
     if (result === 'add') {
-      messageApi.success('已加入收藏')
+      messageApi.success(t('Added_To_Favorites'));
     } else {
-      messageApi.success('已取消收藏')
+      messageApi.success(t('Already_In_Favorites'));
     }
   };
 
   const handleCartClick = (id) => {
     if (cart.some(item => item.id === id)) {
-      messageApi.info('已在購物車中');
+      messageApi.info(t('Already_In_Cart'));
       return;
     }
     setCart(id);
-    messageApi.success('已加入購物車');
+    messageApi.success(t('Already_Added_To_Cart'));
   };
 
   const sortedBooks = filteredBooks.sort((a, b) => {
@@ -76,8 +78,8 @@ const Books = () => {
       <div>
         <div className="pt-4">
           <select className="border-2 text-black" onChange={handleChange} value={sortOrder}>
-            <option value="title">依書名排序</option>
-            <option value="date">依出版日期排序</option>
+            <option value="title">{t('Sort_By_Title')}</option>
+            <option value="date">{t('Sort_By_PublishedDate')}</option>
           </select>
         </div>
         {contextHolder}

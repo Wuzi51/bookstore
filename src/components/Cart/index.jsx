@@ -3,11 +3,13 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useBookStore } from "@/store/book";
 import { useNavigate } from 'react-router-dom';
 import BookItem from '../BookItem';
+import { useTranslation } from "react-i18next";
 
 const Cart = ({ items, open, onCancel }) => {
   const { removeCart, clearCart, getTotalPrice } = useBookStore();
   const navigate = useNavigate();
   const { cart } = useBookStore();
+  const { t } = useTranslation();
 
   const handleRemoveClick = (idx) => {
     removeCart(idx);
@@ -41,7 +43,9 @@ const Cart = ({ items, open, onCancel }) => {
               <div className="flex w-full h-full flex-col overflow-y-scroll bg-white shadow-xl dark:bg-surface">
                 <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                   <div className="flex items-start justify-between">
-                    <DialogTitle className="text-lg font-medium text-gray-900 dark:text-primary">加入購物車的商品</DialogTitle>
+                    <DialogTitle className="text-lg font-medium text-gray-900 dark:text-primary">
+                      {t('Items_In_Cart')}
+                    </DialogTitle>
                     <div className="ml-3 flex h-7 items-center">
                       <button
                         type="button"
@@ -57,17 +61,19 @@ const Cart = ({ items, open, onCancel }) => {
                     <div className='flex flex-col'>
                       <button className='ml-auto w-32 mt-3 rounded-md border border-transparent bg-gray-400 text-base font-medium text-white shadow-sm hover:bg-gray-300 dark:bg-gray-600 dark:hover:bg-gray-500'
                         onClick={handleRemoveAllClick}
-                      >清空購物車</button>
+                      >
+                        {t('Clear_Cart')}
+                      </button>
                       <BookItem books={items} onRemoveClick={handleRemoveClick} />
                     </div>
                   ) :
                     (<div className='flex justify-center'>
-                      <span className='mt-[50%] text-xl text-gray-400'>您的購物車是空的</span>
+                      <span className='mt-[50%] text-xl text-gray-400'>{t('Cart_Empty')}</span>
                     </div>)}
                 </div>
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900 dark:text-primary">
-                    <p>總金額</p>
+                    <p>{t('Total_Amount')}</p>
                     <p>NT${getTotalPrice()}</p>
                   </div>
                   <div className="mt-6 flex justify-center">
@@ -79,7 +85,7 @@ const Cart = ({ items, open, onCancel }) => {
                           : "bg-blue-500 hover:bg-blue-400"
                       }`}
                     >
-                      結帳
+                      {t('Checkout')}
                     </button>
                   </div>
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
@@ -88,7 +94,7 @@ const Cart = ({ items, open, onCancel }) => {
                       onClick={() => onCancel(false)}
                       className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
                     >
-                      繼續逛逛
+                      {t('Continue_Shopping')}
                     </button>
                   </div>
                 </div>

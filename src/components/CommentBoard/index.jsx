@@ -1,7 +1,11 @@
+import { useTranslation } from "react-i18next";
+
 const CommentBoard = ({ book }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="mt-5 commentDarkMode">
-      <h3 className="text-lg font-bold mb-4">書評</h3>
+      <h3 className="text-lg font-bold mb-4">{t('Reviews')}</h3>
       <ul className="space-y-4">
         {book.comments.map((comment) => (
           <li key={comment.id} className="bg-gray-100 p-4 rounded-md shadow-md dark:bg-surface">
