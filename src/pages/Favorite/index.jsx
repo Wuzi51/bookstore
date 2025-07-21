@@ -1,10 +1,12 @@
 import BookCard from "@/components/BookCard";
 import { useBookStore } from "@/store/book";
 import { message } from "antd";
+import { useTranslation } from "react-i18next";
 
 const Favorite = () => {
   const { favoriteBooks, setFavoriteBooks, setCart, cart } = useBookStore();
   const [messageApi, contextHolder] = message.useMessage();
+  const { t } = useTranslation();
   
   const handleFavoriteClick = (id) => {
     setFavoriteBooks(id);
@@ -12,11 +14,11 @@ const Favorite = () => {
 
   const handleCartClick = (id) => {
     if (cart.some(item => item.id === id)) {
-      messageApi.info('已在購物車中');
+      messageApi.info(t('Already_In_Cart'));
       return;
     }
     setCart(id);
-    messageApi.success('已加入購物車');
+    messageApi.success(t('Already_Added_To_Cart'));
   };
 
   return (

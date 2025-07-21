@@ -2,6 +2,7 @@
   "login": "登入",
   "login_out": "登出",
   "success": "登入成功",
+  "Please_Login_First": "請先登入會員",
   "error": "請輸入正確的帳號或密碼",
   "warning": "請輸入有效的帳號或密碼",
   "search": "搜尋",
