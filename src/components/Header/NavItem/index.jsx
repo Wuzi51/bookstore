@@ -25,6 +25,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
     zh: "zh_TW",
     en: "en_US",
   };
+  const [messageApi, contextHolder] = message.useMessage();
 
   const handleDarkMode = () => {
     setDarkMode(!darkMode)
@@ -67,16 +68,16 @@ const NavItems = ({ setIsOpen = () => {} }) => {
   const login = async() => {
     // 防呆
     if (!email || !password) {
-      message.warning(t("warning"))
+      messageApi.warning(t("warning"))
       return
     }
     try {
       const { session } = await userApi.login(email, password)
       setSession(session)
-      message.success(t("success"))
+      messageApi.success(t("success"))
       handleCancel()
     } catch (err) {
-      message.error(t("error"))
+      messageApi.error(t("error"))
       console.error(err)
     } 
   };
@@ -93,6 +94,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
 
   return (
     <>
+      {contextHolder}
       <ul className="flex items-center text-xl gap-8 ml-8">
         <li className="cursor-pointer transition-transform hover:scale-110">
           <FontAwesomeIcon onClick={changeLanguage} icon={faGlobe} />
