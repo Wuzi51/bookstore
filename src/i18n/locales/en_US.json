@@ -2,6 +2,7 @@
   "login": "Login",
   "login_out": "Login Out",
   "success": "Login Successful",
+  "Please_Login_First": "Please log in first",
   "error": "Please enter the correct username or password",
   "warning": "Please enter a valid username or password",
   "search": "Search",
