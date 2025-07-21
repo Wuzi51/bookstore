@@ -39,7 +39,7 @@ const MobileHeader = () => (
 
 const Header = () => {
   return (
-    <header className="p-5 shadow-lg mx-auto fixed top-0 right-0 left-0 bg-white z-10 dark:bg-surface">
+    <header className="p-5 shadow-lg mx-auto sticky top-0 bg-white z-10 dark:bg-surface">
       <DesktopHeader />
       <MobileHeader />
     </header>
