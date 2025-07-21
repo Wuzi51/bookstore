@@ -5,6 +5,8 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import CommentBoard from "@/components/CommentBoard";
 import { message } from "antd";
 import { useTranslation } from "react-i18next";
+import { useUserStore } from "@/store/user";
+import { checkPermission } from "@/api/auth";
 
 
 const Book = () => {
@@ -14,6 +16,7 @@ const Book = () => {
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
   const { t } = useTranslation();
+  const { session } = useUserStore();
 
   const inCart = cart && book ? cart.some(item => item.id === book.id) : false;
   const inFavorite = favoriteBooks && book ? favoriteBooks.some(item => item.id === book.id) : false;
@@ -21,6 +24,10 @@ const Book = () => {
   const changePage = (url) => navigate(url);
 
   const handleCheckOut = () => {
+    if (!checkPermission(session)) {
+      messageApi.warning(t('Please_Login_First'));
+      return;
+    }
     if (!inCart) {
       setCart(book.id);
       messageApi.success(t('Already_Added_To_Cart'));
