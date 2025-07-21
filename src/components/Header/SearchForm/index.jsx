@@ -8,6 +8,7 @@ const SearchForm = () => {
   const { books } = useBookStore();
   const { t } = useTranslation()
   const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
 
   const changePage = (url) => {
     navigate(url);
@@ -17,7 +18,7 @@ const handleSubmit = (event) => {
   event.preventDefault();
   const value = event.target.search.value.trim();
   if (!value) {
-    message.warning(t("Please_enter_a_keyword"));
+    messageApi.warning(t("Please_enter_a_keyword"));
     return;
   }
 
@@ -35,11 +36,13 @@ const handleSubmit = (event) => {
     changePage(`/books?ids=${ids}`);
   } else {
     // 沒有匹配的書
-    message.warning(t("No_matching_books"));
+    messageApi.warning(t("No_matching_books"));
   }
 };
 
   return (
+  <>
+  {contextHolder}
     <form
     className="flex flex-col justify-center items-center md:w-auto"
     onSubmit={handleSubmit}
@@ -59,7 +62,8 @@ const handleSubmit = (event) => {
           {t("search")}
         </button>
       </div>
-  </form>
+    </form>
+  </>
   );
 };
 
