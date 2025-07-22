@@ -1,7 +1,7 @@
-import Logo from "./Logo";
-import NavItem from "./NavItem";
-import SearchForm from "./SearchForm";
-import Menu from "./Menu";
+import Logo from './Logo';
+import NavItem from './NavItem';
+import SearchForm from './SearchForm';
+import Menu from './Menu';
 
 // 桌機版
 const DesktopHeader = () => (
@@ -14,7 +14,7 @@ const DesktopHeader = () => (
       </nav>
     </div>
     <div className="ml-14">
-      <Menu/>
+      <Menu />
     </div>
   </div>
 );
@@ -35,7 +35,6 @@ const MobileHeader = () => (
     </div>
   </div>
 );
-
 
 const Header = () => {
   return (

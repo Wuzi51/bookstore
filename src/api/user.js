@@ -1,10 +1,10 @@
-import supabase from "@/lib/supabaseClient";
+import supabase from '@/lib/supabaseClient';
 
 export const userApi = {
   async login(email, password) {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
-      password
+      password,
     });
 
     if (error) {
@@ -15,7 +15,7 @@ export const userApi = {
   async signup(email, password) {
     const { data, error } = await supabase.auth.signUp({
       email,
-      password
+      password,
     });
 
     if (error) {
@@ -29,5 +29,5 @@ export const userApi = {
     if (error) {
       throw new Error(error.message);
     }
-  }
+  },
 };
