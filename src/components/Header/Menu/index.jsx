@@ -1,8 +1,8 @@
-import { useTranslation } from "react-i18next";
-import { useState } from "react";
-import { Drawer } from "antd";
-import { Link } from "react-router-dom";
-import NavItems from "../NavItem";
+import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+import { Drawer } from 'antd';
+import { Link } from 'react-router-dom';
+import NavItems from '../NavItem';
 
 const Menu = () => {
   const { t } = useTranslation();
@@ -28,11 +28,7 @@ const Menu = () => {
             stroke="currentColor"
             strokeWidth="2"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
 
@@ -43,7 +39,7 @@ const Menu = () => {
                 to="/books?category=popular_books"
                 className="inline-flex items-center appearance-none py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300 dark:text-primary"
               >
-                {t("popular_books")}
+                {t('popular_books')}
               </Link>
             </li>
             <li>
@@ -51,7 +47,7 @@ const Menu = () => {
                 to="/books?category=ranking"
                 className="inline-flex items-center appearance-none py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300 dark:text-primary"
               >
-                {t("ranking")}
+                {t('ranking')}
               </Link>
             </li>
             <li>
@@ -59,7 +55,7 @@ const Menu = () => {
                 to="/books?category=recommended"
                 className="inline-flex items-center appearance-none py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300 dark:text-primary"
               >
-                {t("recommended_for_you")}
+                {t('recommended_for_you')}
               </Link>
             </li>
             <li>
@@ -67,7 +63,7 @@ const Menu = () => {
                 to="/books?category=must_reads"
                 className="inline-flex items-center appearance-none py-2 px-3 text-gray-600 relative after:absolute after:bg-gray-500 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300 dark:text-primary"
               >
-                {t("must_reads")}
+                {t('must_reads')}
               </Link>
             </li>
           </ul>
@@ -78,63 +74,63 @@ const Menu = () => {
           onClose={() => setIsOpen(false)}
           open={isOpen}
           className="lg:hidden"
-          title={<NavItems setIsOpen={setIsOpen}/>}
-          >
-            <ul className="flex flex-col space-y-4">
-              <li>
-                <Link
-                  to="/books?category=popular_books"
-                  className="inline-flex items-center appearance-none
+          title={<NavItems setIsOpen={setIsOpen} />}
+        >
+          <ul className="flex flex-col space-y-4">
+            <li>
+              <Link
+                to="/books?category=popular_books"
+                className="inline-flex items-center appearance-none
                             w-full text-left py-2 px-3 text-gray-500 
                             hover:text-gray-900 hover:bg-gray-50
                             rounded-lg transition-colors duration-200
                             dark:text-primary"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {t("popular_books")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/books?category=ranking"
-                  className="inline-flex items-center appearance-none
+                onClick={() => setIsOpen(false)}
+              >
+                {t('popular_books')}
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/books?category=ranking"
+                className="inline-flex items-center appearance-none
                               w-full text-left py-2 px-3 text-gray-500 
                             hover:text-gray-900 hover:bg-gray-50
                             rounded-lg transition-colors duration-200
                             dark:text-primary"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {t("ranking")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/books?category=recommended"
-                  className="inline-flex items-center appearance-none
+                onClick={() => setIsOpen(false)}
+              >
+                {t('ranking')}
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/books?category=recommended"
+                className="inline-flex items-center appearance-none
                               w-full text-left py-2 px-3 text-gray-500 
                             hover:text-gray-900 hover:bg-gray-50
                             rounded-lg transition-colors duration-200
                             dark:text-primary"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {t("recommended_for_you")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/books?category=must_reads"
-                  className="inline-flex items-center appearance-none
+                onClick={() => setIsOpen(false)}
+              >
+                {t('recommended_for_you')}
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/books?category=must_reads"
+                className="inline-flex items-center appearance-none
                               w-full text-left py-2 px-3 text-gray-500 
                             hover:text-gray-900 hover:bg-gray-50
                             rounded-lg transition-colors duration-200
                             dark:text-primary"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {t("must_reads")}
-                </Link>
-              </li>
-            </ul>
-          </Drawer>
+                onClick={() => setIsOpen(false)}
+              >
+                {t('must_reads')}
+              </Link>
+            </li>
+          </ul>
+        </Drawer>
       </div>
     </nav>
   );

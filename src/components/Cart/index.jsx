@@ -1,16 +1,16 @@
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { useBookStore } from "@/store/book";
-import { useUserStore } from "@/store/user";
+import { useBookStore } from '@/store/book';
+import { useUserStore } from '@/store/user';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BookItem from '../BookItem';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import { message } from 'antd';
 import { checkPermission } from '@/api/auth';
 
 const Cart = ({ items, open, onCancel }) => {
-  const { removeCart, clearCart, getTotalPrice, } = useBookStore();
+  const { removeCart, clearCart, getTotalPrice } = useBookStore();
   const { session } = useUserStore();
   const navigate = useNavigate();
   const { cart } = useBookStore();
@@ -26,9 +26,9 @@ const Cart = ({ items, open, onCancel }) => {
   };
 
   const handleCheckOut = () => {
-    if(cart.length > 0) {
-      onCancel(false)
-      navigate("checkout")
+    if (cart.length > 0) {
+      onCancel(false);
+      navigate('checkout');
     }
   };
 
@@ -64,7 +64,8 @@ const Cart = ({ items, open, onCancel }) => {
                         <button
                           type="button"
                           onClick={() => onCancel(false)}
-                          className="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
+                          className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
+                        >
                           <span className="absolute -inset-0.5" />
                           <span className="sr-only">Close panel</span>
                           <XMarkIcon aria-hidden="true" className="h-6 w-6" />
@@ -72,18 +73,20 @@ const Cart = ({ items, open, onCancel }) => {
                       </div>
                     </div>
                     {items.length ? (
-                      <div className='flex flex-col'>
-                        <button className='ml-auto w-32 mt-3 rounded-md border border-transparent bg-gray-400 text-base font-medium text-white shadow-sm hover:bg-gray-300 dark:bg-gray-600 dark:hover:bg-gray-500'
+                      <div className="flex flex-col">
+                        <button
+                          className="ml-auto w-32 mt-3 rounded-md border border-transparent bg-gray-400 text-base font-medium text-white shadow-sm hover:bg-gray-300 dark:bg-gray-600 dark:hover:bg-gray-500"
                           onClick={handleRemoveAllClick}
                         >
                           {t('Clear_Cart')}
                         </button>
                         <BookItem books={items} onRemoveClick={handleRemoveClick} />
                       </div>
-                    ) :
-                      (<div className='flex justify-center'>
-                        <span className='mt-[50%] text-xl text-gray-400'>{t('Cart_Empty')}</span>
-                      </div>)}
+                    ) : (
+                      <div className="flex justify-center">
+                        <span className="mt-[50%] text-xl text-gray-400">{t('Cart_Empty')}</span>
+                      </div>
+                    )}
                   </div>
                   <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                     <div className="flex justify-between text-base font-medium text-gray-900 dark:text-primary">
@@ -95,8 +98,8 @@ const Cart = ({ items, open, onCancel }) => {
                         onClick={handleCheckOut}
                         className={`block w-full rounded-md px-6 py-3 text-base font-medium text-white shadow-sm text-center border border-transparent ${
                           cart.length === 0
-                            ? "bg-gray-400 cursor-not-allowed"
-                            : "bg-blue-500 hover:bg-blue-400"
+                            ? 'bg-gray-400 cursor-not-allowed'
+                            : 'bg-blue-500 hover:bg-blue-400'
                         }`}
                       >
                         {t('Checkout')}

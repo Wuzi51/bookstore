@@ -1,13 +1,12 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useBookStore } from "@/store/book";
+import { useNavigate, useParams } from 'react-router-dom';
+import { useBookStore } from '@/store/book';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import CommentBoard from "@/components/CommentBoard";
-import { message } from "antd";
-import { useTranslation } from "react-i18next";
-import { useUserStore } from "@/store/user";
-import { checkPermission } from "@/api/auth";
-
+import CommentBoard from '@/components/CommentBoard';
+import { message } from 'antd';
+import { useTranslation } from 'react-i18next';
+import { useUserStore } from '@/store/user';
+import { checkPermission } from '@/api/auth';
 
 const Book = () => {
   const { books, setFavoriteBooks, setCart, cart, favoriteBooks } = useBookStore();
@@ -18,8 +17,9 @@ const Book = () => {
   const { t } = useTranslation();
   const { session } = useUserStore();
 
-  const inCart = cart && book ? cart.some(item => item.id === book.id) : false;
-  const inFavorite = favoriteBooks && book ? favoriteBooks.some(item => item.id === book.id) : false;
+  const inCart = cart && book ? cart.some((item) => item.id === book.id) : false;
+  const inFavorite =
+    favoriteBooks && book ? favoriteBooks.some((item) => item.id === book.id) : false;
 
   const changePage = (url) => navigate(url);
 
@@ -58,26 +58,32 @@ const Book = () => {
       {contextHolder}
       {/* 左側圖片與評分區塊 */}
       <div className="mx-auto lg:mx-3">
-        <img 
-          src={book.img} 
-          alt="book" 
+        <img
+          src={book.img}
+          alt="book"
           className="w-full max-w-[12rem] lg:max-w-[14rem] mb-4 lg:mb-0"
         />
         <div className="flex items-center justify-center my-5">
           <p className="mr-2">{book.score}</p>
           <FontAwesomeIcon icon={faStar} className="mr-2 text-yellow-500" />
-          <p>{book.comments.length} {t('Review_Count')}</p>
+          <p>
+            {book.comments.length} {t('Review_Count')}
+          </p>
         </div>
       </div>
-      
+
       {/* 中間內容區塊 */}
       <div className="leading-8 flex-1 mx-auto mb-3 lg:mx-3">
         <div>
           <h2 className="text-2xl mb-4 font-bold text-center lg:text-left">{book.title}</h2>
           <h3 className="mb-2 text-center lg:text-left">{book.author}</h3>
           <ul className="flex flex-col items-center lg:items-start mb-3">
-            <li>{t('Published_Date')}：{book.date}</li>
-            <li>{t('Language')}：{book.language}</li>
+            <li>
+              {t('Published_Date')}：{book.date}
+            </li>
+            <li>
+              {t('Language')}：{book.language}
+            </li>
           </ul>
         </div>
         <div>
@@ -89,19 +95,19 @@ const Book = () => {
 
       {/* 右側按鈕區塊 */}
       <div className="flex flex-col gap-4 items-center  mt-4 lg:mt-0 lg:items-start lg:mx-3">
-        <button 
+        <button
           className="buy-btn w-52 px-12 py-3 bg-[#e98192] text-white rounded-3xl hover:bg-[#eba5b1]"
           onClick={handleCheckOut}
         >
           {t('Buy')}
         </button>
-        <button 
+        <button
           className="add-to-cart-btn w-52 px-12 py-3 bg-[#40c8f7] text-white rounded-3xl hover:bg-[#5ed1f7]"
           onClick={handleAddToCart}
         >
           {t('Add_To_Cart')}
         </button>
-        <button 
+        <button
           className="favorite-btn w-52  max-w-xs px-12 py-3 whitespace-nowrap bg-gray-400 text-white rounded-3xl
           hover:bg-gray-300"
           onClick={handleFavorite}
@@ -114,4 +120,3 @@ const Book = () => {
 };
 
 export default Book;
-

@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 const Category = ({ title }) => {
   const { t } = useTranslation();
@@ -7,6 +7,6 @@ const Category = ({ title }) => {
       <h2 className="text-xl mt-4 text-gray-500 dark:text-primary">{t(title)}</h2>
     </div>
   );
-}
+};
 
 export default Category;

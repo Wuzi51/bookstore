@@ -1,7 +1,7 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <footer className="w-screen mt-5 bg-gray-100 p-5 text-center border-t border-gray-300 dark:bg-surface">
       <div className="grid grid-cols-1 lg:grid-cols-3  gap-4 text-center mb-5">

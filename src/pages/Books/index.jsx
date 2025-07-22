@@ -1,10 +1,10 @@
 import BookCard from '@/components/BookCard';
-import { bookApi } from "@/api/book";
+import { bookApi } from '@/api/book';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from "react-router-dom"
+import { useSearchParams } from 'react-router-dom';
 import { useBookStore } from '@/store/book';
 import { message } from 'antd';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 const Books = () => {
   const { setFavoriteBooks, setCart, cart } = useBookStore();
@@ -19,7 +19,7 @@ const Books = () => {
       const { data } = await bookApi.getBooks();
       setBooks(data); // 存進 store
     } catch (error) {
-      console.error("Failed to fetch books:", error);
+      console.error('Failed to fetch books:', error);
     }
   };
 
@@ -28,7 +28,7 @@ const Books = () => {
   const ids = searchParams.get('ids');
 
   // 當 ids 為undefined或null時，將其轉為空陣列
-  const idsArray = ids ? ids.split(',').map(id => id.trim()) : [];
+  const idsArray = ids ? ids.split(',').map((id) => id.trim()) : [];
 
   const filteredBooks = books.filter((book) => {
     if (idsArray.length > 0) {
@@ -39,7 +39,7 @@ const Books = () => {
     }
     return true;
   });
-  
+
   const handleChange = (e) => {
     setSortOrder(e.target.value);
   };
@@ -54,7 +54,7 @@ const Books = () => {
   };
 
   const handleCartClick = (id) => {
-    if (cart.some(item => item.id === id)) {
+    if (cart.some((item) => item.id === id)) {
       messageApi.info(t('Already_In_Cart'));
       return;
     }
@@ -63,15 +63,15 @@ const Books = () => {
   };
 
   const sortedBooks = filteredBooks.sort((a, b) => {
-      if (sortOrder === 'date') {
-        return new Date(a.date) - new Date(b.date); 
-      }
-      return a.title.localeCompare(b.title)
-    });
+    if (sortOrder === 'date') {
+      return new Date(a.date) - new Date(b.date);
+    }
+    return a.title.localeCompare(b.title);
+  });
 
   useEffect(() => {
-    getBooks()
-  }, [])
+    getBooks();
+  }, []);
 
   return (
     <>
@@ -84,13 +84,13 @@ const Books = () => {
         </div>
         {contextHolder}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 m-4">
-          {sortedBooks.map(book => (
-            <BookCard 
-              book={book} 
-              key={book.id} 
-              onFavoriteClick={handleFavoriteClick}  
+          {sortedBooks.map((book) => (
+            <BookCard
+              book={book}
+              key={book.id}
+              onFavoriteClick={handleFavoriteClick}
               onCartClick={handleCartClick}
-              inCart={cart.some(item => item.id === book.id)}
+              inCart={cart.some((item) => item.id === book.id)}
             />
           ))}
         </div>
