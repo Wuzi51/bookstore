@@ -23,7 +23,7 @@ export const useBookStore = create(
         if (!book) return;
         const cartId = await addToCart({ userId, book });
         const { data } = await fetchCartItems(cartId);
-        set({ cartId, cart: data });
+        set({ cartId, cart: Array.isArray(data) ? data : [] });
       },
 
       removeCart: async (idx) => {
@@ -32,7 +32,7 @@ export const useBookStore = create(
         if (!item) return;
         await removeCartItem(item.id);
         const { data } = await fetchCartItems(get().cartId);
-        set({ cart: data });
+        set({ cart: Array.isArray(data) ? data : [] });
       },
 
       clearCart: async () => {
@@ -41,7 +41,7 @@ export const useBookStore = create(
         if (!ids.length) return;
         await clearCartItems(ids);
         const { data } = await fetchCartItems(get().cartId);
-        set({ cart: data });
+        set({ cart: Array.isArray(data) ? data : [] });
       },
 
       checkout: async (userId) => {
