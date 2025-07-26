@@ -17,7 +17,7 @@ const Book = () => {
   const { t } = useTranslation();
   const { session } = useUserStore();
 
-  const inCart = cart && book ? cart.some((item) => item.id === book.id) : false;
+  const inCart = cart && book ? cart.some((item) => item.book_id === book.id) : false;
   const inFavorite =
     favoriteBooks && book ? favoriteBooks.some((item) => item.id === book.id) : false;
 
@@ -29,7 +29,7 @@ const Book = () => {
       return;
     }
     if (!inCart) {
-      setCart(book.id);
+      setCart(session.user.id, book.id);
       messageApi.success(t('Already_Added_To_Cart'));
     }
     changePage('/checkout');
@@ -40,7 +40,7 @@ const Book = () => {
       messageApi.info(t('Already_In_Cart'));
       return;
     }
-    setCart(book.id);
+    setCart(session.user.id, book.id);
     messageApi.success(t('Already_Added_To_Cart'));
   };
 

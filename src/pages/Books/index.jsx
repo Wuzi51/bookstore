@@ -3,11 +3,13 @@ import { bookApi } from '@/api/book';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useBookStore } from '@/store/book';
+import { useUserStore } from '@/store/user';
 import { message } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 const Books = () => {
   const { setFavoriteBooks, setCart, cart } = useBookStore();
+  const { session } = useUserStore();
   const [searchParams] = useSearchParams();
   const [books, setBooks] = useState([]);
   const [sortOrder, setSortOrder] = useState('');
@@ -53,14 +55,18 @@ const Books = () => {
     }
   };
 
-  const handleCartClick = (id) => {
-    if (cart.some((item) => item.id === id)) {
+  const handleCartClick = async (bookId) => {
+    if (!session?.user) {
+      messageApi.warning(t('Please_Login_First'));
+      return;
+    }
+    if (cart.some(item => item.book_id === bookId)) {
       messageApi.info(t('Already_In_Cart'));
       return;
     }
-    setCart(id);
+    await setCart(session.user.id, bookId);
     messageApi.success(t('Already_Added_To_Cart'));
-  };
+  };;
 
   const sortedBooks = filteredBooks.sort((a, b) => {
     if (sortOrder === 'date') {
@@ -90,7 +96,7 @@ const Books = () => {
               key={book.id}
               onFavoriteClick={handleFavoriteClick}
               onCartClick={handleCartClick}
-              inCart={cart.some((item) => item.id === book.id)}
+              inCart={cart.some(item => item.book_id === book.id)}
             />
           ))}
         </div>

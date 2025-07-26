@@ -10,10 +10,9 @@ import { message } from 'antd';
 import { checkPermission } from '@/api/auth';
 
 const Cart = ({ items, open, onCancel }) => {
-  const { removeCart, clearCart, getTotalPrice } = useBookStore();
+  const { removeCart, clearCart, getTotalPrice, cart } = useBookStore();
   const { session } = useUserStore();
   const navigate = useNavigate();
-  const { cart } = useBookStore();
   const { t } = useTranslation();
   const [messageApi, contextHolder] = message.useMessage();
 

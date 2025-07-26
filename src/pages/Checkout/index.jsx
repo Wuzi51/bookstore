@@ -6,10 +6,11 @@ import { useBookStore } from '@/store/book';
 import { useUserStore } from '@/store/user';
 import { useTranslation } from 'react-i18next';
 import { checkPermission } from '@/api/auth';
+import { checkoutOrder } from '@/api/checkout';
 
 const Checkout = () => {
   //使用全局狀態獲取資料
-  const { cart, getTotalPrice, removeCart, orderList, setOrderList } = useBookStore();
+  const { cart, getTotalPrice, removeCart, clearCart} = useBookStore();
   const { session } = useUserStore();
   const [payment, setPayment] = useState('visa');
   const [cardNumber, setCardNumber] = useState('');
@@ -25,11 +26,13 @@ const Checkout = () => {
 
   const navigate = useNavigate();
   const changePage = (url) => {
-    navigate(url);
     messageApi.success(t('Payment_Success'));
+    setTimeout(() => {
+      navigate(url);
+    }, 500);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     // 檢查是否有填寫付款資訊
@@ -37,21 +40,13 @@ const Checkout = () => {
       messageApi.warning(t('Incomplete_Card_Info'));
       return;
     }
-
-    const orderDate = {
-      payment,
-      cardNumber,
-      expirationMonth,
-      expirationYear,
-      cvv,
-      createdAt: Math.round(new Date().getTime() / 1000),
-      products: cart,
-      totalPrice: getTotalPrice(),
-    };
-
-    setOrderList([...orderList, orderDate]);
-    console.log(orderList);
-    changePage('/');
+    try {
+      await checkoutOrder(session.user.id, getTotalPrice);
+      clearCart();
+      changePage('/');
+    } catch (err) {
+      messageApi.error(err.message || t('Payment_Failure'));
+    }
   };
 
   const monthDropdown = () => {
@@ -190,6 +185,7 @@ const Checkout = () => {
               </div>
               <button
                 className="w-full bg-blue-500 text-white py-3 px-4 rounded-md hover:bg-blue-400 transition duration-300"
+                type='submit'
                 onClick={handleSubmit}
               >
                 {t('Confirm_Payment')}
