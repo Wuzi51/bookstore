@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { bookApi } from '@/api/book';
 import { useEffect } from 'react';
 import { useBookStore } from '@/store/book';
+import { useUserStore } from '@/store/user';
 import BannerDesktop from '@/images/Banner-desktop.png';
 import BannerMobile from '@/images/Banner-mobile.png';
 import { message } from 'antd';
@@ -11,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 
 const Home = () => {
   const { books, setBooks, setFavoriteBooks, setCart, cart } = useBookStore();
+  const { session } = useUserStore()
   const [messageApi, contextHolder] = message.useMessage();
   const { t } = useTranslation();
 
@@ -32,12 +34,16 @@ const Home = () => {
     }
   };
 
-  const handleCartClick = (id) => {
-    if (cart.some((item) => item.id === id)) {
+  const handleCartClick = async (bookId) => {
+    if (!session?.user) {
+      messageApi.warning(t('Please_Login_First'));
+      return;
+    }
+    if (cart.some(item => item.book_id === bookId)) {
       messageApi.info(t('Already_In_Cart'));
       return;
     }
-    setCart(id);
+    await setCart(session.user.id, bookId); // 帳號綁定
     messageApi.success(t('Already_Added_To_Cart'));
   };
 
@@ -71,7 +77,7 @@ const Home = () => {
               key={book.id}
               onFavoriteClick={handleFavoriteClick}
               onCartClick={handleCartClick}
-              inCart={cart.some((item) => item.id === book.id)}
+              inCart={cart.some(item => item.book_id === book.id)}
             />
           ))}
         </div>

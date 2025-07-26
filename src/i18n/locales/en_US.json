@@ -50,6 +50,7 @@
   "Incomplete_Card_Info": "Please complete your credit card information",
   "Card_Number": "Card Number",
   "Payment_Success": "Payment Successful",
+  "Payment_Failure": "Payment Failed, please try again later",
   "Expiration_Date": "Expiration Date",
   "Remove": "Remove",
   "Sort_By_Title": "Sort by Title",

@@ -49,6 +49,7 @@
   "CreditCard_Label": "信用卡/Visa 金融卡",
   "Incomplete_Card_Info": "請填寫完整的信用卡資訊",
   "Payment_Success": "付款成功",
+  "Payment_Failure": "付款失敗,請稍後再試",
   "Card_Number": "卡片號碼",
   "Expiration_Date": "到期日",
   "Remove": "移除",
