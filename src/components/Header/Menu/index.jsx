@@ -73,7 +73,7 @@ const Menu = () => {
           placement="top"
           onClose={() => setIsOpen(false)}
           open={isOpen}
-          className="lg:hidden"
+          className="text-lg lg:hidden"
           title={<NavItems setIsOpen={setIsOpen} />}
         >
           <ul className="flex flex-col space-y-4">

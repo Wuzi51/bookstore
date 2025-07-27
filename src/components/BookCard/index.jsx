@@ -15,7 +15,7 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
     <>
       <div
         key={book.id}
-        className="w-full max-w-60 text-center mt-2 flex flex-col justify-between p-4 shadow-lg dark:bg-surface dark:text-primary"
+        className="w-full max-w-52 text-center mt-2 flex flex-col justify-between p-4 shadow-lg dark:bg-surface dark:text-primary"
       >
         <div className="overflow-hidden" onClick={onClick}>
           <Link to={`/book/${book.id}`} className="cursor-pointer">
