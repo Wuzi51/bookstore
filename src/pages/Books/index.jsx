@@ -51,7 +51,7 @@ const Books = () => {
     if (result === 'add') {
       messageApi.success(t('Added_To_Favorites'));
     } else {
-      messageApi.success(t('Already_In_Favorites'));
+      messageApi.success(t('Removed_From_Favorites'));
     }
   };
 
