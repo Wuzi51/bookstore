@@ -13,7 +13,7 @@
   "must_reads": "必讀精選",
   "welcome": "歡迎光臨",
   "terms_of_service": "服務條款",
-  "social_media": "社交媒體",
+  "social_media": "社群媒體",
   "Today's_Picks": "本日精選",
   "cancel": "取消",
   "Email": "電子郵件",
@@ -22,10 +22,13 @@
   "Dark_Mode": "深色模式",
   "Next_Page": "下一頁",
   "Previous_Page": "上一頁",
-  "loading": "讀取中",
+  "Loading": "讀取中",
   "Progress": "進度",
   "Add_To_Favorites": "加入收藏",
   "Added_To_Favorites": "已加入收藏",
+  "My_Wishlist": "我的願望清單",
+  "Empty_Favorite": "目前您的收藏清單是空的",
+  "Go_Shopping": "瀏覽BOOKSTORE",
   "Removed_From_Favorites": "已取消收藏",
   "Published_Date": "出版日期",
   "Description": "簡介",
@@ -53,5 +56,6 @@
   "Expiration_Date": "到期日",
   "Remove": "移除",
   "Sort_By_Title": "依書名排序",
-  "Sort_By_PublishedDate": "依出版日期排序"
+  "Sort_By_PublishedDate": "依出版日期排序",
+  "footer_personal_use": "本網站僅供作品展示，無商業行為"
 }

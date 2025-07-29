@@ -22,10 +22,13 @@
   "Dark_Mode": "Dark Mode",
   "Next_Page": "Next",
   "Previous_Page": "Prev",
-  "loading": "Loading",
+  "Loading": "Loading",
   "Progress": "Progress",
   "Add_To_Favorites": "Add to Favorites",
   "Added_To_Favorites": "Added to favorites",
+  "My_Wishlist": "My Wishlist",
+  "Empty_Favorite": "Your wishlist is currently empty.",
+  "Go_Shopping": "Browse BOOKSTORE",
   "Removed_From_Favorites": "Removed from favorites",
   "Published_Date": "Published Date",
   "Description": "Description",
@@ -53,5 +56,6 @@
   "Expiration_Date": "Expiration Date",
   "Remove": "Remove",
   "Sort_By_Title": "Sort by Title",
-  "Sort_By_PublishedDate": "Sort by Published Date"
+  "Sort_By_PublishedDate": "Sort by Published Date",
+  "footer_personal_use": "Demo site for portfolio only. No commercial use."
 }
