@@ -18,6 +18,7 @@ const Book = () => {
   const { session } = useUserStore();
 
   const inCart = cart && book ? cart.some((item) => item.book_id === book.id) : false;
+  
   const inFavorite =
     favoriteBooks && book ? favoriteBooks.some((item) => item.id === book.id) : false;
 
@@ -35,12 +36,16 @@ const Book = () => {
     changePage('/checkout');
   };
 
-  const handleAddToCart = () => {
-    if (inCart) {
+  const handleCartClick = async (bookId) => {
+    if (!session?.user) {
+      messageApi.warning(t('Please_Login_First'));
+      return;
+    }
+    if (cart.some(item => item.book_id === bookId)) {
       messageApi.info(t('Already_In_Cart'));
       return;
     }
-    setCart(session.user.id, book.id);
+    await setCart(session.user.id, bookId);
     messageApi.success(t('Already_Added_To_Cart'));
   };
 
@@ -103,7 +108,7 @@ const Book = () => {
         </button>
         <button
           className="add-to-cart-btn w-52 px-12 py-3 bg-[#40c8f7] text-white rounded-3xl hover:bg-[#5ed1f7]"
-          onClick={handleAddToCart}
+          onClick={() => handleCartClick(book.id)}
         >
           {t('Add_To_Cart')}
         </button>

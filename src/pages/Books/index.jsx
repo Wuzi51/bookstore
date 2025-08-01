@@ -66,7 +66,7 @@ const Books = () => {
     }
     await setCart(session.user.id, bookId);
     messageApi.success(t('Already_Added_To_Cart'));
-  };;
+  };
 
   const sortedBooks = filteredBooks.sort((a, b) => {
     if (sortOrder === 'date') {
