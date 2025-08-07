@@ -35,6 +35,11 @@ const Checkout = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
 
+    if (cart.length === 0) {
+      messageApi.warning(t('Cart_Empty'));
+      return;
+    }
+
     // 檢查是否有填寫付款資訊
     if (payment === 'visa' && (!cardNumber || !expirationMonth || !expirationYear || !cvv)) {
       messageApi.warning(t('Incomplete_Card_Info'));
