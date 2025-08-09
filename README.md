@@ -1,7 +1,7 @@
 # Bookstore 
 
-<img src="./src/images/Xnip2025-02-19_23-12-06.jpg" width="500" alt="Bookstore Home" />
-<img src="./src/images/Xnip2025-02-19_23-12-53.jpg" width="500" alt="Bookstore Reader" />
+<img src="./src/images/Xnip2025-08-09_12-16-11.jpg" width="600" alt="Bookstore Home" />
+<img src="./src/images/Xnip2025-08-09_12-16-44.jpg" width="500" alt="Bookstore Reader" />
 
 ---
 
