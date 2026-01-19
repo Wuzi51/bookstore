@@ -20,13 +20,13 @@ const Favorite = () => {
       messageApi.warning(t('Please_Login_First'));
       return;
     }
-    if (cart.some(item => item.book_id === bookId)) {
+    if (cart.some((item) => item.book_id === bookId)) {
       messageApi.info(t('Already_In_Cart'));
       return;
     }
     await setCart(session.user.id, bookId);
     messageApi.success(t('Already_Added_To_Cart'));
-  };;
+  };
 
   return (
     <>
@@ -34,9 +34,12 @@ const Favorite = () => {
       <div className="pt-5">
         <h2 className="text-2xl ml-3 font-bold mb-2">{t('My_Wishlist')}</h2>
         {favoriteBooks.length === 0 ? (
-          <div className='flex flex-col items-center justify-center h-96'>
+          <div className="flex flex-col items-center justify-center h-96">
             <p className="text-xl text-gray-500 mb-6">{t('Empty_Favorite')}</p>
-            <Link to="/" className='bg-blue-500 text-white py-3 px-4 rounded-md hover:bg-blue-400 transition duration-300'>
+            <Link
+              to="/"
+              className="bg-blue-500 text-white py-3 px-4 rounded-md hover:bg-blue-400 transition duration-300"
+            >
               {t('Go_Shopping')}
             </Link>
           </div>

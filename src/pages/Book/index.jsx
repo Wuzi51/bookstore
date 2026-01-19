@@ -18,7 +18,7 @@ const Book = () => {
   const { session } = useUserStore();
 
   const inCart = cart && book ? cart.some((item) => item.book_id === book.id) : false;
-  
+
   const inFavorite =
     favoriteBooks && book ? favoriteBooks.some((item) => item.id === book.id) : false;
 
@@ -41,7 +41,7 @@ const Book = () => {
       messageApi.warning(t('Please_Login_First'));
       return;
     }
-    if (cart.some(item => item.book_id === bookId)) {
+    if (cart.some((item) => item.book_id === bookId)) {
       messageApi.info(t('Already_In_Cart'));
       return;
     }

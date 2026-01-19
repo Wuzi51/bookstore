@@ -6,11 +6,10 @@ import { useBookStore } from '@/store/book';
 import { useUserStore } from '@/store/user';
 import { useTranslation } from 'react-i18next';
 import { checkPermission } from '@/api/auth';
-import { checkoutOrder } from '@/api/checkout';
 
 const Checkout = () => {
   //使用全局狀態獲取資料
-  const { cart, getTotalPrice, removeCart, clearCart} = useBookStore();
+  const { cart, cartId, getTotalPrice, removeCart, checkout } = useBookStore();
   const { session } = useUserStore();
   const [payment, setPayment] = useState('visa');
   const [cardNumber, setCardNumber] = useState('');
@@ -32,11 +31,21 @@ const Checkout = () => {
     }, 500);
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (cart.length === 0) {
       messageApi.warning(t('Cart_Empty'));
+      return;
+    }
+
+    if (!session?.user?.id) {
+      messageApi.warning(t('Please_Login_First'));
+      return;
+    }
+
+    if (!cartId) {
+      messageApi.warning('購物車資料異常，請重新加入商品');
       return;
     }
 
@@ -45,12 +54,17 @@ const Checkout = () => {
       messageApi.warning(t('Incomplete_Card_Info'));
       return;
     }
+
     try {
-      await checkoutOrder(session.user.id, getTotalPrice);
-      clearCart();
-      changePage('/');
+      const orderId = await checkout(session.user.id);
+      if (orderId) {
+        changePage('/');
+      } else {
+        messageApi.error('結帳失敗，請稍後再試');
+      }
     } catch (err) {
       messageApi.error(err.message || t('Payment_Failure'));
+      console.error('Checkout error:', err);
     }
   };
 
@@ -190,7 +204,7 @@ const Checkout = () => {
               </div>
               <button
                 className="w-full bg-blue-500 text-white py-3 px-4 rounded-md hover:bg-blue-400 transition duration-300"
-                type='submit'
+                type="submit"
                 onClick={handleSubmit}
               >
                 {t('Confirm_Payment')}
