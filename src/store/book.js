@@ -2,6 +2,8 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { addToCart, fetchCartItems, removeCartItem, clearCartItems } from '@/api/cart';
 import { checkoutOrder } from '@/api/checkout';
+import { orderApi } from '@/api/order';
+import supabase from '@/lib/supabaseClient';
 
 export const useBookStore = create(
   persist(
@@ -16,10 +18,10 @@ export const useBookStore = create(
 
       setCart: async (userId, bookId) => {
         const state = get();
-        if (state.cart.some(item => item.book_id === bookId)) {
+        if (state.cart.some((item) => item.book_id === bookId)) {
           return;
         }
-        const book = state.books.find(b => b.id === bookId);
+        const book = state.books.find((b) => b.id === bookId);
         if (!book) return;
         const cartId = await addToCart({ userId, book });
         const { data } = await fetchCartItems(cartId);
@@ -37,7 +39,7 @@ export const useBookStore = create(
 
       clearCart: async () => {
         const cart = get().cart;
-        const ids = cart.map(item => item.id);
+        const ids = cart.map((item) => item.id);
         if (!ids.length) return;
         await clearCartItems(ids);
         const { data } = await fetchCartItems(get().cartId);
@@ -69,6 +71,38 @@ export const useBookStore = create(
       },
 
       getTotalPrice: () => get().cart.reduce((preVal, item) => preVal + Number(item.price), 0),
+
+      clearLocalCart: () => set({ cart: [], cartId: null }),
+
+      fetchOrderList: async (userId) => {
+        try {
+          const orders = await orderApi.getUserOrders(userId);
+          set({ orderList: orders });
+        } catch (error) {
+          console.error('Failed to fetch orders:', error);
+          set({ orderList: [] });
+        }
+      },
+
+      loadUserCart: async (userId) => {
+        try {
+          const { data: cartData } = await supabase
+            .from('carts')
+            .select('id')
+            .eq('user_id', userId)
+            .eq('status', 'active')
+            .maybeSingle();
+
+          if (cartData) {
+            const { data: items, error } = await fetchCartItems(cartData.id);
+            if (!error) {
+              set({ cartId: cartData.id, cart: Array.isArray(items) ? items : [] });
+            }
+          }
+        } catch (error) {
+          console.error('Failed to load user cart:', error);
+        }
+      },
     }),
     { name: 'book' }
   )

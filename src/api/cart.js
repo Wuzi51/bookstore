@@ -11,12 +11,11 @@ export const addToCart = async ({ userId, book }) => {
 };
 
 export const fetchCartItems = (cartId) =>
-  supabase.from('cart_items')
+  supabase
+    .from('cart_items')
     .select('*, books(title, img, price, author, series)')
     .eq('cart_id', cartId);
 
-export const removeCartItem = async (id) =>
-  supabase.from('cart_items').delete().eq('id', id);
+export const removeCartItem = async (id) => supabase.from('cart_items').delete().eq('id', id);
 
-export const clearCartItems = async (ids) =>
-  supabase.from('cart_items').delete().in('id', ids);
+export const clearCartItems = async (ids) => supabase.from('cart_items').delete().in('id', ids);
