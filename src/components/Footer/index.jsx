@@ -13,15 +13,18 @@ const Footer = () => {
         <div>
           <h4 className="text-center">{t('footer_personal_use')}</h4>
         </div>
-        <div className='mb-2'>
-          <h4 className='mb-2'>{t('social_media')}</h4>
+        <div className="mb-2">
+          <h4 className="mb-2">{t('social_media')}</h4>
           <a
             href="https://www.facebook.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className='hover:text-gray-600'
+            className="hover:text-gray-600"
           >
-            <FontAwesomeIcon icon={faFacebook} className="text-xl transition-transform hover:scale-125" />
+            <FontAwesomeIcon
+              icon={faFacebook}
+              className="text-xl transition-transform hover:scale-125"
+            />
           </a>
           <a
             href="https://www.instagram.com/"
@@ -29,19 +32,20 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="ml-4 hover:text-gray-600"
           >
-            <FontAwesomeIcon icon={faInstagram} className="text-xl transition-transform hover:scale-125" />
+            <FontAwesomeIcon
+              icon={faInstagram}
+              className="text-xl transition-transform hover:scale-125"
+            />
           </a>
-          <a
-            href="https://twitter.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-4"
-          >
-            <FontAwesomeIcon icon={faXTwitter} className="text-xl transition-transform hover:scale-125" />
+          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="ml-4">
+            <FontAwesomeIcon
+              icon={faXTwitter}
+              className="text-xl transition-transform hover:scale-125"
+            />
           </a>
         </div>
       </div>
-      <p className='mt-2 text-s text-gray-400'>Copyright © 2024</p>
+      <p className="mt-2 text-s text-gray-400">Copyright © 2024</p>
     </footer>
   );
 };

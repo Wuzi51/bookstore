@@ -46,13 +46,13 @@ const SearchForm = () => {
         <div className="flex w-full mt-3 justify-between items-center">
           <input
             name="search"
-            className="flex-grow md:w-96 lg:w-128 px-4 py-[0.4rem] mr-2 border-2 border-gray-300 rounded-md dark: text-black"
+            className="flex-grow md:w-96 lg:w-128 px-4 py-2 mr-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-surface dark:text-primary dark:border-gray-600 transition-all duration-300"
             type="search"
             placeholder={t('Please_enter_a_keyword')}
             aria-label="Search"
           />
           <button
-            className="w-20 text-center whitespace-nowrap md:w-auto bg-blue-500 hover:bg-blue-600 text-white font-bold px-4 py-2 rounded-md"
+            className="w-20 text-center whitespace-nowrap md:w-auto bg-blue-500 hover:bg-blue-600 text-white font-bold px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 active:scale-95"
             type="submit"
           >
             {t('search')}

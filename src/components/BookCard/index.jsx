@@ -6,16 +6,17 @@ import { useBookStore } from '@/store/book';
 import EBookReader from '../EBookReader';
 import { Link } from 'react-router-dom';
 
-const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
+const BookCard = ({ book, onClick, onFavoriteClick, onCartClick, isFavorited, inCart }) => {
   const [open, setOpen] = useState(false);
   const { favoriteBooks } = useBookStore();
-  const isFavorited = favoriteBooks.some((item) => item.id === book.id);
+  const isBookFavorited =
+    isFavorited !== undefined ? isFavorited : favoriteBooks.some((item) => item.id === book.id);
 
   return (
     <>
       <div
         key={book.id}
-        className="w-full max-w-52 text-center mt-2 flex flex-col justify-between p-4 shadow-lg dark:bg-surface dark:text-primary"
+        className="w-full max-w-52 text-center mt-2 flex flex-col justify-between p-4 shadow-lg dark:bg-surface dark:text-primary transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
       >
         <div className="overflow-hidden" onClick={onClick}>
           <Link to={`/book/${book.id}`} className="cursor-pointer">
@@ -23,6 +24,7 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
               className="w-full h-52 object-contain duration-300 ease-in-out hover:scale-105"
               src={book.img}
               alt={book.title}
+              loading="lazy"
             />
             <h3 className="text-sm mt-3 truncate">{book.title}</h3>
             <h4 className="mt-1 text-sm underline truncate">{book.author}</h4>
@@ -35,10 +37,10 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
             className="w-1/2 leading-[3rem] hover:bg-gray-200 dark:hover:bg-gray-600"
             onClick={() => onFavoriteClick(book.id)}
           >
-            <button>
+            <button className="transition-transform active:scale-95">
               <FontAwesomeIcon
                 icon={faHeart}
-                className={`${isFavorited ? 'text-[tomato]' : 'text-black dark:text-white'}`}
+                className={`${isBookFavorited ? 'text-[tomato]' : 'text-black dark:text-white'}`}
               />
             </button>
           </div>
@@ -46,7 +48,7 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
             className="w-1/2 leading-[3rem] hover:bg-gray-200 dark:hover:bg-gray-600"
             onClick={() => setOpen(true)}
           >
-            <button>
+            <button className="transition-transform active:scale-95">
               <FontAwesomeIcon icon={faBook} />
             </button>
           </div>
@@ -54,8 +56,11 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick }) => {
             className="w-1/2 leading-[3rem] hover:bg-gray-200 dark:hover:bg-gray-600"
             onClick={() => onCartClick(book.id)}
           >
-            <button>
-              <FontAwesomeIcon icon={faCartShopping} />
+            <button className="transition-transform active:scale-95">
+              <FontAwesomeIcon
+                icon={faCartShopping}
+                className={`${inCart ? 'text-green-500' : 'text-black dark:text-white'}`}
+              />
             </button>
           </div>
         </div>

@@ -81,7 +81,7 @@ const Menu = () => {
               <Link
                 to="/books?category=popular_books"
                 className="inline-flex items-center appearance-none
-                            w-full text-left py-2 px-3 text-gray-500 
+                            w-full text-left py-2 px-3 text-gray-500
                             hover:text-gray-900 hover:bg-gray-50
                             rounded-lg transition-colors duration-200
                             dark:text-primary"
@@ -94,7 +94,7 @@ const Menu = () => {
               <Link
                 to="/books?category=ranking"
                 className="inline-flex items-center appearance-none
-                              w-full text-left py-2 px-3 text-gray-500 
+                              w-full text-left py-2 px-3 text-gray-500
                             hover:text-gray-900 hover:bg-gray-50
                             rounded-lg transition-colors duration-200
                             dark:text-primary"
@@ -107,7 +107,7 @@ const Menu = () => {
               <Link
                 to="/books?category=recommended"
                 className="inline-flex items-center appearance-none
-                              w-full text-left py-2 px-3 text-gray-500 
+                              w-full text-left py-2 px-3 text-gray-500
                             hover:text-gray-900 hover:bg-gray-50
                             rounded-lg transition-colors duration-200
                             dark:text-primary"
@@ -120,7 +120,7 @@ const Menu = () => {
               <Link
                 to="/books?category=must_reads"
                 className="inline-flex items-center appearance-none
-                              w-full text-left py-2 px-3 text-gray-500 
+                              w-full text-left py-2 px-3 text-gray-500
                             hover:text-gray-900 hover:bg-gray-50
                             rounded-lg transition-colors duration-200
                             dark:text-primary"
