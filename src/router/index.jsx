@@ -1,6 +1,28 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Home, NotFound, Book, Books, Checkout, Favorite } from '@/pages';
+import { lazy, Suspense } from 'react';
 import Layout from '../components/Layout';
+import { Spin } from 'antd';
+
+// Lazy load all pages for code splitting
+const Home = lazy(() => import('@/pages/Home'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
+const Book = lazy(() => import('@/pages/Book'));
+const Books = lazy(() => import('@/pages/Books'));
+const Checkout = lazy(() => import('@/pages/Checkout'));
+const Favorite = lazy(() => import('@/pages/Favorite'));
+const Profile = lazy(() => import('@/pages/Profile'));
+const OrderHistory = lazy(() => import('@/pages/OrderHistory'));
+const ResetPassword = lazy(() => import('@/pages/ResetPassword'));
+
+// Loading fallback component
+const PageLoader = () => (
+  <div className="flex items-center justify-center min-h-[50vh]">
+    <Spin size="large" tip="載入中..." />
+  </div>
+);
+
+// Wrapper for lazy components
+const LazyPage = ({ children }) => <Suspense fallback={<PageLoader />}>{children}</Suspense>;
 
 const router = createBrowserRouter([
   {
@@ -9,27 +31,75 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: (
+          <LazyPage>
+            <Home />
+          </LazyPage>
+        ),
       },
       {
         path: '/book/:id',
-        element: <Book />,
+        element: (
+          <LazyPage>
+            <Book />
+          </LazyPage>
+        ),
       },
       {
         path: '/books',
-        element: <Books />,
+        element: (
+          <LazyPage>
+            <Books />
+          </LazyPage>
+        ),
       },
       {
         path: '/checkout',
-        element: <Checkout />,
+        element: (
+          <LazyPage>
+            <Checkout />
+          </LazyPage>
+        ),
       },
       {
         path: '/favorite',
-        element: <Favorite />,
+        element: (
+          <LazyPage>
+            <Favorite />
+          </LazyPage>
+        ),
+      },
+      {
+        path: '/profile',
+        element: (
+          <LazyPage>
+            <Profile />
+          </LazyPage>
+        ),
+      },
+      {
+        path: '/orders',
+        element: (
+          <LazyPage>
+            <OrderHistory />
+          </LazyPage>
+        ),
+      },
+      {
+        path: '/reset-password',
+        element: (
+          <LazyPage>
+            <ResetPassword />
+          </LazyPage>
+        ),
       },
       {
         path: '*',
-        element: <NotFound />,
+        element: (
+          <LazyPage>
+            <NotFound />
+          </LazyPage>
+        ),
       },
     ],
   },
