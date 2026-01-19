@@ -1,28 +1,27 @@
 import supabase from '@/lib/supabaseClient';
 
-export async function checkoutOrder(userId, getTotalPrice) {
-  const { data: cart } = await supabase
-    .from('carts')
-    .select('id')
-    .eq('user_id', userId)
-    .eq('status', 'active')
-    .maybeSingle();
-
-  const { error: orderError } = await supabase
+export async function checkoutOrder({ userId, cartId, total }) {
+  const { data: orderData, error: orderError } = await supabase
     .from('orders')
-    .insert([{
-      user_id: userId,
-      cart_id: cart.id,
-      total_price: getTotalPrice(),
-      status: 'paid'
-    }]);
+    .insert([
+      {
+        user_id: userId,
+        cart_id: cartId,
+        total_price: total,
+        status: 'paid',
+      },
+    ])
+    .select()
+    .single();
 
   if (orderError) throw new Error('訂單建立失敗');
 
   const { error: updateError } = await supabase
     .from('carts')
     .update({ status: 'ordered' })
-    .eq('id', cart.id);
+    .eq('id', cartId);
 
   if (updateError) throw new Error('購物車狀態更新失敗');
-};
+
+  return orderData.id;
+}
