@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,5 +11,11 @@
 html,
 body {
   height: 100%;
-  font-family: 'Helvetica', 'Arial', 'LiHei Pro', '黑體-繁', '微軟正黑體', sans-serif;
+  font-family: 'Inter', 'Helvetica', 'Arial', 'LiHei Pro', '黑體-繁', '微軟正黑體', sans-serif;
 }
+
+/* 
+ * Global smooth transitions removed from * selector for performance.
+ * Use Tailwind's transition-colors, transition-all classes on specific elements instead.
+ * Example: className="transition-colors duration-300"
+ */

@@ -1,4 +1,4 @@
-# Bookstore 
+# Bookstore
 
 <img src="./src/images/Xnip2025-08-09_12-16-11.jpg" width="600" alt="Bookstore Home" />
 <img src="./src/images/Xnip2025-08-09_12-16-44.jpg" width="500" alt="Bookstore Reader" />
@@ -19,42 +19,34 @@
 
 ## 🧑‍💻 Demo Test Account
 
-For reviewer/testing login, use the following test credentials:
-
-- **Email:** `lufy5656@test.com`
-- **Password:** `d565656`
+Please register your own test account to explore the features, or contact the project maintainer for testing access.
 
 ---
 
-* Unified browsing, shopping cart, and reader experience.
-* Fast e‑book rendering with **ePub.js**.
-* Lightweight internationalisation (i18next) with English / Chinese.
-* Light / Dark theme toggle.
+- Unified browsing, shopping cart, and reader experience.
+- Fast e‑book rendering with **ePub.js**.
+- Lightweight internationalisation (i18next) with English / Chinese.
+- Light / Dark theme toggle.
 
 ---
 
 ## 🎯 Core Features
 
 1. **E‑book Shopping & Reading**
-
-   * Page turning and progress bar powered by ePub.js.
-   * Complete shopping‑cart checkout flow.
+   - Page turning and progress bar powered by ePub.js.
+   - Complete shopping‑cart checkout flow.
 
 2. **User Authentication**
-
-   * JWT‑based login with Supabase Auth.
+   - JWT‑based login with Supabase Auth.
 
 3. **Internationalisation**
-
-   * Real‑time language switch (EN / ZH).
+   - Real‑time language switch (EN / ZH).
 
 4. **UI / UX**
-
-   * Light & Dark theme support.
+   - Light & Dark theme support.
 
 5. **Search**
-
-   * In‑site book search.
+   - In‑site book search.
 
 ---
 
@@ -62,19 +54,19 @@ For reviewer/testing login, use the following test credentials:
 
 ### Front‑end
 
-* **Frameworks:** React, React Router, Zustand
-* **Styling:** Ant Design, Tailwind CSS
-* **Bundler:** Vite
+- **Frameworks:** React, React Router, Zustand
+- **Styling:** Ant Design, Tailwind CSS
+- **Bundler:** Vite
 
 ### Backend/BaaS
 
-* Supabase
+- Supabase
 
 ### Additional Tools
 
-* **Reader:** ePub.js
-* **HTTP:** Axios
-* **i18n:** i18next
+- **Reader:** ePub.js
+- **HTTP:** Axios
+- **i18n:** i18next
 
 ---
 
@@ -99,9 +91,9 @@ npm run dev   # default: http://localhost:3000
 
 ## 📌 Roadmap
 
-* Add more language options.
-* Enhance cart & checkout (payment mock).
-* Member centre and admin dashboard.
-* Stronger form validation.
+- Add more language options.
+- Enhance cart & checkout (payment mock).
+- Member centre and admin dashboard.
+- Stronger form validation.
 
 ---
