@@ -17,7 +17,7 @@ const ResetPassword = lazy(() => import('@/pages/ResetPassword'));
 // Loading fallback component
 const PageLoader = () => (
   <div className="flex items-center justify-center min-h-[50vh]">
-    <Spin size="large" tip="載入中..." />
+    <Spin size="large" />
   </div>
 );
 

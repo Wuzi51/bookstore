@@ -45,7 +45,7 @@ const Checkout = () => {
     }
 
     if (!cartId) {
-      messageApi.warning('購物車資料異常，請重新加入商品');
+      messageApi.warning(t('cart_data_error'));
       return;
     }
 
@@ -60,7 +60,7 @@ const Checkout = () => {
       if (orderId) {
         changePage('/');
       } else {
-        messageApi.error('結帳失敗，請稍後再試');
+        messageApi.error(t('checkout_failed'));
       }
     } catch (err) {
       messageApi.error(err.message || t('Payment_Failure'));

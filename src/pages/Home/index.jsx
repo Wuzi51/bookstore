@@ -63,7 +63,7 @@ const Home = () => {
       messageApi.success(t('Already_Added_To_Cart'));
     } catch (error) {
       console.error('Add to cart error:', error);
-      messageApi.error('加入購物車失敗，請稍後再試');
+      messageApi.error(t('add_cart_failed'));
     }
   };
 
@@ -89,7 +89,7 @@ const Home = () => {
       </div>
       <div>
         <Category title="Today's_Picks" />
-        <Spin spinning={loading} tip="載入書籍中..." size="large">
+        <Spin spinning={loading} tip={t('loading_books')} size="large">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 min-h-[400px]">
             {contextHolder}
             {(books || []).map((book) => {

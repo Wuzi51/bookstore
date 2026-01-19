@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useUserStore } from '@/store/user';
 import { Card, Form, Input, Button, message, Divider } from 'antd';
 import {
@@ -11,6 +12,7 @@ import {
 import { userApi } from '@/api/user';
 
 const Profile = () => {
+  const { t } = useTranslation();
   const { session, setSession } = useUserStore();
   const [profileForm] = Form.useForm();
   const [passwordForm] = Form.useForm();
@@ -46,9 +48,9 @@ const Profile = () => {
         setSession({ ...session, user: updatedUser });
       }
 
-      messageApi.success('個人資料更新成功');
+      messageApi.success(t('profile_update_success'));
     } catch (error) {
-      messageApi.error(error?.message || '更新失敗，請稍後再試');
+      messageApi.error(error?.message || t('profile_update_failed'));
     } finally {
       setProfileLoading(false);
     }
@@ -56,21 +58,21 @@ const Profile = () => {
 
   const handleUpdatePassword = async (values) => {
     if (!values.newPassword) {
-      messageApi.warning('請輸入新密碼');
+      messageApi.warning(t('please_enter_new_password'));
       return;
     }
     if (values.newPassword !== values.confirmPassword) {
-      messageApi.warning('兩次輸入的密碼不一致');
+      messageApi.warning(t('password_mismatch'));
       return;
     }
 
     setPasswordLoading(true);
     try {
       await userApi.updatePassword(values.newPassword);
-      messageApi.success('密碼更新成功');
+      messageApi.success(t('password_update_success'));
       passwordForm.resetFields();
     } catch (error) {
-      messageApi.error(error?.message || '密碼更新失敗，請稍後再試');
+      messageApi.error(error?.message || t('password_update_failed'));
     } finally {
       setPasswordLoading(false);
     }
@@ -82,8 +84,8 @@ const Profile = () => {
         <Card className="w-full max-w-md">
           <div className="text-center">
             <UserOutlined className="text-4xl mb-4 text-gray-400" />
-            <h3 className="text-lg font-medium mb-2">請先登入</h3>
-            <p className="text-gray-500">您需要登入才能查看個人資料</p>
+            <h3 className="text-lg font-medium mb-2">{t('please_login_first_title')}</h3>
+            <p className="text-gray-500">{t('please_login_to_view_profile')}</p>
           </div>
         </Card>
       </div>
@@ -93,7 +95,7 @@ const Profile = () => {
   return (
     <div className="max-w-2xl mx-auto py-8">
       {contextHolder}
-      <Card title="個人資料" className="mb-6">
+      <Card title={t('profile')} className="mb-6">
         <Form
           form={profileForm}
           layout="vertical"
@@ -101,41 +103,41 @@ const Profile = () => {
           autoComplete="off"
         >
           <Form.Item
-            label="電子郵件"
+            label={t('Email')}
             name="email"
             rules={[
-              { required: true, message: '請輸入電子郵件' },
-              { type: 'email', message: '請輸入有效的電子郵件格式' },
+              { required: true, message: t('please_enter_email') },
+              { type: 'email', message: t('please_enter_valid_email') },
             ]}
           >
-            <Input prefix={<MailOutlined />} placeholder="輸入您的電子郵件" disabled />
+            <Input prefix={<MailOutlined />} placeholder={t('email_placeholder')} disabled />
           </Form.Item>
 
-          <Form.Item label="姓名" name="fullName">
-            <Input prefix={<UserOutlined />} placeholder="輸入您的姓名" />
+          <Form.Item label={t('full_name')} name="fullName">
+            <Input prefix={<UserOutlined />} placeholder={t('name_placeholder')} />
           </Form.Item>
 
           <Form.Item
-            label="聯絡電話"
+            label={t('phone')}
             name="phone"
-            rules={[{ pattern: /^[0-9+\-\s]{0,20}$/, message: '請輸入有效的電話格式' }]}
+            rules={[{ pattern: /^[0-9+\-\s]{0,20}$/, message: t('please_enter_valid_phone') }]}
           >
-            <Input prefix={<PhoneOutlined />} placeholder="輸入您的聯絡電話" maxLength={20} />
+            <Input prefix={<PhoneOutlined />} placeholder={t('phone_placeholder')} maxLength={20} />
           </Form.Item>
 
-          <Form.Item label="聯絡地址" name="address">
-            <Input prefix={<HomeOutlined />} placeholder="輸入您的聯絡地址" />
+          <Form.Item label={t('address')} name="address">
+            <Input prefix={<HomeOutlined />} placeholder={t('address_placeholder')} />
           </Form.Item>
 
           <Form.Item>
             <Button type="primary" htmlType="submit" loading={profileLoading} className="w-full">
-              更新個人資料
+              {t('save')}
             </Button>
           </Form.Item>
         </Form>
       </Card>
 
-      <Card title="安全與密碼" className="mb-6">
+      <Card title={t('security_password')} className="mb-6">
         <Form
           form={passwordForm}
           layout="vertical"
@@ -143,65 +145,65 @@ const Profile = () => {
           autoComplete="off"
         >
           <Form.Item
-            label="新密碼"
+            label={t('new_password')}
             name="newPassword"
             rules={[
-              { required: true, message: '請輸入新密碼' },
-              { min: 6, message: '密碼至少需要 6 個字元' },
+              { required: true, message: t('please_enter_new_password') },
+              { min: 6, message: t('password_min_length') },
             ]}
           >
-            <Input.Password prefix={<LockOutlined />} placeholder="輸入新密碼" />
+            <Input.Password prefix={<LockOutlined />} placeholder={t('new_password_placeholder')} />
           </Form.Item>
 
           <Form.Item
-            label="確認新密碼"
+            label={t('confirm_new_password')}
             name="confirmPassword"
             dependencies={['newPassword']}
             rules={[
-              { required: true, message: '請再次輸入新密碼' },
+              { required: true, message: t('please_confirm_password') },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue('newPassword') === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error('兩次輸入的密碼不一致'));
+                  return Promise.reject(new Error(t('password_mismatch')));
                 },
               }),
             ]}
           >
-            <Input.Password prefix={<LockOutlined />} placeholder="再次輸入新密碼" />
+            <Input.Password prefix={<LockOutlined />} placeholder={t('confirm_password_placeholder')} />
           </Form.Item>
 
           <Form.Item>
             <Button type="primary" htmlType="submit" loading={passwordLoading} className="w-full">
-              重設密碼
+              {t('update_password')}
             </Button>
           </Form.Item>
         </Form>
       </Card>
 
-      <Card title="帳戶資訊">
+      <Card title={t('account_info')}>
         <div className="space-y-3">
           <div className="flex justify-between">
-            <span className="text-gray-600">註冊時間：</span>
+            <span className="text-gray-600">{t('register_time')}：</span>
             <span>
               {session.user.created_at
                 ? new Date(session.user.created_at).toLocaleDateString()
-                : '未知'}
+                : t('unknown')}
             </span>
           </div>
           <Divider />
           <div className="flex justify-between">
-            <span className="text-gray-600">上次登入：</span>
+            <span className="text-gray-600">{t('last_login')}：</span>
             <span>
               {session.user.last_sign_in_at
                 ? new Date(session.user.last_sign_in_at).toLocaleDateString()
-                : '未知'}
+                : t('unknown')}
             </span>
           </div>
           <Divider />
           <div className="flex justify-between">
-            <span className="text-gray-600">會員編號：</span>
+            <span className="text-gray-600">{t('member_id')}：</span>
             <span className="font-mono text-sm break-all">{session.user.id}</span>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useUserStore } from '@/store/user';
 import { useBookStore } from '@/store/book';
 import {
@@ -18,11 +19,11 @@ import {
 } from 'antd';
 import { ShoppingOutlined, EyeOutlined, BookOutlined } from '@ant-design/icons';
 
-const STATUS_MAP = {
-  pending: { color: 'orange', text: '處理中' },
-  completed: { color: 'green', text: '已完成' },
-  cancelled: { color: 'red', text: '已取消' },
-  shipped: { color: 'blue', text: '已出貨' },
+const STATUS_COLORS = {
+  pending: 'orange',
+  completed: 'green',
+  cancelled: 'red',
+  shipped: 'blue',
 };
 
 const formatCurrency = (value) => `NT$${Number(value || 0).toLocaleString('zh-TW')}`;
@@ -30,9 +31,8 @@ const formatCurrency = (value) => `NT$${Number(value || 0).toLocaleString('zh-TW
 const formatDateTime = (value) =>
   value ? new Date(value).toLocaleString('zh-TW', { hour12: false }) : '-';
 
-const resolveStatus = (status) => STATUS_MAP[status] || { color: 'default', text: '未知' };
-
 const OrderHistory = () => {
+  const { t } = useTranslation();
   const { session } = useUserStore();
   const { orderList, fetchOrderList } = useBookStore();
   const screens = Grid.useBreakpoint();
@@ -41,6 +41,11 @@ const OrderHistory = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const resolveStatus = (status) => ({
+    color: STATUS_COLORS[status] || 'default',
+    text: t(`status_${status}`) || t('status_unknown'),
+  });
 
   useEffect(() => {
     const loadOrders = async () => {
@@ -53,7 +58,7 @@ const OrderHistory = () => {
       try {
         await fetchOrderList(session.user.id);
       } catch (error) {
-        messageApi.error('載入訂單失敗');
+        messageApi.error(t('order_load_failed'));
         console.error('Failed to load orders:', error);
       } finally {
         setLoading(false);
@@ -77,31 +82,31 @@ const OrderHistory = () => {
 
   const columns = [
     {
-      title: '訂單編號',
+      title: t('order_id'),
       dataIndex: 'id',
       key: 'id',
       render: (id) => <span className="font-mono">#{id}</span>,
     },
     {
-      title: '訂單日期',
+      title: t('order_date'),
       dataIndex: 'created_at',
       key: 'created_at',
       render: (date) => formatDateTime(date),
     },
     {
-      title: '商品數量',
+      title: t('item_count'),
       dataIndex: 'items',
       key: 'items',
       render: (items) => (Array.isArray(items) ? items.length : 0),
     },
     {
-      title: '總金額',
+      title: t('Total_Amount'),
       dataIndex: 'total',
       key: 'total',
       render: (total) => formatCurrency(total),
     },
     {
-      title: '訂單狀態',
+      title: t('order_status'),
       dataIndex: 'status',
       key: 'status',
       render: (status) => {
@@ -110,11 +115,11 @@ const OrderHistory = () => {
       },
     },
     {
-      title: '操作',
+      title: t('action'),
       key: 'action',
       render: (_, record) => (
         <Button type="link" icon={<EyeOutlined />} onClick={() => handleViewOrder(record)}>
-          查看詳情
+          {t('view_details')}
         </Button>
       ),
     },
@@ -126,8 +131,8 @@ const OrderHistory = () => {
         <Card className="w-full max-w-md">
           <div className="text-center">
             <ShoppingOutlined className="text-4xl mb-4 text-gray-400" />
-            <h3 className="text-lg font-medium mb-2">請先登入</h3>
-            <p className="text-gray-500">您需要登入才能查看訂單歷史</p>
+            <h3 className="text-lg font-medium mb-2">{t('please_login_first_title')}</h3>
+            <p className="text-gray-500">{t('please_login_to_view_orders')}</p>
           </div>
         </Card>
       </div>
@@ -141,7 +146,7 @@ const OrderHistory = () => {
         title={
           <div className="flex items-center gap-2">
             <ShoppingOutlined />
-            <span>訂單歷史</span>
+            <span>{t('order_details')}</span>
           </div>
         }
       >
@@ -176,20 +181,20 @@ const OrderHistory = () => {
                       <Card size="small" className="w-full">
                         <Space direction="vertical" className="w-full">
                           <div className="flex items-center justify-between">
-                            <span className="font-semibold">訂單 #{order.id}</span>
+                            <span className="font-semibold">{t('order_id')} #{order.id}</span>
                             <Tag color={statusMeta.color}>{statusMeta.text}</Tag>
                           </div>
                           <div className="text-sm text-gray-500 space-y-1">
-                            <div>訂單日期：{formatDateTime(order.created_at)}</div>
-                            <div>商品數量：{itemCount}</div>
-                            <div>總金額：{formatCurrency(order.total)}</div>
+                            <div>{t('order_date')}：{formatDateTime(order.created_at)}</div>
+                            <div>{t('item_count')}：{itemCount}</div>
+                            <div>{t('Total_Amount')}：{formatCurrency(order.total)}</div>
                           </div>
                           <Button
                             block
                             icon={<EyeOutlined />}
                             onClick={() => handleViewOrder(order)}
                           >
-                            查看詳情
+                            {t('view_details')}
                           </Button>
                         </Space>
                       </Card>
@@ -199,9 +204,9 @@ const OrderHistory = () => {
               />
             )
           ) : (
-            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="尚無訂單記錄">
+            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={t('no_order_records')}>
               <Button type="primary" href="/">
-                開始購物
+                {t('Go_Shopping')}
               </Button>
             </Empty>
           )}
@@ -217,10 +222,10 @@ const OrderHistory = () => {
           selectedOrder ? (
             <div className="flex items-center gap-2">
               <ShoppingOutlined />
-              <span>訂單 #{selectedOrder.id}</span>
+              <span>{t('order_id')} #{selectedOrder.id}</span>
             </div>
           ) : (
-            '訂單詳情'
+            t('order_details')
           )
         }
       >
@@ -228,15 +233,15 @@ const OrderHistory = () => {
           <Space direction="vertical" size="large" className="w-full">
             <div className="space-y-2">
               <div className="flex justify-between text-sm text-gray-500">
-                <span>訂單日期</span>
+                <span>{t('order_date')}</span>
                 <span>{formatDateTime(selectedOrder.created_at)}</span>
               </div>
               <div className="flex justify-between text-sm text-gray-500">
-                <span>總金額</span>
+                <span>{t('Total_Amount')}</span>
                 <span>{formatCurrency(selectedOrder.total)}</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-500">
-                <span>訂單狀態</span>
+                <span>{t('order_status')}</span>
                 {(() => {
                   const { color, text } = resolveStatus(selectedOrder.status);
                   return <Tag color={color}>{text}</Tag>;
@@ -246,7 +251,7 @@ const OrderHistory = () => {
             <Divider />
             <List
               dataSource={selectedOrder.items || []}
-              locale={{ emptyText: '此訂單沒有商品資料' }}
+              locale={{ emptyText: t('no_items_in_order') }}
               renderItem={(item) => {
                 const quantity = item?.quantity ?? 1;
                 const lineTotal = Number(item?.price || 0) * quantity;
@@ -257,7 +262,7 @@ const OrderHistory = () => {
                   item?.img ||
                   null;
                 const title =
-                  item?.title || item?.books?.title || item?.book?.title || '未命名商品';
+                  item?.title || item?.books?.title || item?.book?.title || t('unnamed_product');
                 const author = item?.author || item?.books?.author || item?.book?.author;
 
                 return (
@@ -295,7 +300,7 @@ const OrderHistory = () => {
             />
           </Space>
         ) : (
-          <Empty description="尚未選擇訂單" />
+          <Empty description={t('no_order_selected')} />
         )}
       </Drawer>
     </div>

@@ -97,7 +97,7 @@ const Books = () => {
         messageApi.success(t('Already_Added_To_Cart'));
       } catch (error) {
         console.error('Add to cart error:', error);
-        messageApi.error('加入購物車失敗，請稍後再試');
+        messageApi.error(t('add_cart_failed'));
       }
     },
     [session, cartSet, setCart, messageApi, t]

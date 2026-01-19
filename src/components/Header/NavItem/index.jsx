@@ -67,8 +67,8 @@ const NavItems = ({ setIsOpen = () => {} }) => {
       clearLocalCart();
       await userApi.logout();
     } catch (err) {
-      console.error('登出失敗:', err);
-      messageApi.error('登出失敗，請稍後再試');
+      console.error('Logout failed:', err);
+      messageApi.error(t('logout_failed'));
     }
   };
 
@@ -86,7 +86,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
         key: 'profile',
         label: (
           <Link to="/profile" onClick={() => setIsOpen(false)}>
-            個人資料
+            {t('profile')}
           </Link>
         ),
         icon: <ProfileOutlined />,
@@ -95,7 +95,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
         key: 'orders',
         label: (
           <Link to="/orders" onClick={() => setIsOpen(false)}>
-            訂單歷史
+            {t('order_details')}
           </Link>
         ),
         icon: <ShoppingOutlined />,
@@ -138,11 +138,11 @@ const NavItems = ({ setIsOpen = () => {} }) => {
       return;
     }
     if (password !== confirmPassword) {
-      messageApi.warning('密碼不一致');
+      messageApi.warning(t('password_mismatch'));
       return;
     }
     if (password.length < 6) {
-      messageApi.warning('密碼至少需要 6 個字元');
+      messageApi.warning(t('password_min_length'));
       return;
     }
 
@@ -151,13 +151,13 @@ const NavItems = ({ setIsOpen = () => {} }) => {
       const { session } = await userApi.signup(email, password);
       if (session) {
         setSession(session);
-        messageApi.success('註冊成功並已自動登入');
+        messageApi.success(t('register_success_auto_login'));
       } else {
-        messageApi.success('註冊成功，請檢查您的信箱確認註冊');
+        messageApi.success(t('register_success_check_email'));
       }
       handleCancel();
     } catch (err) {
-      messageApi.error(err?.message || '註冊失敗');
+      messageApi.error(err?.message || t('register_failed'));
       console.error(err);
     } finally {
       setLoading(false);
@@ -166,19 +166,19 @@ const NavItems = ({ setIsOpen = () => {} }) => {
 
   const handleResetPassword = async () => {
     if (!email) {
-      messageApi.warning('請輸入電子郵件');
+      messageApi.warning(t('please_enter_email'));
       return;
     }
 
     setLoading(true);
     try {
       await userApi.resetPassword(email);
-      messageApi.success('重設密碼連結已寄出，請查看您的信箱');
+      messageApi.success(t('reset_link_sent'));
       changeAuthMode('login');
       setPassword('');
       setConfirmPassword('');
     } catch (err) {
-      messageApi.error(err?.message || '重設密碼失敗，請稍後再試');
+      messageApi.error(err?.message || t('reset_password_failed'));
       console.error(err);
     } finally {
       setLoading(false);
@@ -246,7 +246,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
         <Cart open={isCartOpen} onCancel={() => setIsCartOpen(false)} items={cart} />
 
         <Modal
-          okText={isForgotMode ? '寄出重設連結' : isRegisterMode ? '註冊' : t('login')}
+          okText={isForgotMode ? t('send_reset_link') : isRegisterMode ? t('register') : t('login')}
           cancelText={t('cancel')}
           open={isModalOpen}
           onOk={handleModalSubmit}
@@ -256,11 +256,11 @@ const NavItems = ({ setIsOpen = () => {} }) => {
           <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-16 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
               <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-primary">
-                {isForgotMode ? '忘記密碼' : isRegisterMode ? '註冊' : t('login')}
+                {isForgotMode ? t('forgot_password') : isRegisterMode ? t('register') : t('login')}
               </h2>
               {isForgotMode && (
                 <p className="mt-2 text-center text-sm text-gray-500">
-                  請輸入您的註冊電子郵件，我們會寄送重設密碼的連結。
+                  {t('forgot_password_hint')}
                 </p>
               )}
             </div>
@@ -301,7 +301,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
                           className="text-xs text-blue-600 hover:text-blue-500 dark:text-blue-400"
                           onClick={() => changeAuthMode('forgot')}
                         >
-                          忘記密碼？
+                          {t('forgot_password')}?
                         </button>
                       )}
                     </div>
@@ -325,7 +325,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
                       htmlFor="confirmPassword"
                       className="block text-sm font-medium leading-6 text-gray-900 dark:text-secondary"
                     >
-                      確認密碼
+                      {t('confirm_password')}
                     </label>
                     <div className="mt-2">
                       <input
@@ -349,7 +349,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
                     className="text-sm text-blue-600 hover:text-blue-500 dark:text-blue-400"
                     onClick={() => changeAuthMode('login')}
                   >
-                    返回登入
+                    {t('back_to_login')}
                   </button>
                 ) : (
                   <button
@@ -357,7 +357,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
                     className="text-sm text-blue-600 hover:text-blue-500 dark:text-blue-400"
                     onClick={() => changeAuthMode(isRegisterMode ? 'login' : 'register')}
                   >
-                    {isRegisterMode ? '已有帳號？登入' : '沒有帳號？註冊'}
+                    {isRegisterMode ? t('has_account_login') : t('no_account_register')}
                   </button>
                 )}
               </div>
