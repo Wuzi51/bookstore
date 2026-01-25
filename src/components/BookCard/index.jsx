@@ -1,12 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart, faBook } from '@fortawesome/free-solid-svg-icons';
-import { Modal } from 'antd';
-import { useState } from 'react';
+// bundle-barrel-imports: 直接匯入減少 bundle size
+import Modal from 'antd/es/modal';
+import { useState, memo, lazy, Suspense } from 'react';
 import { useBookStore } from '@/store/book';
-import EBookReader from '../EBookReader';
 import { Link } from 'react-router-dom';
+import Spin from 'antd/es/spin';
 
-const BookCard = ({ book, onClick, onFavoriteClick, onCartClick, isFavorited, inCart }) => {
+// bundle-conditional: 只在需要時載入 EBookReader（大型 epubjs 套件）
+const EBookReader = lazy(() => import('../EBookReader'));
+
+const BookCard = memo(({ book, onClick, onFavoriteClick, onCartClick, isFavorited, inCart }) => {
   const [open, setOpen] = useState(false);
   const { favoriteBooks } = useBookStore();
   const isBookFavorited =
@@ -72,11 +76,19 @@ const BookCard = ({ book, onClick, onFavoriteClick, onCartClick, isFavorited, in
         onCancel={() => setOpen(false)}
         footer={null}
         width={600}
+        destroyOnClose
       >
-        <EBookReader />
+        {/* bundle-conditional: 只在 Modal 開啟時才載入 EBookReader */}
+        {open && (
+          <Suspense fallback={<div className="flex justify-center p-8"><Spin size="large" /></div>}>
+            <EBookReader />
+          </Suspense>
+        )}
       </Modal>
     </>
   );
-};
+});
+
+BookCard.displayName = 'BookCard';
 
 export default BookCard;

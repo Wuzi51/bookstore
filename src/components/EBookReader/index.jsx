@@ -1,7 +1,8 @@
 import { useRef, useState, useEffect } from 'react';
 import ePub from 'epubjs';
-import { Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+// bundle-barrel-imports: 直接匯入減少 bundle size
+import Spin from 'antd/es/spin';
+import LoadingOutlined from '@ant-design/icons/LoadingOutlined';
 import { useUserStore } from '@/store/user';
 import { useTranslation } from 'react-i18next';
 

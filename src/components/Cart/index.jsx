@@ -6,7 +6,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BookItem from '../BookItem';
 import { useTranslation } from 'react-i18next';
-import { message } from 'antd';
+// bundle-barrel-imports: 直接匯入減少 bundle size
+import message from 'antd/es/message';
 import { checkPermission } from '@/api/auth';
 
 const Cart = ({ items, open, onCancel }) => {
