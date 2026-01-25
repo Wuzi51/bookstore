@@ -1,6 +1,8 @@
 import { RouterProvider } from 'react-router-dom';
 import router from './router';
-import { ConfigProvider, theme } from 'antd';
+// bundle-barrel-imports: 直接匯入減少 bundle size
+import ConfigProvider from 'antd/es/config-provider';
+import theme from 'antd/es/theme';
 import { useUserStore } from './store/user';
 import { useBookStore } from './store/book';
 import { useEffect } from 'react';
