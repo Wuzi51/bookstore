@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { Drawer } from 'antd';
+// bundle-barrel-imports: 直接匯入減少 bundle size
+import Drawer from 'antd/es/drawer';
 import { Link } from 'react-router-dom';
 import NavItems from '../NavItem';
 

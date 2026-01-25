@@ -3,17 +3,32 @@ import { faCartShopping, faGlobe, faMoon, faHeart } from '@fortawesome/free-soli
 import i18n from '@/i18n';
 import { useTranslation } from 'react-i18next';
 import { useUserStore } from '@/store/user';
-import { Modal, message, Avatar, Dropdown } from 'antd';
-import { UserOutlined, LogoutOutlined, ProfileOutlined, ShoppingOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+// bundle-barrel-imports: 直接匯入而非從 barrel file
+import message from 'antd/es/message';
+import Avatar from 'antd/es/avatar';
+import Dropdown from 'antd/es/dropdown';
+import Badge from 'antd/es/badge';
+import UserOutlined from '@ant-design/icons/UserOutlined';
+import LogoutOutlined from '@ant-design/icons/LogoutOutlined';
+import ProfileOutlined from '@ant-design/icons/ProfileOutlined';
+import ShoppingOutlined from '@ant-design/icons/ShoppingOutlined';
+import { useState, useMemo, lazy, Suspense, useCallback } from 'react';
 import { userApi } from '@/api/user';
 import { Link } from 'react-router-dom';
-import { Badge } from 'antd';
-import Cart from '@/components/Cart';
 import { useBookStore } from '@/store/book';
 
+// bundle-dynamic-imports: 延遲載入非立即需要的元件
+const Modal = lazy(() => import('antd/es/modal'));
+const Cart = lazy(() => import('@/components/Cart'));
+
+// js-hoist-regexp: 常數提升到模組層級，避免每次渲染重建
+const LANGUAGE_LIST = {
+  zh: 'zh_TW',
+  en: 'en_US',
+};
+
 const NavItems = ({ setIsOpen = () => {} }) => {
-  const { darkMode, setDarkMode } = useUserStore();
+  const { setDarkMode } = useUserStore();
   const { cart, clearLocalCart } = useBookStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -26,10 +41,6 @@ const NavItems = ({ setIsOpen = () => {} }) => {
   const [loading, setLoading] = useState(false);
   const isRegisterMode = authMode === 'register';
   const isForgotMode = authMode === 'forgot';
-  const languageList = {
-    zh: 'zh_TW',
-    en: 'en_US',
-  };
   const [messageApi, contextHolder] = message.useMessage();
 
   const changeAuthMode = (mode) => {
@@ -42,9 +53,10 @@ const NavItems = ({ setIsOpen = () => {} }) => {
     }
   };
 
-  const handleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  // rerender-functional-setstate: 使用 functional setState 確保回呼穩定
+  const handleDarkMode = useCallback(() => {
+    setDarkMode((prev) => !prev);
+  }, [setDarkMode]);
 
   const handleModalOpen = (bool) => {
     setIsModalOpen(bool);
@@ -61,7 +73,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
   };
 
   // 登出事件
-  const handleClick = async () => {
+  const handleClick = useCallback(async () => {
     try {
       setSession(null);
       clearLocalCart();
@@ -70,44 +82,48 @@ const NavItems = ({ setIsOpen = () => {} }) => {
       console.error('Logout failed:', err);
       messageApi.error(t('logout_failed'));
     }
-  };
+  }, [setSession, clearLocalCart, messageApi, t]);
 
-  const userMenu = {
-    items: [
-      {
-        key: 'email',
-        label: session?.user?.email || 'No email',
-        disabled: true,
-      },
-      {
-        type: 'divider',
-      },
-      {
-        key: 'profile',
-        label: (
-          <Link to="/profile" onClick={() => setIsOpen(false)}>
-            {t('profile')}
-          </Link>
-        ),
-        icon: <ProfileOutlined />,
-      },
-      {
-        key: 'orders',
-        label: (
-          <Link to="/orders" onClick={() => setIsOpen(false)}>
-            {t('order_details')}
-          </Link>
-        ),
-        icon: <ShoppingOutlined />,
-      },
-      {
-        key: 'logout',
-        label: t('login_out'),
-        icon: <LogoutOutlined />,
-        onClick: handleClick,
-      },
-    ],
-  };
+  // rerender-memo: 使用 useMemo 避免每次渲染重建選單物件
+  const userMenu = useMemo(
+    () => ({
+      items: [
+        {
+          key: 'email',
+          label: session?.user?.email || 'No email',
+          disabled: true,
+        },
+        {
+          type: 'divider',
+        },
+        {
+          key: 'profile',
+          label: (
+            <Link to="/profile" onClick={() => setIsOpen(false)}>
+              {t('profile')}
+            </Link>
+          ),
+          icon: <ProfileOutlined />,
+        },
+        {
+          key: 'orders',
+          label: (
+            <Link to="/orders" onClick={() => setIsOpen(false)}>
+              {t('order_details')}
+            </Link>
+          ),
+          icon: <ShoppingOutlined />,
+        },
+        {
+          key: 'logout',
+          label: t('login_out'),
+          icon: <LogoutOutlined />,
+          onClick: handleClick,
+        },
+      ],
+    }),
+    [session?.user?.email, setIsOpen, t, handleClick]
+  );
 
   const login = async () => {
     if (!email || !password) {
@@ -203,11 +219,11 @@ const NavItems = ({ setIsOpen = () => {} }) => {
     setConfirmPassword('');
   };
 
-  const changeLanguage = () => {
-    const newLanguage = language === languageList.zh ? languageList.en : languageList.zh;
-    i18n.changeLanguage(newLanguage); //i18n
-    setLanguage(newLanguage); //狀態持久化
-  };
+  const changeLanguage = useCallback(() => {
+    const newLanguage = language === LANGUAGE_LIST.zh ? LANGUAGE_LIST.en : LANGUAGE_LIST.zh;
+    i18n.changeLanguage(newLanguage);
+    setLanguage(newLanguage);
+  }, [language, setLanguage]);
 
   return (
     <>
@@ -243,9 +259,12 @@ const NavItems = ({ setIsOpen = () => {} }) => {
           )}
         </li>
 
-        <Cart open={isCartOpen} onCancel={() => setIsCartOpen(false)} items={cart} />
+        <Suspense fallback={null}>
+          <Cart open={isCartOpen} onCancel={() => setIsCartOpen(false)} items={cart} />
+        </Suspense>
 
-        <Modal
+        <Suspense fallback={null}>
+          <Modal
           okText={isForgotMode ? t('send_reset_link') : isRegisterMode ? t('register') : t('login')}
           cancelText={t('cancel')}
           open={isModalOpen}
@@ -364,6 +383,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
             </div>
           </div>
         </Modal>
+        </Suspense>
       </ul>
     </>
   );

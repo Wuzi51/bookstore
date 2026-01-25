@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useBookStore } from '@/store/book';
-import { message } from 'antd';
+// bundle-barrel-imports: 直接匯入減少 bundle size
+import message from 'antd/es/message';
 
 const SearchForm = () => {
   const { books } = useBookStore();
