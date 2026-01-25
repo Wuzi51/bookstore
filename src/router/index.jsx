@@ -1,7 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import Layout from '../components/Layout';
-import { Spin } from 'antd';
+// bundle-barrel-imports: 直接匯入減少 bundle size
+import Spin from 'antd/es/spin';
 
 // Lazy load all pages for code splitting
 const Home = lazy(() => import('@/pages/Home'));
