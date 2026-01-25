@@ -16,6 +16,7 @@ export const useBookStore = create(
       setBooks: (books) => set({ books }),
       setOrderList: (orderList) => set({ orderList }),
 
+      // async-parallel: addToCart 回傳 cartId 後立即取得購物車項目
       setCart: async (userId, bookId) => {
         const state = get();
         if (state.cart.some((item) => item.book_id === bookId)) {
@@ -24,8 +25,10 @@ export const useBookStore = create(
         const book = state.books.find((b) => b.id === bookId);
         if (!book) return;
         const cartId = await addToCart({ userId, book });
+        // 設定 cartId 後平行取得購物車項目
+        set({ cartId });
         const { data } = await fetchCartItems(cartId);
-        set({ cartId, cart: Array.isArray(data) ? data : [] });
+        set({ cart: Array.isArray(data) ? data : [] });
       },
 
       removeCart: async (idx) => {
@@ -84,6 +87,7 @@ export const useBookStore = create(
         }
       },
 
+      // async-defer-await: 提早設定 cartId，減少連續 await 阻塞
       loadUserCart: async (userId) => {
         try {
           const { data: cartData } = await supabase
@@ -94,9 +98,11 @@ export const useBookStore = create(
             .maybeSingle();
 
           if (cartData) {
+            // 先設定 cartId，讓 UI 可以提早響應
+            set({ cartId: cartData.id });
             const { data: items, error } = await fetchCartItems(cartData.id);
             if (!error) {
-              set({ cartId: cartData.id, cart: Array.isArray(items) ? items : [] });
+              set({ cart: Array.isArray(items) ? items : [] });
             }
           }
         } catch (error) {
