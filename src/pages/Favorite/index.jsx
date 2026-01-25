@@ -1,6 +1,7 @@
 import BookCard from '@/components/BookCard';
 import { useBookStore } from '@/store/book';
-import { message } from 'antd';
+// bundle-barrel-imports: 直接匯入減少 bundle size
+import message from 'antd/es/message';
 import { useTranslation } from 'react-i18next';
 import { useUserStore } from '@/store/user';
 import { Link } from 'react-router-dom';

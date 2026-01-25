@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Card, Form, Input, Button, Result, message } from 'antd';
+// bundle-barrel-imports: 直接匯入減少 bundle size
+import Card from 'antd/es/card';
+import Form from 'antd/es/form';
+import Input from 'antd/es/input';
+import Button from 'antd/es/button';
+import Result from 'antd/es/result';
+import message from 'antd/es/message';
 import supabase from '@/lib/supabaseClient';
 import { useUserStore } from '@/store/user';
 

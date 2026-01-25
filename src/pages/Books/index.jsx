@@ -4,7 +4,9 @@ import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useBookStore } from '@/store/book';
 import { useUserStore } from '@/store/user';
-import { message, Spin } from 'antd';
+// bundle-barrel-imports: 直接匯入減少 bundle size
+import message from 'antd/es/message';
+import Spin from 'antd/es/spin';
 import { useTranslation } from 'react-i18next';
 
 const Books = () => {

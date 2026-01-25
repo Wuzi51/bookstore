@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useUserStore } from '@/store/user';
-import { Card, Form, Input, Button, message, Divider } from 'antd';
-import {
-  UserOutlined,
-  MailOutlined,
-  PhoneOutlined,
-  HomeOutlined,
-  LockOutlined,
-} from '@ant-design/icons';
+// bundle-barrel-imports: 直接匯入減少 bundle size
+import Card from 'antd/es/card';
+import Form from 'antd/es/form';
+import Input from 'antd/es/input';
+import Button from 'antd/es/button';
+import message from 'antd/es/message';
+import Divider from 'antd/es/divider';
+import UserOutlined from '@ant-design/icons/UserOutlined';
+import MailOutlined from '@ant-design/icons/MailOutlined';
+import PhoneOutlined from '@ant-design/icons/PhoneOutlined';
+import HomeOutlined from '@ant-design/icons/HomeOutlined';
+import LockOutlined from '@ant-design/icons/LockOutlined';
 import { userApi } from '@/api/user';
 
 const Profile = () => {

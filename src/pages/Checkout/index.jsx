@@ -1,14 +1,33 @@
 import BookItem from '@/components/BookItem';
-import { message } from 'antd';
-import { useState, useEffect } from 'react';
+// bundle-barrel-imports: 直接匯入減少 bundle size
+import message from 'antd/es/message';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useBookStore } from '@/store/book';
 import { useUserStore } from '@/store/user';
 import { useTranslation } from 'react-i18next';
 import { checkPermission } from '@/api/auth';
 
+// rendering-hoist-jsx: 靜態選項提升到模組層級，避免每次渲染重建
+const MONTH_OPTIONS = Array.from({ length: 12 }, (_, i) => {
+  const month = String(i + 1).padStart(2, '0');
+  return (
+    <option key={month} value={month}>
+      {month}
+    </option>
+  );
+});
+
+const YEAR_OPTIONS = Array.from({ length: 11 }, (_, i) => {
+  const year = 2024 + i;
+  return (
+    <option key={year} value={year}>
+      {year}
+    </option>
+  );
+});
+
 const Checkout = () => {
-  //使用全局狀態獲取資料
   const { cart, cartId, getTotalPrice, removeCart, checkout } = useBookStore();
   const { session } = useUserStore();
   const [payment, setPayment] = useState('visa');
@@ -18,87 +37,64 @@ const Checkout = () => {
   const [cvv, setCvv] = useState('');
   const { t } = useTranslation();
   const [messageApi, contextHolder] = message.useMessage();
-
-  const handleRemoveClick = (idx) => {
-    removeCart(idx);
-  };
-
   const navigate = useNavigate();
-  const changePage = (url) => {
-    messageApi.success(t('Payment_Success'));
-    setTimeout(() => {
-      navigate(url);
-    }, 500);
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // rerender-functional-setstate: 使用 useCallback 穩定回呼函式
+  const handleRemoveClick = useCallback(
+    (idx) => {
+      removeCart(idx);
+    },
+    [removeCart]
+  );
 
-    if (cart.length === 0) {
-      messageApi.warning(t('Cart_Empty'));
-      return;
-    }
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
 
-    if (!session?.user?.id) {
-      messageApi.warning(t('Please_Login_First'));
-      return;
-    }
-
-    if (!cartId) {
-      messageApi.warning(t('cart_data_error'));
-      return;
-    }
-
-    // 檢查是否有填寫付款資訊
-    if (payment === 'visa' && (!cardNumber || !expirationMonth || !expirationYear || !cvv)) {
-      messageApi.warning(t('Incomplete_Card_Info'));
-      return;
-    }
-
-    try {
-      const orderId = await checkout(session.user.id);
-      if (orderId) {
-        changePage('/');
-      } else {
-        messageApi.error(t('checkout_failed'));
+      if (cart.length === 0) {
+        messageApi.warning(t('Cart_Empty'));
+        return;
       }
-    } catch (err) {
-      messageApi.error(err.message || t('Payment_Failure'));
-      console.error('Checkout error:', err);
-    }
-  };
 
-  const monthDropdown = () => {
-    const months = [];
-    for (let i = 1; i <= 12; i++) {
-      const month = i < 10 ? `0${i}` : `${i}`;
-      months.push(
-        <option key={month} value={month}>
-          {month}
-        </option>
-      );
-    }
-    return months;
-  };
+      if (!session?.user?.id) {
+        messageApi.warning(t('Please_Login_First'));
+        return;
+      }
 
-  const yearDropdown = () => {
-    const years = [];
-    for (let i = 2024; i <= 2034; i++) {
-      years.push(
-        <option key={i} value={i}>
-          {i}
-        </option>
-      );
-    }
-    return years;
-  };
+      if (!cartId) {
+        messageApi.warning(t('cart_data_error'));
+        return;
+      }
+
+      if (payment === 'visa' && (!cardNumber || !expirationMonth || !expirationYear || !cvv)) {
+        messageApi.warning(t('Incomplete_Card_Info'));
+        return;
+      }
+
+      try {
+        const orderId = await checkout(session.user.id);
+        if (orderId) {
+          messageApi.success(t('Payment_Success'));
+          setTimeout(() => navigate('/'), 500);
+        } else {
+          messageApi.error(t('checkout_failed'));
+        }
+      } catch (err) {
+        messageApi.error(err.message || t('Payment_Failure'));
+        console.error('Checkout error:', err);
+      }
+    },
+    [cart, cartId, session, payment, cardNumber, expirationMonth, expirationYear, cvv, checkout, messageApi, t, navigate]
+  );
+
+  // rerender-derived-state: 計算總金額使用 useMemo
+  const totalPrice = useMemo(() => getTotalPrice(), [cart, getTotalPrice]);
 
   useEffect(() => {
     if (!checkPermission(session)) {
       navigate('/');
-      return;
     }
-  }, [session]);
+  }, [session, navigate]);
 
   return (
     <>
@@ -158,7 +154,7 @@ const Checkout = () => {
                     <option value="" disabled>
                       MM
                     </option>
-                    {monthDropdown()}
+                    {MONTH_OPTIONS}
                   </select>
                   <p className="flex items-center">/</p>
                   <select
@@ -169,7 +165,7 @@ const Checkout = () => {
                     <option value="" disabled>
                       YYYY
                     </option>
-                    {yearDropdown()}
+                    {YEAR_OPTIONS}
                   </select>
                 </div>
               </div>
@@ -220,7 +216,7 @@ const Checkout = () => {
             <p className="my-4 border border-solid border-stone-500"></p>
             <div className="total-price flex justify-between text-base font-medium text-gray-900 dark:text-primary">
               <p>{t('Total_Amount')}</p>
-              <p>NT${getTotalPrice()}</p>
+              <p>NT${totalPrice}</p>
             </div>
           </div>
         </div>

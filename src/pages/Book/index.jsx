@@ -3,7 +3,8 @@ import { useBookStore } from '@/store/book';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import CommentBoard from '@/components/CommentBoard';
-import { message } from 'antd';
+// bundle-barrel-imports: 直接匯入減少 bundle size
+import message from 'antd/es/message';
 import { useTranslation } from 'react-i18next';
 import { useUserStore } from '@/store/user';
 import { checkPermission } from '@/api/auth';

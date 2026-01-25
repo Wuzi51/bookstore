@@ -2,22 +2,23 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useUserStore } from '@/store/user';
 import { useBookStore } from '@/store/book';
-import {
-  Card,
-  Table,
-  Tag,
-  Button,
-  Empty,
-  message,
-  Spin,
-  Drawer,
-  List,
-  Avatar,
-  Space,
-  Divider,
-  Grid,
-} from 'antd';
-import { ShoppingOutlined, EyeOutlined, BookOutlined } from '@ant-design/icons';
+// bundle-barrel-imports: 直接匯入減少 bundle size
+import Card from 'antd/es/card';
+import Table from 'antd/es/table';
+import Tag from 'antd/es/tag';
+import Button from 'antd/es/button';
+import Empty from 'antd/es/empty';
+import message from 'antd/es/message';
+import Spin from 'antd/es/spin';
+import Drawer from 'antd/es/drawer';
+import List from 'antd/es/list';
+import Avatar from 'antd/es/avatar';
+import Space from 'antd/es/space';
+import Divider from 'antd/es/divider';
+import Grid from 'antd/es/grid';
+import ShoppingOutlined from '@ant-design/icons/ShoppingOutlined';
+import EyeOutlined from '@ant-design/icons/EyeOutlined';
+import BookOutlined from '@ant-design/icons/BookOutlined';
 
 const STATUS_COLORS = {
   pending: 'orange',
