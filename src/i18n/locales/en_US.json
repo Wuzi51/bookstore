@@ -144,5 +144,9 @@
   "submit": "Submit",
   "contact_support_hint": "If you need help, please contact support or resend the password reset email.",
   "go_home": "Go Home",
-  "go_to_login": "Go to Login"
+  "go_to_login": "Go to Login",
+
+  "total_orders": "Total {{total}} orders",
+  "unit_price": "Unit Price",
+  "quantity": "Quantity"
 }

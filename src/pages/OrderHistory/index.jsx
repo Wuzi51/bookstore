@@ -163,7 +163,7 @@ const OrderHistory = () => {
                   pageSize: 10,
                   showSizeChanger: true,
                   showQuickJumper: true,
-                  showTotal: (total) => `共 ${total} 筆訂單`,
+                  showTotal: (total) => t('total_orders', { total }),
                 }}
               />
             ) : (
@@ -290,8 +290,8 @@ const OrderHistory = () => {
                           <div className="text-right font-medium">{formatCurrency(lineTotal)}</div>
                         </div>
                         <div className="mt-2 text-sm text-gray-500 space-y-1">
-                          <div>單價：{formatCurrency(item?.price)}</div>
-                          <div>數量：{quantity}</div>
+                          <div>{t('unit_price')}：{formatCurrency(item?.price)}</div>
+                          <div>{t('quantity')}：{quantity}</div>
                         </div>
                       </div>
                     </div>

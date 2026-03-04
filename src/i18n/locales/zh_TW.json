@@ -144,5 +144,9 @@
   "submit": "送出",
   "contact_support_hint": "如需協助，請聯絡客服或重新寄送重設密碼信件。",
   "go_home": "返回首頁",
-  "go_to_login": "前往登入"
+  "go_to_login": "前往登入",
+
+  "total_orders": "共 {{total}} 筆訂單",
+  "unit_price": "單價",
+  "quantity": "數量"
 }
