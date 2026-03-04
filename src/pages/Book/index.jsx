@@ -5,18 +5,31 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import CommentBoard from '@/components/CommentBoard';
 // bundle-barrel-imports: 直接匯入減少 bundle size
 import message from 'antd/es/message';
+import Spin from 'antd/es/spin';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useUserStore } from '@/store/user';
 import { checkPermission } from '@/api/auth';
+import { bookApi } from '@/api/book';
 
 const Book = () => {
-  const { books, setFavoriteBooks, setCart, cart, favoriteBooks } = useBookStore();
+  const { books, setBooks, setFavoriteBooks, setCart, cart, favoriteBooks } = useBookStore();
   const { id } = useParams();
   const book = books.find((item) => item.id === Number(id));
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
   const { t } = useTranslation();
   const { session } = useUserStore();
+
+  useEffect(() => {
+    if (books.length === 0) {
+      bookApi.getBooks().then(({ data }) => {
+        if (data) setBooks(data);
+      }).catch(() => {
+        navigate('/');
+      });
+    }
+  }, [books.length, setBooks, navigate]);
 
   const inCart = cart && book ? cart.some((item) => item.book_id === book.id) : false;
 
@@ -25,13 +38,13 @@ const Book = () => {
 
   const changePage = (url) => navigate(url);
 
-  const handleCheckOut = () => {
+  const handleCheckOut = async () => {
     if (!checkPermission(session)) {
       messageApi.warning(t('Please_Login_First'));
       return;
     }
     if (!inCart) {
-      setCart(session.user.id, book.id);
+      await setCart(session.user.id, book.id);
       messageApi.success(t('Already_Added_To_Cart'));
     }
     changePage('/checkout');
@@ -58,6 +71,14 @@ const Book = () => {
     setFavoriteBooks(book.id);
     messageApi.success(t('Added_To_Favorites'));
   };
+
+  if (!book) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <Spin size="large" />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col mt-10 lg:flex-row lg:justify-around m-3">

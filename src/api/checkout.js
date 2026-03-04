@@ -21,7 +21,10 @@ export async function checkoutOrder({ userId, cartId, total }) {
     .update({ status: 'ordered' })
     .eq('id', cartId);
 
-  if (updateError) throw new Error('購物車狀態更新失敗');
+  if (updateError) {
+    await supabase.from('orders').delete().eq('id', orderData.id);
+    throw new Error('購物車狀態更新失敗');
+  }
 
   return orderData.id;
 }

@@ -18,8 +18,9 @@ const MONTH_OPTIONS = Array.from({ length: 12 }, (_, i) => {
   );
 });
 
+const currentYear = new Date().getFullYear();
 const YEAR_OPTIONS = Array.from({ length: 11 }, (_, i) => {
-  const year = 2024 + i;
+  const year = currentYear + i;
   return (
     <option key={year} value={year}>
       {year}
@@ -201,7 +202,6 @@ const Checkout = () => {
               <button
                 className="w-full bg-blue-500 text-white py-3 px-4 rounded-md hover:bg-blue-400 transition duration-300"
                 type="submit"
-                onClick={handleSubmit}
               >
                 {t('Confirm_Payment')}
               </button>
