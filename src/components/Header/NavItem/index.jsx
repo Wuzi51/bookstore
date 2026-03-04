@@ -28,7 +28,7 @@ const LANGUAGE_LIST = {
 };
 
 const NavItems = ({ setIsOpen = () => {} }) => {
-  const { setDarkMode } = useUserStore();
+  const { darkMode, setDarkMode } = useUserStore();
   const { cart, clearLocalCart } = useBookStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -53,10 +53,9 @@ const NavItems = ({ setIsOpen = () => {} }) => {
     }
   };
 
-  // rerender-functional-setstate: 使用 functional setState 確保回呼穩定
   const handleDarkMode = useCallback(() => {
-    setDarkMode((prev) => !prev);
-  }, [setDarkMode]);
+    setDarkMode(!darkMode);
+  }, [setDarkMode, darkMode]);
 
   const handleModalOpen = (bool) => {
     setIsModalOpen(bool);
@@ -75,14 +74,14 @@ const NavItems = ({ setIsOpen = () => {} }) => {
   // 登出事件
   const handleClick = useCallback(async () => {
     try {
-      setSession(null);
-      clearLocalCart();
       await userApi.logout();
     } catch (err) {
       console.error('Logout failed:', err);
-      messageApi.error(t('logout_failed'));
+    } finally {
+      setSession(null);
+      clearLocalCart();
     }
-  }, [setSession, clearLocalCart, messageApi, t]);
+  }, [setSession, clearLocalCart]);
 
   // rerender-memo: 使用 useMemo 避免每次渲染重建選單物件
   const userMenu = useMemo(
@@ -287,7 +286,7 @@ const NavItems = ({ setIsOpen = () => {} }) => {
               <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); handleModalSubmit(); }}>
                 <div>
                   <label
-                    htmlFor="username"
+                    htmlFor="email"
                     className="block text-sm font-medium leading-6 text-gray-900 dark:text-secondary"
                   >
                     {t('Email')}
