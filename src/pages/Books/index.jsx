@@ -7,6 +7,7 @@ import { useUserStore } from '@/store/user';
 // bundle-barrel-imports: 直接匯入減少 bundle size
 import message from 'antd/es/message';
 import Spin from 'antd/es/spin';
+
 import { useTranslation } from 'react-i18next';
 
 const Books = () => {
@@ -106,7 +107,7 @@ const Books = () => {
   );
 
   const sortedBooks = useMemo(() => {
-    return filteredBooks.sort((a, b) => {
+    return [...filteredBooks].sort((a, b) => {
       if (sortOrder === 'date') {
         return new Date(a.date) - new Date(b.date);
       }
