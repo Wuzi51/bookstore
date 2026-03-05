@@ -13,4 +13,15 @@ export const bookApi = {
     }
     return { data };
   },
+
+  addComment: async ({ bookId, name, content }) => {
+    const { data, error } = await supabase
+      .from('comments')
+      .insert({ book_id: bookId, name, content, created_at: new Date().toISOString() })
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  },
 };

@@ -70,6 +70,7 @@
   "register_success_auto_login": "Registration successful and logged in",
   "register_success_check_email": "Registration successful, please check your email to confirm",
   "register_failed": "Registration failed",
+  "email_already_registered": "This email is already registered. Please login or reset your password.",
   "please_enter_email": "Please enter your email",
   "reset_link_sent": "Reset link sent, please check your email",
   "reset_password_failed": "Reset password failed, please try again later",
@@ -149,5 +150,11 @@
   "total_orders": "Total {{total}} orders",
   "unit_price": "Unit Price",
   "quantity": "Quantity",
-  "Similar_Books": "Similar Books"
+  "Similar_Books": "Similar Books",
+  "Write_Review": "Write a Review",
+  "Review_Placeholder": "Share your thoughts about this book…",
+  "Submit_Review": "Submit Review",
+  "Review_Success": "Review submitted",
+  "Review_Empty": "Please enter your review",
+  "Review_Submit_Failed": "Failed to submit review, please try again later"
 }

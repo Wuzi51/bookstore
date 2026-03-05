@@ -3,6 +3,7 @@ import { persist } from 'zustand/middleware';
 import { addToCart, fetchCartItems, removeCartItem, clearCartItems } from '@/api/cart';
 import { checkoutOrder } from '@/api/checkout';
 import { orderApi } from '@/api/order';
+import { bookApi } from '@/api/book';
 import supabase from '@/lib/supabaseClient';
 
 export const useBookStore = create(
@@ -76,6 +77,16 @@ export const useBookStore = create(
       getTotalPrice: () => get().cart.reduce((preVal, item) => preVal + Number(item.price), 0),
 
       clearLocalCart: () => set({ cart: [], cartId: null }),
+
+      addComment: async (bookId, name, content) => {
+        const newComment = await bookApi.addComment({ bookId, name, content });
+        set((state) => ({
+          books: state.books.map((b) =>
+            b.id === bookId ? { ...b, comments: [...b.comments, newComment] } : b
+          ),
+        }));
+        return newComment;
+      },
 
       fetchOrderList: async (userId) => {
         try {

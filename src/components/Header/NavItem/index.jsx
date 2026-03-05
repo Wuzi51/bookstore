@@ -163,7 +163,11 @@ const NavItems = ({ setIsOpen = () => {} }) => {
 
     setLoading(true);
     try {
-      const { session } = await userApi.signup(email, password);
+      const { session, user } = await userApi.signup(email, password);
+      if (user?.identities?.length === 0) {
+        messageApi.warning(t('email_already_registered'));
+        return;
+      }
       if (session) {
         setSession(session);
         messageApi.success(t('register_success_auto_login'));

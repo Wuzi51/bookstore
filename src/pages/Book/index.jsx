@@ -14,13 +14,17 @@ import { checkPermission } from '@/api/auth';
 import { bookApi } from '@/api/book';
 
 const Book = () => {
-  const { books, setBooks, setFavoriteBooks, setCart, cart, favoriteBooks } = useBookStore();
+  const { books, setBooks, setFavoriteBooks, setCart, cart, favoriteBooks, addComment } = useBookStore();
   const { id } = useParams();
   const book = books.find((item) => item.id === Number(id));
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
   const { t } = useTranslation();
   const { session } = useUserStore();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   useEffect(() => {
     if (books.length === 0) {
@@ -138,7 +142,11 @@ const Book = () => {
           <h4 className="text-lg font-bold mb-2">{t('Description')}</h4>
           <p>{book.describe}</p>
         </div>
-        <CommentBoard book={book} />
+        <CommentBoard
+          book={book}
+          session={session}
+          onSubmit={(name, content) => addComment(book.id, name, content)}
+        />
       </div>
 
       {/* 右側按鈕區塊 */}

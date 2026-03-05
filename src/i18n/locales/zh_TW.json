@@ -70,6 +70,7 @@
   "register_success_auto_login": "註冊成功並已自動登入",
   "register_success_check_email": "註冊成功，請檢查您的信箱確認註冊",
   "register_failed": "註冊失敗",
+  "email_already_registered": "此電子郵件已被註冊，請直接登入或重設密碼",
   "please_enter_email": "請輸入電子郵件",
   "reset_link_sent": "重設密碼連結已寄出，請查看您的信箱",
   "reset_password_failed": "重設密碼失敗，請稍後再試",
@@ -149,5 +150,11 @@
   "total_orders": "共 {{total}} 筆訂單",
   "unit_price": "單價",
   "quantity": "數量",
-  "Similar_Books": "同分類推薦"
+  "Similar_Books": "同分類推薦",
+  "Write_Review": "撰寫書評",
+  "Review_Placeholder": "分享你對這本書的想法…",
+  "Submit_Review": "送出書評",
+  "Review_Success": "書評已送出",
+  "Review_Empty": "請輸入書評內容",
+  "Review_Submit_Failed": "書評送出失敗，請稍後再試"
 }
