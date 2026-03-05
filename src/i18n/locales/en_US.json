@@ -148,5 +148,6 @@
 
   "total_orders": "Total {{total}} orders",
   "unit_price": "Unit Price",
-  "quantity": "Quantity"
+  "quantity": "Quantity",
+  "Similar_Books": "Similar Books"
 }

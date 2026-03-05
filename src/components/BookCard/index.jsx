@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart, faBook } from '@fortawesome/free-solid-svg-icons';
 // bundle-barrel-imports: 直接匯入減少 bundle size
 import Modal from 'antd/es/modal';
-import { useState, memo, lazy, Suspense } from 'react';
+import { useState, memo, lazy, Suspense, useCallback } from 'react';
 import { useBookStore } from '@/store/book';
 import { Link } from 'react-router-dom';
 import Spin from 'antd/es/spin';
@@ -16,11 +16,13 @@ const BookCard = memo(({ book, onClick, onFavoriteClick, onCartClick, isFavorite
   const isBookFavorited =
     isFavorited !== undefined ? isFavorited : favoriteBooks.some((item) => item.id === book.id);
 
+  const handleOpenReader = useCallback(() => setOpen(true), []);
+
   return (
     <>
       <div
         key={book.id}
-        className="w-full max-w-52 text-center mt-2 flex flex-col justify-between p-4 shadow-lg dark:bg-surface dark:text-primary transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+        className="w-full max-w-52 text-center mt-2 flex flex-col justify-between p-4 shadow-lg dark:bg-surface dark:text-primary transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-xl"
       >
         <div className="overflow-hidden" onClick={onClick}>
           <Link to={`/book/${book.id}`} className="cursor-pointer">
@@ -28,6 +30,8 @@ const BookCard = memo(({ book, onClick, onFavoriteClick, onCartClick, isFavorite
               className="w-full h-52 object-contain duration-300 ease-in-out hover:scale-105"
               src={book.img}
               alt={book.title}
+              width={208}
+              height={208}
               loading="lazy"
             />
             <h3 className="text-sm mt-3 truncate">{book.title}</h3>
@@ -36,37 +40,36 @@ const BookCard = memo(({ book, onClick, onFavoriteClick, onCartClick, isFavorite
           <p className="mt-2 text-xs font-bold">{`NT$ ${book.price.toLocaleString()}`}</p>
         </div>
 
-        <div className="flex justify-evenly mt-3 cursor-pointer">
-          <div
-            className="w-1/2 leading-[3rem] hover:bg-gray-200 dark:hover:bg-gray-600"
+        <div className="flex justify-evenly mt-3">
+          <button
+            className="w-1/2 leading-[3rem] hover:bg-gray-200 dark:hover:bg-gray-600 transition-transform active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded"
             onClick={() => onFavoriteClick(book.id)}
+            aria-label={isBookFavorited ? 'Remove from favorites' : 'Add to favorites'}
           >
-            <button className="transition-transform active:scale-95">
-              <FontAwesomeIcon
-                icon={faHeart}
-                className={`${isBookFavorited ? 'text-[tomato]' : 'text-black dark:text-white'}`}
-              />
-            </button>
-          </div>
-          <div
-            className="w-1/2 leading-[3rem] hover:bg-gray-200 dark:hover:bg-gray-600"
-            onClick={() => setOpen(true)}
+            <FontAwesomeIcon
+              icon={faHeart}
+              aria-hidden="true"
+              className={`${isBookFavorited ? 'text-[tomato]' : 'text-black dark:text-white'}`}
+            />
+          </button>
+          <button
+            className="w-1/2 leading-[3rem] hover:bg-gray-200 dark:hover:bg-gray-600 transition-transform active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded"
+            onClick={handleOpenReader}
+            aria-label="Preview book"
           >
-            <button className="transition-transform active:scale-95">
-              <FontAwesomeIcon icon={faBook} />
-            </button>
-          </div>
-          <div
-            className="w-1/2 leading-[3rem] hover:bg-gray-200 dark:hover:bg-gray-600"
+            <FontAwesomeIcon icon={faBook} aria-hidden="true" />
+          </button>
+          <button
+            className="w-1/2 leading-[3rem] hover:bg-gray-200 dark:hover:bg-gray-600 transition-transform active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded"
             onClick={() => onCartClick(book.id)}
+            aria-label={inCart ? 'Already in cart' : 'Add to cart'}
           >
-            <button className="transition-transform active:scale-95">
-              <FontAwesomeIcon
-                icon={faCartShopping}
-                className={`${inCart ? 'text-green-500' : 'text-black dark:text-white'}`}
-              />
-            </button>
-          </div>
+            <FontAwesomeIcon
+              icon={faCartShopping}
+              aria-hidden="true"
+              className={`${inCart ? 'text-green-500' : 'text-black dark:text-white'}`}
+            />
+          </button>
         </div>
       </div>
       <Modal
