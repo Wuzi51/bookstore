@@ -39,8 +39,6 @@ const CommentBoard = ({ book, session, onSubmit }) => {
 
   return (
     <div className="mt-5 commentDarkMode">
-      <h3 className="text-lg font-bold mb-4">{t('Reviews')}</h3>
-
       {session?.user && (
         <form onSubmit={handleSubmit} className="mb-6">
           <p className="font-semibold mb-2">{t('Write_Review')}</p>
@@ -62,7 +60,7 @@ const CommentBoard = ({ book, session, onSubmit }) => {
           </button>
         </form>
       )}
-
+      <h3 className="text-lg font-bold mb-4">{t('Reviews')}</h3>
       <ul className="space-y-4">
         {book.comments.map((comment) => (
           <li key={comment.id} className="bg-gray-100 p-4 rounded-md shadow-md dark:bg-surface">
