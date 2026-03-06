@@ -10,7 +10,7 @@ import supabase from './lib/supabaseClient';
 
 function App() {
   const { darkMode, setSession } = useUserStore();
-  const { loadUserCart } = useBookStore();
+  const { loadUserCart, clearLocalCart } = useBookStore();
   const { darkAlgorithm, defaultAlgorithm } = theme;
 
   useEffect(() => {
@@ -33,14 +33,15 @@ function App() {
     } = supabase.auth.onAuthStateChange(async (event, session) => {
       setSession(session);
 
-      // 用戶登入時載入購物車
       if (session?.user?.id) {
         loadUserCart(session.user.id);
+      } else {
+        clearLocalCart();
       }
     });
 
     return () => subscription?.unsubscribe();
-  }, [setSession, loadUserCart]);
+  }, [setSession, loadUserCart, clearLocalCart]);
 
   return (
     <ConfigProvider
