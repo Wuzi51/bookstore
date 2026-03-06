@@ -66,8 +66,11 @@ const Book = () => {
       return;
     }
     if (!inCart) {
-      await setCart(session.user.id, book.id);
-      messageApi.success(t('Already_Added_To_Cart'));
+      const added = await setCart(session.user.id, book.id);
+      if (!added) {
+        messageApi.error(t('add_cart_failed'));
+        return;
+      }
     }
     changePage('/checkout');
   };
@@ -81,18 +84,27 @@ const Book = () => {
       messageApi.info(t('Already_In_Cart'));
       return;
     }
-    await setCart(session.user.id, bookId);
-    messageApi.success(t('Already_Added_To_Cart'));
+    try {
+      const added = await setCart(session.user.id, bookId);
+      if (added) {
+        messageApi.success(t('Already_Added_To_Cart'));
+      } else {
+        messageApi.error(t('add_cart_failed'));
+      }
+    } catch (error) {
+      console.error('Add to cart error:', error);
+      messageApi.error(t('add_cart_failed'));
+    }
   }, [session, cart, setCart, messageApi, t]);
 
   const handleFavoriteClick = useCallback((bookId) => {
-    if (favoriteBooks.some((item) => item.id === bookId)) {
-      messageApi.info(t('Already_In_Favorites'));
-      return;
+    const result = setFavoriteBooks(bookId);
+    if (result === 'add') {
+      messageApi.success(t('Added_To_Favorites'));
+    } else if (result === 'remove') {
+      messageApi.success(t('Removed_From_Favorites'));
     }
-    setFavoriteBooks(bookId);
-    messageApi.success(t('Added_To_Favorites'));
-  }, [favoriteBooks, setFavoriteBooks, messageApi, t]);
+  }, [setFavoriteBooks, messageApi, t]);
 
   if (!book) {
     return (
