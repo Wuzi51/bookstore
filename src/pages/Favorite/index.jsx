@@ -25,8 +25,17 @@ const Favorite = () => {
       messageApi.info(t('Already_In_Cart'));
       return;
     }
-    await setCart(session.user.id, bookId);
-    messageApi.success(t('Already_Added_To_Cart'));
+    try {
+      const added = await setCart(session.user.id, bookId);
+      if (added) {
+        messageApi.success(t('Already_Added_To_Cart'));
+      } else {
+        messageApi.error(t('add_cart_failed'));
+      }
+    } catch (error) {
+      console.error('Add to cart error:', error);
+      messageApi.error(t('add_cart_failed'));
+    }
   };
 
   return (
@@ -52,6 +61,8 @@ const Favorite = () => {
               key={book.id}
               onFavoriteClick={handleFavoriteClick}
               onCartClick={handleCartClick}
+              isFavorited
+              inCart={cart.some((item) => item.book_id === book.id)}
             />
           ))}
         </div>

@@ -50,7 +50,7 @@ const Home = () => {
       const result = setFavoriteBooks(id);
       if (result === 'add') {
         messageApi.success(t('Added_To_Favorites'));
-      } else {
+      } else if (result === 'remove') {
         messageApi.success(t('Removed_From_Favorites'));
       }
     },
@@ -70,8 +70,12 @@ const Home = () => {
       }
 
       try {
-        await setCart(session.user.id, bookId);
-        messageApi.success(t('Already_Added_To_Cart'));
+        const added = await setCart(session.user.id, bookId);
+        if (added) {
+          messageApi.success(t('Already_Added_To_Cart'));
+        } else {
+          messageApi.error(t('add_cart_failed'));
+        }
       } catch (error) {
         console.error('Add to cart error:', error);
         messageApi.error(t('add_cart_failed'));

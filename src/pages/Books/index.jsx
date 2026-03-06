@@ -1,6 +1,6 @@
 import BookCard from '@/components/BookCard';
 import { bookApi } from '@/api/book';
-import { useEffect, useState, useMemo, useCallback } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useBookStore } from '@/store/book';
 import { useUserStore } from '@/store/user';
@@ -11,10 +11,9 @@ import Spin from 'antd/es/spin';
 import { useTranslation } from 'react-i18next';
 
 const Books = () => {
-  const { setFavoriteBooks, setCart, cart, favoriteBooks } = useBookStore();
+  const { books, setBooks, setFavoriteBooks, setCart, cart, favoriteBooks } = useBookStore();
   const { session } = useUserStore();
   const [searchParams] = useSearchParams();
-  const [books, setBooks] = useState([]);
   const [sortOrder, setSortOrder] = useState('');
   const [loading, setLoading] = useState(true);
   const [messageApi, contextHolder] = message.useMessage();
@@ -36,7 +35,7 @@ const Books = () => {
   }, [cart]);
 
   const getBooks = useCallback(async () => {
-    if (books.length > 0) {
+    if (books && books.length > 0) {
       setLoading(false);
       return;
     }
@@ -49,7 +48,7 @@ const Books = () => {
     } finally {
       setLoading(false);
     }
-  }, [books.length]);
+  }, [books, setBooks]);
 
   const category = searchParams.get('category');
 
@@ -77,7 +76,7 @@ const Books = () => {
       const result = setFavoriteBooks(id);
       if (result === 'add') {
         messageApi.success(t('Added_To_Favorites'));
-      } else {
+      } else if (result === 'remove') {
         messageApi.success(t('Removed_From_Favorites'));
       }
     },
@@ -96,8 +95,12 @@ const Books = () => {
       }
 
       try {
-        await setCart(session.user.id, bookId);
-        messageApi.success(t('Already_Added_To_Cart'));
+        const added = await setCart(session.user.id, bookId);
+        if (added) {
+          messageApi.success(t('Already_Added_To_Cart'));
+        } else {
+          messageApi.error(t('add_cart_failed'));
+        }
       } catch (error) {
         console.error('Add to cart error:', error);
         messageApi.error(t('add_cart_failed'));
