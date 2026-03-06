@@ -21,15 +21,15 @@ export const useBookStore = create(
       setCart: async (userId, bookId) => {
         const state = get();
         if (state.cart.some((item) => item.book_id === bookId)) {
-          return;
+          return false;
         }
         const book = state.books.find((b) => b.id === bookId);
-        if (!book) return;
+        if (!book) return false;
         const cartId = await addToCart({ userId, book });
-        // 設定 cartId 後平行取得購物車項目
         set({ cartId });
         const { data } = await fetchCartItems(cartId);
         set({ cart: Array.isArray(data) ? data : [] });
+        return true;
       },
 
       removeCart: async (idx) => {
@@ -63,15 +63,14 @@ export const useBookStore = create(
         const state = get();
         const favoriteBooks = Array.isArray(state.favoriteBooks) ? state.favoriteBooks : [];
         const isFavorite = favoriteBooks.some((item) => item.id === id);
-        const book = state.books.find((item) => item.id === id);
-        if (!book) return;
         if (isFavorite) {
           set({ favoriteBooks: favoriteBooks.filter((item) => item.id !== id) });
           return 'remove';
-        } else {
-          set({ favoriteBooks: [...favoriteBooks, book] });
-          return 'add';
         }
+        const book = state.books.find((item) => item.id === id);
+        if (!book) return;
+        set({ favoriteBooks: [...favoriteBooks, book] });
+        return 'add';
       },
 
       getTotalPrice: () => get().cart.reduce((preVal, item) => preVal + Number(item.price), 0),
@@ -109,12 +108,13 @@ export const useBookStore = create(
             .maybeSingle();
 
           if (cartData) {
-            // 先設定 cartId，讓 UI 可以提早響應
             set({ cartId: cartData.id });
             const { data: items, error } = await fetchCartItems(cartData.id);
             if (!error) {
               set({ cart: Array.isArray(items) ? items : [] });
             }
+          } else {
+            set({ cart: [], cartId: null });
           }
         } catch (error) {
           console.error('Failed to load user cart:', error);
