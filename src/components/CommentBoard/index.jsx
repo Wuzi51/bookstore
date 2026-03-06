@@ -21,6 +21,7 @@ const CommentBoard = ({ book, session, onSubmit }) => {
     setSubmitting(true);
     try {
       const name =
+        session.user.user_metadata?.fullName ||
         session.user.user_metadata?.full_name ||
         session.user.user_metadata?.name ||
         session.user.email;

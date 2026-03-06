@@ -5,7 +5,15 @@ import i18n from 'i18next';
 import en_US from './locales/en_US.json';
 import zh_TW from './locales/zh_TW.json';
 
-const language = localStorage.getItem('user');
+let savedLanguage = 'zh_TW';
+try {
+  const stored = localStorage.getItem('user');
+  if (stored) {
+    savedLanguage = JSON.parse(stored).state.language || 'zh_TW';
+  }
+} catch {
+  // localStorage 損壞時 fallback 預設語言
+}
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -17,7 +25,7 @@ i18n.use(initReactI18next).init({
     },
   },
   fallbackLng: 'en_US',
-  lng: language ? JSON.parse(language).state.language : 'zh_TW', //預設語言
+  lng: savedLanguage,
   interpolation: {
     escapeValue: false,
   },

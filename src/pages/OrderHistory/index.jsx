@@ -22,6 +22,7 @@ import BookOutlined from '@ant-design/icons/BookOutlined';
 
 const STATUS_COLORS = {
   pending: 'orange',
+  paid: 'green',
   completed: 'green',
   cancelled: 'red',
   shipped: 'blue',

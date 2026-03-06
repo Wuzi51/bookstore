@@ -98,6 +98,7 @@
   "no_items_in_order": "No items in this order",
   "unnamed_product": "Unnamed Product",
   "status_pending": "Pending",
+  "status_paid": "Paid",
   "status_completed": "Completed",
   "status_cancelled": "Cancelled",
   "status_shipped": "Shipped",

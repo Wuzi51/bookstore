@@ -98,6 +98,7 @@
   "no_items_in_order": "此訂單沒有商品資料",
   "unnamed_product": "未命名商品",
   "status_pending": "處理中",
+  "status_paid": "已付款",
   "status_completed": "已完成",
   "status_cancelled": "已取消",
   "status_shipped": "已出貨",
